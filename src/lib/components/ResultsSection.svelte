@@ -1,0 +1,153 @@
+<script lang="ts">
+  import { Clock, ShieldCheck, TrendingUp, Package, IndianRupee, Cloud } from 'lucide-svelte';
+
+  const benefits = [
+    {
+      icon: Clock,
+      iconBg: 'bg-blue-50',
+      iconColor: 'text-blue-500',
+      title: 'Save Time',
+      description: 'Automate quotations, invoices, and inventory updates. What took hours now takes minutes.',
+      stat: '80%',
+      statColor: 'text-blue-600',
+      statLabel: 'reduction in manual work time',
+    },
+    {
+      icon: ShieldCheck,
+      iconBg: 'bg-rose-50',
+      iconColor: 'text-rose-500',
+      title: 'Reduce Errors',
+      description: 'Eliminate human errors in stock entries with automated validation and smart checks.',
+      stat: '95%',
+      statColor: 'text-rose-500',
+      statLabel: 'fewer billing and data errors',
+    },
+    {
+      icon: TrendingUp,
+      iconBg: 'bg-emerald-50',
+      iconColor: 'text-emerald-500',
+      title: 'Increase Productivity',
+      description: 'Streamline workflows, job cards, and task assignments that keep everyone aligned and efficient.',
+      stat: '3x',
+      statColor: 'text-emerald-600',
+      statLabel: 'increase in team productivity',
+    },
+    {
+      icon: Package,
+      iconBg: 'bg-amber-50',
+      iconColor: 'text-amber-500',
+      title: 'Track Inventory',
+      description: 'Know exactly what\'s in stock at any time. Prevent stockouts, reduce excess inventory, and optimize reorder points.',
+      stat: '40%',
+      statColor: 'text-amber-600',
+      statLabel: 'reduction in inventory holding costs',
+    },
+    {
+      icon: IndianRupee,
+      iconBg: 'bg-teal-50',
+      iconColor: 'text-teal-600',
+      title: 'Improve Profitability',
+      description: 'Gain real-time visibility into margins, costs, and revenue per job so you can price smarter and earn more.',
+      stat: '25%',
+      statColor: 'text-teal-600',
+      statLabel: 'average improvement in profit margins',
+    },
+    {
+      icon: Cloud,
+      iconBg: 'bg-slate-100',
+      iconColor: 'text-slate-500',
+      title: 'Cloud Access Anywhere',
+      description: 'Access your ERP from any device — laptop, tablet, or mobile. Work from the office, factory floor, or anywhere in the world.',
+      stat: '99.9%',
+      statColor: 'text-blue-600',
+      statLabel: 'uptime with secure cloud hosting',
+    },
+  ];
+</script>
+
+<!-- Results / Benefits Section -->
+<section
+  id="results"
+  class="relative w-full bg-slate-50/60 py-12 sm:py-16 lg:py-20 overflow-hidden"
+>
+  <!-- Subtle background grid -->
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center mb-14 sm:mb-16 lg:mb-20">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 mb-6 shadow-sm">
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+          <polyline points="16 7 22 7 22 13"></polyline>
+        </svg>
+        <span class="text-xs font-bold font-jakarta tracking-wide">Why Businesses Choose Bomax</span>
+      </div>
+
+      <!-- Title -->
+      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
+        Built to Deliver <span class="text-emerald-500">Real Results</span>
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
+        Over 500 glass businesses across India trust Bomax ERP to run their operations more efficiently and profitably.
+      </p>
+    </div>
+
+    <!-- Benefits Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+      {#each benefits as b, i}
+        <div
+          class="group bg-white border border-slate-200/80 rounded-2xl p-7 flex flex-col gap-4 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 result-card"
+          style="animation-delay: {i * 80}ms"
+        >
+          <!-- Icon -->
+          <div class="flex items-center justify-center w-11 h-11 {b.iconBg} {b.iconColor} rounded-xl shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 self-start">
+            <svelte:component this={b.icon} class="h-5 w-5" strokeWidth={1.8} />
+          </div>
+
+          <!-- Text -->
+          <div class="flex-1">
+            <h3 class="text-[15px] font-bold text-slate-900 font-heading mb-2 tracking-tight">{b.title}</h3>
+            <p class="text-[13px] text-slate-500 leading-relaxed font-medium">{b.description}</p>
+          </div>
+
+          <!-- Stat -->
+          <div class="flex items-baseline gap-2 pt-1 border-t border-slate-100">
+            <span class="text-[15px] font-black {b.statColor}">{b.stat}</span>
+            <span class="text-[12px] text-slate-400 font-medium leading-snug">{b.statLabel}</span>
+          </div>
+
+          <!-- Hover gradient overlay -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent via-transparent to-emerald-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        </div>
+      {/each}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .result-card {
+    position: relative;
+    animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    animation-fill-mode: both;
+  }
+
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
