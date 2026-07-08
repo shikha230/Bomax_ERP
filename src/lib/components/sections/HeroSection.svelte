@@ -9,7 +9,7 @@
 		modalMode = 'optimizer';
 		isModalOpen = true;
 	}
-
+ 
 	function openDemo() {
 		modalMode = 'demo';
 		isModalOpen = true;
