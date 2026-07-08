@@ -9,7 +9,7 @@
 		modalMode = 'optimizer';
 		isModalOpen = true;
 	}
- 
+
 	function openDemo() {
 		modalMode = 'demo';
 		isModalOpen = true;
@@ -18,7 +18,7 @@
 
 <section class="bg-[#E8F4FF] m-0 p-0">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-8 pb-12 sm:pb-16 lg:flex-row lg:gap-10 lg:pt-0 lg:pb-24"
+		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-3 lg:pt-5 pb-12 sm:pb-16 lg:flex-row lg:gap-10 lg:pb-24"
 	>
 		<!-- Left Content -->
 		<div class="w-full lg:w-7/12 text-center lg:text-left">

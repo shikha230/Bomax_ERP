@@ -53,7 +53,7 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
       {#each links as link}
         <a
           href={getLinkHref(link.href)}
@@ -68,10 +68,10 @@
     </nav>
 
     <!-- Desktop Actions -->
-    <div class="hidden md:flex items-center gap-4">
+    <div class="hidden lg:flex items-center gap-4">
       <a
         href="#signin"
-        class="rounded-xl px-5 py-2.5 text-sm font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-slate-50 transition-all duration-200"
+        class="rounded-xl px-5 py-2.5 text-sm font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-slate-50 transition-all duration-200 whitespace-nowrap"
       >
         Sign In
       </a>
@@ -80,7 +80,7 @@
 
     <!-- Mobile Menu Button -->
     <button
-      class="md:hidden flex items-center justify-center rounded-xl p-2.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+      class="lg:hidden flex items-center justify-center rounded-xl p-2.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
       onclick={toggleMobileMenu}
       aria-label="Toggle Menu"
     >
@@ -96,7 +96,7 @@
 <!-- Mobile Drawer Backdrop & Menu -->
 {#if mobileMenuOpen}
   <div
-    class="fixed top-20 bottom-0 left-0 right-0 z-40 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300 md:hidden"
+    class="fixed top-20 bottom-0 left-0 right-0 z-40 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
     onclick={toggleMobileMenu}
     onkeydown={(e) => e.key === 'Escape' && toggleMobileMenu()}
     role="presentation"
@@ -104,7 +104,7 @@
 
   <!-- Mobile Drawer Menu -->
   <div
-    class="fixed top-20 bottom-0 right-0 z-50 w-full max-w-[280px] border-l border-slate-100 bg-white p-6 shadow-2xl md:hidden overflow-y-auto"
+    class="fixed top-20 bottom-0 right-0 z-50 w-full max-w-[280px] border-l border-slate-100 bg-white p-6 shadow-2xl lg:hidden overflow-y-auto"
   >
     <div class="flex flex-col gap-6">
       <nav class="flex flex-col gap-2">

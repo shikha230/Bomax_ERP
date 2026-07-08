@@ -5,6 +5,7 @@
   let { isOpen = false, mode = 'optimizer', onClose = () => {} } = $props();
 
   let clientName = $state('');
+  let companyName = $state('');
   let whatsappNumber = $state('');
   let country = $state('');
   let stateName = $state('');
@@ -30,6 +31,7 @@
     onClose();
     setTimeout(() => {
       clientName = '';
+      companyName = '';
       whatsappNumber = '';
       country = '';
       stateName = '';
@@ -124,17 +126,30 @@
         </div>
 
         <form onsubmit={handleSubmit} class="space-y-4">
-          <!-- Client Name Field -->
-          <div>
-            <label for="client-name" class="block text-xs font-bold text-slate-700 mb-1">Client Name *</label>
-            <input
-              id="client-name"
-              type="text"
-              bind:value={clientName}
-              required
-              placeholder="e.g., Apex Glass Solutions"
-              class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-            />
+          <!-- Client Name and Company Name fields -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="client-name" class="block text-xs font-bold text-slate-700 mb-1">Client Name *</label>
+              <input
+                id="client-name"
+                type="text"
+                bind:value={clientName}
+                required
+                placeholder="e.g., John Doe"
+                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+              />
+            </div>
+            <div>
+              <label for="company-name" class="block text-xs font-bold text-slate-700 mb-1">Company Name *</label>
+              <input
+                id="company-name"
+                type="text"
+                bind:value={companyName}
+                required
+                placeholder="e.g., Apex Glass Solutions"
+                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+              />
+            </div>
           </div>
 
           <!-- 2-Column Grid for Next Fields -->

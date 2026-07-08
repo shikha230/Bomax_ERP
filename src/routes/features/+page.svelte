@@ -30,7 +30,7 @@
 <Header />
 
 <main
-	class="flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-20 flex items-center justify-center"
+	class="flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3 lg:pt-5 pb-10 lg:pb-20 flex items-center justify-center"
 >
 	<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start w-full">
 		<section
@@ -75,15 +75,6 @@
 					<Calendar class="h-4 w-4" />
 					<span>Book Live Demo</span>
 				</button>
-
-				<button
-					type="button"
-					onclick={() => (isContactModalOpen = true)}
-					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl border border-blue-200 bg-white px-6 py-3.5 sm:py-4 text-sm font-semibold text-blue-600"
-				>
-					<Phone class="h-4 w-4" />
-					<span>Contact Sales</span>
-				</button>
 			</div>
 
 			<div class="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2">
@@ -96,7 +87,7 @@
 			</div>
 		</section>
 
-		<section class="hidden lg:flex lg:col-span-7 w-full justify-end lg:mt-28">
+		<section class="lg:col-span-7 w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
 			<div class="mockup-scaling-wrapper relative">
 				<div class="mockup-scaled-container">
 					<DashboardMockup />
@@ -158,6 +149,11 @@
 	.mockup-scaled-container {
 		width: 100%;
 		position: relative;
+		border-radius: 24px;
+		overflow: hidden;
+		border: 1px solid rgba(226, 232, 240, 0.8);
+		box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12),
+		            0 0 0 1px rgba(0, 0, 0, 0.04);
 	}
 
 	@media (min-width: 1024px) {

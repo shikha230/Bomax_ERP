@@ -1,4 +1,8 @@
 <script lang="ts">
+	let { onContactSales } = $props<{
+		onContactSales?: () => void;
+	}>();
+
 	const plans = [
 		{
 			name: 'Starter',
@@ -104,6 +108,11 @@
 					</div>
 
 					<button
+						onclick={() => {
+							if (plan.button === 'Contact Sales' && onContactSales) {
+								onContactSales();
+							}
+						}}
 						class={`mt-8 sm:mt-10 w-full rounded-lg py-3 font-semibold ${
 							plan.featured
 								? 'bg-white text-blue-600'
@@ -117,4 +126,4 @@
 		</div>
 
 	</div>
-</section>
+</section>
