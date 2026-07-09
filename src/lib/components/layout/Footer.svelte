@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Layers } from 'lucide-svelte';
+
 	const productLinks = [
 		'Features',
 		'Modules',
@@ -17,8 +19,6 @@
 
 	const supportLinks = [
 		'Help Center',
-		'Documentation',
-		'API Docs',
 		'Community',
 		'Status Page'
 	];
@@ -37,14 +37,15 @@
 			<!-- Logo Section -->
 
 			<div class="lg:col-span-1">
-				<div class="flex items-center gap-2">
+				<div class="flex items-center gap-2.5">
 					<div
-						class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold"
+						class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20"
 					>
-						G
+						<Layers class="h-5.5 w-5.5 text-white" />
+						<div class="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse border border-[#061330]"></div>
 					</div>
 
-					<h3 class="text-2xl font-bold">
+					<h3 class="text-2xl font-bold tracking-tight text-white font-heading">
 						GlassERP
 					</h3>
 				</div>

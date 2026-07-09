@@ -10,10 +10,7 @@
 			q: 'How long does the implementation take?',
 			a: 'Most customers go live within 3–7 days.'
 		},
-		{
-			q: 'Can I use GlassERP on mobile devices?',
-			a: 'Yes. GlassERP works perfectly on web and mobile browsers.'
-		},
+
 		{
 			q: 'Does GlassERP support GST and e-Invoicing?',
 			a: 'Absolutely. GST calculations and e-invoicing are built in.'

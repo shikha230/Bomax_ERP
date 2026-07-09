@@ -54,14 +54,14 @@
     <!-- Modal Card -->
     <!-- eslint-disable-next-line svelte/valid-compile -->
     <div
-      class="relative w-full sm:max-w-xl sm:rounded-3xl border-0 sm:border border-slate-100 bg-white shadow-2xl transition-all duration-300 min-h-screen sm:min-h-0 flex flex-col"
+      class="relative w-full sm:max-w-xl rounded-t-3xl sm:rounded-3xl border-0 sm:border border-slate-100 bg-white shadow-2xl transition-all duration-300 min-h-screen sm:min-h-0 flex flex-col"
       onclick={(e) => e.stopPropagation()}
     >
       <!-- Sticky Header with Close Button (always visible) -->
-      <div class="sticky top-0 z-10 flex items-center justify-between bg-white px-4 pt-4 pb-2 sm:px-6 sm:pt-5 border-b sm:border-b-0 border-slate-100">
+      <div class="sticky top-0 z-10 flex items-center justify-between bg-white px-4 pt-4 pb-2 sm:px-6 sm:pt-5 border-b sm:border-b-0 border-slate-100 rounded-t-3xl">
         <span class="text-sm font-semibold text-slate-500 sm:hidden">
           {#if !isSuccess}
-            {mode === 'optimizer' ? 'Try Free Optimizer' : 'Book a Demo'}
+            {mode === 'optimizer' ? 'Try Free Optimizer' : 'Book a Demo (Launching Soon)'}
           {:else}
             Request Submitted
           {/if}
@@ -119,26 +119,18 @@
               <Calendar class="h-5.5 w-5.5" />
             </div>
             <div>
-              <h3 class="text-lg font-extrabold text-slate-900 font-heading">Book a Demo</h3>
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-lg font-extrabold text-slate-900 font-heading">Book a Demo</h3>
+                <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800 border border-amber-200/60 uppercase tracking-wider animate-pulse">Launching Soon</span>
+              </div>
               <p class="text-sm text-slate-520 mt-0.5">See how Bomax ERP boosts efficiency for your glass operations.</p>
             </div>
           {/if}
         </div>
 
         <form onsubmit={handleSubmit} class="space-y-4">
-          <!-- Client Name and Company Name fields -->
+          <!-- Company Name and Client Name fields -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="client-name" class="block text-xs font-bold text-slate-700 mb-1">Client Name *</label>
-              <input
-                id="client-name"
-                type="text"
-                bind:value={clientName}
-                required
-                placeholder="e.g., John Doe"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
             <div>
               <label for="company-name" class="block text-xs font-bold text-slate-700 mb-1">Company Name *</label>
               <input
@@ -150,10 +142,56 @@
                 class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
               />
             </div>
+            <div>
+              <label for="client-name" class="block text-xs font-bold text-slate-700 mb-1">Client Name *</label>
+              <input
+                id="client-name"
+                type="text"
+                bind:value={clientName}
+                required
+                placeholder="e.g., John Doe"
+                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+              />
+            </div>
           </div>
 
-          <!-- 2-Column Grid for Next Fields -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- WhatsApp and Contact Time Fields -->
+          {#if mode === 'demo'}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="whatsapp-number" class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number *</label>
+                <input
+                  id="whatsapp-number"
+                  type="tel"
+                  bind:value={whatsappNumber}
+                  required
+                  placeholder="e.g., +91 98765 43210"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
+              
+              <div>
+                <label for="best-time" class="block text-xs font-bold text-slate-705 mb-1">Best Time to Contact *</label>
+                <select
+                  id="best-time"
+                  bind:value={bestTime}
+                  required
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none text-slate-700 font-medium"
+                >
+                  <option value="" disabled selected>Select a time slot</option>
+                  <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                  <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                  <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                  <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+                  <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+                  <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                  <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                  <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                  <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                </select>
+              </div>
+            </div>
+          {:else}
             <div>
               <label for="whatsapp-number" class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number *</label>
               <input
@@ -165,19 +203,7 @@
                 class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
               />
             </div>
-            
-            <div>
-              <label for="best-time" class="block text-xs font-bold text-slate-705 mb-1">Best Time to Contact *</label>
-              <input
-                id="best-time"
-                type="text"
-                bind:value={bestTime}
-                required
-                placeholder="e.g., 10 AM - 1 PM"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-          </div>
+          {/if}
 
           <!-- Country and State -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -240,7 +266,7 @@
             {#if isSubmitting}
               Submitting...
             {:else}
-              {mode === 'optimizer' ? 'Try Free Optimizer' : 'Book Demo'}
+              {mode === 'optimizer' ? 'Try Free Optimizer' : 'Launching Soon'}
             {/if}
           </button>
         </form>

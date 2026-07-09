@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
-	import DashboardMockup from '$lib/components/features/DashboardMockup.svelte';
+	import heroImage from '$lib/assets/Images/hero.png';
 	import FeaturesSection from '$lib/components/features/FeaturesSection.svelte';
 	import ModuleExplorer from '$lib/components/features/ModuleExplorer.svelte';
 	import SoftwareScreensSection from '$lib/components/features/SoftwareScreensSection.svelte';
@@ -21,20 +21,16 @@
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
 
-	const trustIndicators = [
-		'500+ Glass Businesses',
-		'14-Day Free Trial',
-		'No Credit Card'
-	];
+
 </script>
 <Header />
 
 <main
 	class="flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3 lg:pt-5 pb-10 lg:pb-20 flex items-center justify-center"
 >
-	<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start w-full">
+	<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center w-full">
 		<section
-			class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 md:space-y-8 animate-slide-up-fade"
+			class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 md:space-y-8 animate-slide-up-fade"
 		>
 			<div
 				class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200/50 text-blue-600 shadow-sm"
@@ -77,21 +73,16 @@
 				</button>
 			</div>
 
-			<div class="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2">
-				{#each trustIndicators as text (text)}
-  <div class="text-xs sm:text-sm text-slate-500 flex items-center gap-1.5">
-    <span class="text-emerald-500 font-bold">✓</span>
-    {text}
-  </div>
-{/each}
-			</div>
+
 		</section>
 
-		<section class="lg:col-span-7 w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
-			<div class="mockup-scaling-wrapper relative">
-				<div class="mockup-scaled-container">
-					<DashboardMockup />
-				</div>
+		<section class="lg:col-span-5 w-full flex justify-center lg:justify-end mt-8 lg:mt-8">
+			<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl w-full">
+				<img
+					src={heroImage}
+					alt="Glass ERP Dashboard"
+					class="w-full object-cover"
+				/>
 			</div>
 		</section>
 	</div>
@@ -138,35 +129,6 @@
 		to {
 			opacity: 1;
 			transform: translateY(0);
-		}
-	}
-
-	.mockup-scaling-wrapper {
-		width: 100%;
-		max-width: 660px;
-	}
-
-	.mockup-scaled-container {
-		width: 100%;
-		position: relative;
-		border-radius: 24px;
-		overflow: hidden;
-		border: 1px solid rgba(226, 232, 240, 0.8);
-		box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12),
-		            0 0 0 1px rgba(0, 0, 0, 0.04);
-	}
-
-	@media (min-width: 1024px) {
-		.mockup-scaling-wrapper {
-			width: 655px;
-			height: 484px;
-		}
-
-		.mockup-scaled-container {
-			width: 840px;
-			height: 620px;
-			transform: scale(0.78);
-			transform-origin: top left;
 		}
 	}
 </style>

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import {
     LayoutDashboard,
-    DollarSign,
+    IndianRupee,
     ClipboardList,
     Factory,
     Boxes,
@@ -67,7 +67,7 @@
   // Sidebar navigation options
   const sidebarItems = [
     { name: 'Dashboard', icon: LayoutDashboard },
-    { name: 'Sales', icon: DollarSign },
+    { name: 'Sales', icon: IndianRupee },
     { name: 'Quotes', icon: ClipboardList },
     { name: 'Orders', icon: ChevronRightSquare },
     { name: 'Production', icon: Factory },
@@ -296,12 +296,12 @@
           <div class="flex items-center justify-between">
             <span class="text-slate-450 font-semibold text-[10px]">Total Revenue</span>
             <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-              <DollarSign class="h-3.5 w-3.5" />
+              <IndianRupee class="h-3.5 w-3.5" />
             </div>
           </div>
           <div class="mt-1.5">
             <h3 class="text-[13px] font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight truncate">
-              ${stats.revenue.toLocaleString('en-US')}
+              ₹{stats.revenue.toLocaleString('en-IN')}
             </h3>
             <span class="flex items-center gap-0.5 text-[8.5px] font-semibold mt-1 text-emerald-600">
               <span>▲</span> {statRates.revenue.val} <span class="text-slate-400">vs last week</span>
@@ -355,7 +355,7 @@
           </div>
           <div class="mt-1.5">
             <h3 class="text-[13px] font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors leading-tight truncate">
-              ${stats.inventory.toLocaleString('en-US')}
+              ₹{stats.inventory.toLocaleString('en-IN')}
             </h3>
             <span class="flex items-center gap-0.5 text-[8.5px] font-semibold mt-1 text-rose-600">
               <span>▼</span> {statRates.inventory.val} <span class="text-slate-400">vs last week</span>

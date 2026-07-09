@@ -1,5 +1,5 @@
 <script lang="ts">
-	import heroImage from '$lib/assets/Images/hero.png';
+	import DashboardMockup from '$lib/components/features/DashboardMockup.svelte';
 	import HomeFormModal from './HomeFormModal.svelte';
 
 	let isModalOpen = $state(false);
@@ -16,12 +16,12 @@
 	}
 </script>
 
-<section class="bg-[#E8F4FF] m-0 p-0">
+<section class="bg-[#E8F4FF] m-0 p-0 overflow-hidden">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-3 lg:pt-5 pb-12 sm:pb-16 lg:flex-row lg:gap-10 lg:pb-24"
 	>
 		<!-- Left Content -->
-		<div class="w-full lg:w-7/12 text-center lg:text-left">
+		<div class="w-full lg:w-5/12 text-center lg:text-left">
 			<div
 				class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600"
 			>
@@ -67,31 +67,14 @@
 				</button>
 			</div>
 
-			<div
-				class="mt-6 sm:mt-10 flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-8 text-sm text-slate-500"
-			>
-				<div class="flex items-center gap-2">
-					<span class="text-green-500">✓</span>
-					No credit card required
-				</div>
-
-				<div class="flex items-center gap-2">
-					<span class="text-green-500">✓</span>
-					Setup in hours
-				</div>
-			</div>
 		</div>
 
-		<!-- Right Image -->
-		<div class="w-full lg:w-5/12">
-			<div
-				class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl"
-			>
-				<img
-					src={heroImage}
-					alt="Glass ERP Dashboard"
-					class="w-full object-cover"
-				/>
+		<!-- Right Animated Dashboard Mockup -->
+		<div class="w-full lg:w-7/12 flex justify-center lg:justify-end mt-8 lg:mt-0">
+			<div class="mockup-scaling-wrapper relative">
+				<div class="mockup-scaled-container">
+					<DashboardMockup />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -102,3 +85,34 @@
 	mode={modalMode}
 	onClose={() => (isModalOpen = false)}
 />
+
+<style>
+	.mockup-scaling-wrapper {
+		width: 100%;
+		max-width: 660px;
+	}
+
+	.mockup-scaled-container {
+		width: 100%;
+		position: relative;
+		border-radius: 24px;
+		overflow: hidden;
+		border: 1px solid rgba(226, 232, 240, 0.8);
+		box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12),
+		            0 0 0 1px rgba(0, 0, 0, 0.04);
+	}
+
+	@media (min-width: 1024px) {
+		.mockup-scaling-wrapper {
+			width: 655px;
+			height: 484px;
+		}
+
+		.mockup-scaled-container {
+			width: 840px;
+			height: 620px;
+			transform: scale(0.78);
+			transform-origin: top left;
+		}
+	}
+</style>

@@ -101,9 +101,9 @@
 			kind: 'welcome',
 			name: 'Jannie',
 			budgetLabel: 'Budget',
-			budgetValue: '$98,450',
+			budgetValue: '₹98,450',
 			expenseLabel: 'Expense',
-			expenseValue: '$2,440'
+			expenseValue: '₹2,440'
 		},
 		{
 			kind: 'goal',
@@ -121,7 +121,7 @@
 			iconBg: 'bg-pink-100',
 			iconColor: 'text-pink-600',
 			title: 'Total Income',
-			value: '$680',
+			value: '₹680',
 			change: '+18%',
 			changeType: 'up',
 			values: [30, 46, 24, 52, 34, 48, 26, 40],
@@ -138,10 +138,10 @@
 			kind: 'activity',
 			title: 'Recent Activity',
 			items: [
-				{ time: '09:46', text: 'Payment was made of $364.85 to Michael Anderson', dot: 'bg-indigo-400' },
+				{ time: '09:46', text: 'Payment was made of ₹364.85 to Michael Anderson', dot: 'bg-indigo-400' },
 				{ time: '09:46', text: 'New sale recorded #ML-3457', dot: 'bg-emerald-400' },
 				{ time: '09:46', text: 'Project meeting scheduled', dot: 'bg-pink-400' },
-				{ time: '09:46', text: 'Payment received from John Doe of $585.90', dot: 'bg-indigo-400' }
+				{ time: '09:46', text: 'Payment received from John Doe of ₹585.90', dot: 'bg-indigo-400' }
 			]
 		},
 		{
@@ -152,9 +152,9 @@
 			values: [20, 38, 28, 44, 30, 42, 24, 36],
 			lineColor: '#7C6FF0',
 			rows: [
-				{ label: 'Added to Cart', value: '$21,120.70', change: '+13.2%', changeType: 'up' },
-				{ label: 'Reached Checkout', value: '$18,100.00', change: '+7.4%', changeType: 'up' },
-				{ label: 'Purchased', value: '$6,400.50', change: '+6.1%', changeType: 'up' }
+				{ label: 'Added to Cart', value: '₹21,120.70', change: '+13.2%', changeType: 'up' },
+				{ label: 'Reached Checkout', value: '₹18,100.00', change: '+7.4%', changeType: 'up' },
+				{ label: 'Purchased', value: '₹6,400.50', change: '+6.1%', changeType: 'up' }
 			]
 		}
 	];
@@ -165,9 +165,9 @@
 			kind: 'welcome',
 			name: 'Alex',
 			budgetLabel: 'Budget',
-			budgetValue: '$142,900',
+			budgetValue: '₹1,42,900',
 			expenseLabel: 'Expense',
-			expenseValue: '$5,120'
+			expenseValue: '₹5,120'
 		},
 		{
 			kind: 'goal',
@@ -185,7 +185,7 @@
 			iconBg: 'bg-emerald-100',
 			iconColor: 'text-emerald-600',
 			title: 'Monthly Revenue',
-			value: '$24,180',
+			value: '₹24,180',
 			change: '+9.2%',
 			changeType: 'up',
 			values: [22, 30, 26, 38, 30, 44, 36, 50],
@@ -205,7 +205,7 @@
 				{ time: '11:02', text: 'Design review completed for Nova v2', dot: 'bg-emerald-400' },
 				{ time: '10:40', text: 'New invoice sent to Priya Nair', dot: 'bg-indigo-400' },
 				{ time: '10:15', text: 'Support ticket #4821 resolved', dot: 'bg-pink-400' },
-				{ time: '09:52', text: 'Payment received from Ava Whitfield of $482.00', dot: 'bg-indigo-400' }
+				{ time: '09:52', text: 'Payment received from Ava Whitfield of ₹482.00', dot: 'bg-indigo-400' }
 			]
 		},
 		{
@@ -216,9 +216,9 @@
 			values: [18, 26, 34, 24, 40, 32, 46, 38],
 			lineColor: '#2FBFA8',
 			rows: [
-				{ label: 'Added to Cart', value: '$16,340.00', change: '+10.5%', changeType: 'up' },
-				{ label: 'Reached Checkout', value: '$12,980.20', change: '+5.9%', changeType: 'up' },
-				{ label: 'Purchased', value: '$5,120.40', change: '-1.4%', changeType: 'down' }
+				{ label: 'Added to Cart', value: '₹16,340.00', change: '+10.5%', changeType: 'up' },
+				{ label: 'Reached Checkout', value: '₹12,980.20', change: '+5.9%', changeType: 'up' },
+				{ label: 'Purchased', value: '₹5,120.40', change: '-1.4%', changeType: 'down' }
 			]
 		}
 	];
