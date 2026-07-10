@@ -15,6 +15,12 @@
 	import FAQSection from '$lib/components/sections/FAQSection.svelte';
 </script>
 
+<svelte:head>
+	<title>Intelligent ERP Software for the Glass Industry — Bomax ERP</title>
+	<meta name="description" content="Bomax ERP is the all-in-one cloud platform for glass fabrication businesses. Streamline quotations, inventory levels, job tracking, and nesting optimization." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/" />
+</svelte:head>
+
 <Header />
 <HeroSection />
 <!-- <TrustedCompanies /> -->

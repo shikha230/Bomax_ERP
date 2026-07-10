@@ -23,6 +23,13 @@
 
 
 </script>
+
+<svelte:head>
+	<title>Advanced Glass ERP Features — Bomax ERP</title>
+	<meta name="description" content="Explore advanced glass ERP features including cutting optimization, CRM, and inventory dispatching tailored specifically for glass fabricators." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/features" />
+</svelte:head>
+
 <Header />
 
 <main

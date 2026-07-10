@@ -94,13 +94,14 @@
     <!-- Module Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
       {#each modules as mod, i}
+        {@const ModIcon = mod.icon}
         <div
           class="group relative bg-white border border-slate-200/80 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 feature-card"
           style="animation-delay: {i * 80}ms"
         >
           <!-- Icon Container -->
           <div class="flex items-center justify-center w-12 h-12 {mod.iconBg} rounded-xl mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm {mod.iconColor}">
-            <svelte:component this={mod.icon} class="h-5.5 w-5.5" strokeWidth={1.8} />
+            <ModIcon class="h-5.5 w-5.5" strokeWidth={1.8} />
           </div>
 
           <!-- Card Title -->

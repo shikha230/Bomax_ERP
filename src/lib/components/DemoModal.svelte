@@ -51,23 +51,23 @@
 </script>
 
 {#if isOpen}
-	<!-- Backdrop -->
-	<!-- eslint-disable-next-line svelte/valid-compile -->
-	<div
-		class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4 backdrop-blur-sm transition-opacity duration-300"
-		role="presentation"
-		onclick={resetAndClose}
-	>
-		<!-- Modal Card -->
-		<!-- eslint-disable-next-line svelte/valid-compile -->
+	<!-- Sibling containers to avoid propagation and accessibility warnings on clicking backdrops -->
+	<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+		<!-- Backdrop (hidden from screen readers) -->
 		<div
-			class="relative w-full max-w-lg rounded-3xl border border-slate-100 bg-white p-6 shadow-2xl transition-all duration-300 md:p-8"
+			class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300"
+			onclick={resetAndClose}
+			aria-hidden="true"
+		></div>
+
+		<!-- Modal Card -->
+		<div
+			class="relative w-full max-w-lg rounded-3xl border border-slate-100 bg-white p-6 shadow-2xl transition-all duration-300 md:p-8 z-10"
 			role="dialog"
 			aria-modal="true"
 			aria-label="Book a Live Demo"
 			tabindex="-1"
-			onclick={(e) => e.stopPropagation()}
-			onkeydown={(e) => {
+			onkeydown={(e: KeyboardEvent) => {
 				if (e.key === 'Escape') resetAndClose();
 			}}
 		>

@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import ModuleExplorer from '$lib/components/features/ModuleExplorer.svelte';
 	import ModulesTabs from '$lib/components/sections/ModulesTabs.svelte';
-	import CTASection from '$lib/components/sections/CTASection.svelte';
+	import CTASection from '$lib/components/features/CTASection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
@@ -12,6 +12,12 @@
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
 </script>
+
+<svelte:head>
+	<title>ERP Modules for Glass Fabricators — Bomax ERP</title>
+	<meta name="description" content="Discover Svelte-fast modules specifically built for glass fabricators. Manage operations, customer requests, job card dispatches, and glass optimization." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/modules" />
+</svelte:head>
 
 <Header />
 

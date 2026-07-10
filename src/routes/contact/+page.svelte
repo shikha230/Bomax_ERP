@@ -31,6 +31,12 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Contact Bomax ERP Support & Sales Teams</title>
+	<meta name="description" content="Get in touch with Bomax ERP corporate headquarters or support teams. Ask questions, request custom integrations, or book live product walkthroughs." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/contact" />
+</svelte:head>
+
 <Header />
 
 <main class="min-h-screen bg-slate-50/40 selection:bg-blue-500 selection:text-white relative overflow-hidden">

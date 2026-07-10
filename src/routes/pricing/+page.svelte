@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import PricingSection from '$lib/components/sections/PricingSection.svelte';
 	import FAQSection from '$lib/components/sections/FAQSection.svelte';
-	import CTASection from '$lib/components/sections/CTASection.svelte';
+	import CTASection from '$lib/components/features/CTASection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
@@ -35,6 +35,12 @@
 		]}
 	];
 </script>
+
+<svelte:head>
+	<title>Bomax ERP Pricing Plans & Compare Tiers</title>
+	<meta name="description" content="Choose from Starter, Professional, or Enterprise tiers of Bomax ERP. Flexible cloud pricing packages tailored for glass fabrication and tempering plants." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/pricing" />
+</svelte:head>
 
 <Header />
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Menu, X, Layers } from 'lucide-svelte';
   import { page } from '$app/stores';
-  import { resolve } from '$app/paths';
+  import { base } from '$app/paths';
 
   let mobileMenuOpen = $state(false);
 
@@ -36,9 +36,9 @@
     }
     if (href.startsWith('/#')) {
       // For hash links, resolve the base path and append hash
-      return resolve('/') + href.slice(1);
+      return base + href;
     }
-    return resolve(href);
+    return base + href;
   }
 </script>
 
@@ -101,7 +101,7 @@
   <div
     class="fixed top-20 bottom-0 left-0 right-0 z-40 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
     onclick={toggleMobileMenu}
-    onkeydown={(e) => e.key === 'Escape' && toggleMobileMenu()}
+    onkeydown={(e: KeyboardEvent) => e.key === 'Escape' && toggleMobileMenu()}
     role="presentation"
   ></div>
 

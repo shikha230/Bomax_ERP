@@ -58,6 +58,7 @@
 <svelte:head>
   <title>Create Account — Bomax ERP</title>
   <meta name="description" content="Create your Bomax ERP account and start managing your business operations efficiently." />
+  <link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/register" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />

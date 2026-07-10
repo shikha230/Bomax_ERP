@@ -102,13 +102,14 @@
     <!-- Benefits Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
       {#each benefits as b, i}
+        {@const BenefitIcon = b.icon}
         <div
           class="group bg-white border border-slate-200/80 rounded-2xl p-7 flex flex-col gap-4 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 result-card"
           style="animation-delay: {i * 80}ms"
         >
           <!-- Icon -->
           <div class="flex items-center justify-center w-11 h-11 {b.iconBg} {b.iconColor} rounded-xl shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 self-start">
-            <svelte:component this={b.icon} class="h-5 w-5" strokeWidth={1.8} />
+            <BenefitIcon class="h-5 w-5" strokeWidth={1.8} />
           </div>
 
           <!-- Text -->

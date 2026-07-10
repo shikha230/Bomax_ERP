@@ -4,7 +4,7 @@
 	import Testimonials from '$lib/components/sections/Testimonials.svelte';
 	import TrustedCompanies from '$lib/components/sections/TrustedCompanies.svelte';
 	import StatsSection from '$lib/components/sections/StatsSection.svelte';
-	import CTASection from '$lib/components/sections/CTASection.svelte';
+	import CTASection from '$lib/components/features/CTASection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
@@ -38,6 +38,12 @@
 
 	const stars = [1, 2, 3, 4, 5];
 </script>
+
+<svelte:head>
+	<title>Bomax ERP Customer Spotlight & Reviews</title>
+	<meta name="description" content="Read reviews and success stories from over 500+ glass industry leaders running on Bomax ERP. Learn how they optimized glass fabrication workflows." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/customers" />
+</svelte:head>
 
 <Header />
 
@@ -133,7 +139,10 @@
 	<Testimonials />
 
 	<!-- CTA Section -->
-	<CTASection />
+	<CTASection
+		onBookDemo={() => (isDemoModalOpen = true)}
+		onContactSales={() => (isContactModalOpen = true)}
+	/>
 </main>
 
 <DemoModal

@@ -157,6 +157,7 @@
       <div class="lg:w-[180px] flex-shrink-0">
         <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
           {#each modules as mod, i}
+            {@const TabIcon = mod.icon}
             <button
               onclick={() => selectModule(i)}
               class="flex items-center gap-2.5 px-4 py-3 rounded-xl text-left whitespace-nowrap transition-all duration-250 cursor-pointer min-w-max lg:min-w-0 lg:w-full
@@ -165,8 +166,7 @@
                   : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60 lg:border-0'
                 }"
             >
-              <svelte:component 
-                this={mod.icon} 
+              <TabIcon 
                 class="h-4 w-4 flex-shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}" 
                 strokeWidth={2} 
               />
@@ -184,11 +184,11 @@
             <!-- Module Detail (Left Content) -->
             <div class="flex-1 p-8 sm:p-10 xl:max-w-[480px]">
               {#key activeModule}
+                {@const DetailIcon = modules[activeModule].icon}
                 <div class="module-content-enter">
                   <!-- Module Badge -->
                   <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-600 mb-6">
-                    <svelte:component 
-                      this={modules[activeModule].icon} 
+                    <DetailIcon 
                       class="h-3.5 w-3.5" 
                       strokeWidth={2} 
                     />

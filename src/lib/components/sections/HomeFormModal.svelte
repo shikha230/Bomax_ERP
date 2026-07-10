@@ -44,18 +44,22 @@
 </script>
 
 {#if isOpen}
-  <!-- Backdrop -->
-  <!-- eslint-disable-next-line svelte/valid-compile -->
-  <div
-    class="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-slate-950/40 p-0 sm:p-4 backdrop-blur-sm transition-opacity duration-300 overflow-y-auto"
-    role="presentation"
-    onclick={resetAndClose}
-  >
-    <!-- Modal Card -->
-    <!-- eslint-disable-next-line svelte/valid-compile -->
+  <!-- Sibling containers to avoid propagation and accessibility warnings on clicking backdrops -->
+  <div class="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <!-- Backdrop (hidden from screen readers) -->
     <div
-      class="relative w-full sm:max-w-xl rounded-t-3xl sm:rounded-3xl border-0 sm:border border-slate-100 bg-white shadow-2xl transition-all duration-300 min-h-screen sm:min-h-0 flex flex-col"
-      onclick={(e) => e.stopPropagation()}
+      class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300"
+      onclick={resetAndClose}
+      aria-hidden="true"
+    ></div>
+
+    <!-- Modal Card -->
+    <div
+      class="relative w-full sm:max-w-xl rounded-t-3xl sm:rounded-3xl border-0 sm:border border-slate-100 bg-white shadow-2xl transition-all duration-300 min-h-screen sm:min-h-0 flex flex-col z-10"
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+      onkeydown={(e: KeyboardEvent) => e.key === 'Escape' && resetAndClose()}
     >
       <!-- Sticky Header with Close Button (always visible) -->
       <div class="sticky top-0 z-10 flex items-center justify-between bg-white px-4 pt-4 pb-2 sm:px-6 sm:pt-5 border-b sm:border-b-0 border-slate-100 rounded-t-3xl">

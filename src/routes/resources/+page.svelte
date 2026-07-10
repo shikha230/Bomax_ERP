@@ -2,7 +2,7 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import FAQSection from '$lib/components/sections/FAQSection.svelte';
-	import CTASection from '$lib/components/sections/CTASection.svelte';
+	import CTASection from '$lib/components/features/CTASection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
@@ -75,12 +75,13 @@
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 mb-8">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 			{#each resources as item}
+				{@const Icon = item.icon}
 				<div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
 					<div>
 						<div class="flex items-center justify-between mb-6">
 							<!-- Icon Container -->
 							<div class="h-12 w-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300">
-								<svelte:component this={item.icon} class="h-6 w-6" />
+								<Icon class="h-6 w-6" />
 							</div>
 							<span class="px-2.5 py-1 text-xs font-bold rounded-lg border {item.badgeColor}">
 								{item.badge}

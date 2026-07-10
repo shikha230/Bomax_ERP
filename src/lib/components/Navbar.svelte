@@ -78,7 +78,7 @@
   <div
     class="fixed top-20 bottom-0 left-0 right-0 z-40 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-300 md:hidden"
     onclick={toggleMobileMenu}
-    keydown={(e) => e.key === 'Escape' && toggleMobileMenu()}
+    onkeydown={(e: KeyboardEvent) => e.key === 'Escape' && toggleMobileMenu()}
     role="presentation"
   ></div>
 
