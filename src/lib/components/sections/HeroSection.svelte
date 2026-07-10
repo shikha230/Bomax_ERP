@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import DashboardMockup from '$lib/components/features/DashboardMockup.svelte';
+	import DashboardMockup from '$lib/components/features/DashboardMockup.svelte';
 	import HomeFormModal from './HomeFormModal.svelte';
 
 	let isModalOpen = $state(false);
@@ -73,7 +73,7 @@
 		<div class="w-full lg:w-7/12 flex justify-center lg:justify-end mt-8 lg:mt-0">
 			<div class="mockup-scaling-wrapper relative">
 				<div class="mockup-scaled-container">
-					<!-- <DashboardMockup /> -->
+					<DashboardMockup />
 				</div>
 			</div>
 		</div>
