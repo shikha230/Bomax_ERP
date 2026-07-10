@@ -64,7 +64,7 @@
 		</p>
 	</div>
 
-	<TrustedCompanies />
+	<!-- <TrustedCompanies /> -->
 
 	<!-- Stats Insights Banner -->
 	<StatsSection />
@@ -133,10 +133,7 @@
 	<Testimonials />
 
 	<!-- CTA Section -->
-	<CTASection
-		onBookDemo={() => (isDemoModalOpen = true)}
-		onContactSales={() => (isContactModalOpen = true)}
-	/>
+	<CTASection />
 </main>
 
 <DemoModal

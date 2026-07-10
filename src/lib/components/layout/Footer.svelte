@@ -4,7 +4,7 @@
 	const productLinks = [
 		'Features',
 		'Modules',
-		'Pricing',
+		// 'Pricing',
 		'Changelog',
 		'Roadmap'
 	];

@@ -11,8 +11,8 @@
     { label: 'Home', href: '/' },
     { label: 'Features', href: '/features' },
     { label: 'Modules', href: '/modules' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Customers', href: '/customers' },
+    { label: 'Pricing', href: '#' },
+    { label: 'Customers', href: '#' },
     { label: 'Resources', href: '/resources' },
     { label: 'Contact', href: '/contact' }
   ];
@@ -31,6 +31,9 @@
   }
 
   function getLinkHref(href: string): string {
+    if (href === '#') {
+      return '#';
+    }
     if (href.startsWith('/#')) {
       // For hash links, resolve the base path and append hash
       return resolve('/') + href.slice(1);
@@ -73,7 +76,7 @@
         href="/login"
         class="rounded-xl px-5 py-2.5 text-sm font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-slate-50 transition-all duration-200 whitespace-nowrap"
       >
-        Sign In
+        Register
       </a>
 
     </div>

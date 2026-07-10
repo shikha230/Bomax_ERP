@@ -10,7 +10,7 @@
 	import TimelineSection from '$lib/components/sections/TimelineSection.svelte';
 	import StatsSection from '$lib/components/sections/StatsSection.svelte';
 	import Testimonials from '$lib/components/sections/Testimonials.svelte';
-	import PricingSection from '$lib/components/sections/PricingSection.svelte';
+	// import PricingSection from '$lib/components/sections/PricingSection.svelte';
 	import CTASection from '$lib/components/sections/CTASection.svelte';
 	import FAQSection from '$lib/components/sections/FAQSection.svelte';
 </script>
@@ -32,13 +32,13 @@
 <TimelineSection />
 <StatsSection />
 
-<div id="customers">
+<!-- <div id="customers">
 	<Testimonials />
-</div>
+</div> -->
 
-<div id="pricing">
+<!-- <div id="pricing">
 	<PricingSection />
-</div>
+</div> -->
 
 <div id="resources">
 	<FAQSection />

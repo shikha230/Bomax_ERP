@@ -1,19 +1,57 @@
 <script lang="ts">
-  import { Layers, Mail, Lock, Eye, EyeOff, Phone, ArrowRight, ArrowLeft } from 'lucide-svelte';
+  import { Layers, Mail, Lock, Eye, EyeOff, Phone, ArrowRight, ArrowLeft, CheckCircle, XCircle, User } from 'lucide-svelte';
+  import { goto } from '$app/navigation';
 
+  let name = $state('');
   let email = $state('');
   let password = $state('');
   let phone = $state('');
   let showPassword = $state(false);
   let isLoading = $state(false);
+  let errorMessage = $state('');
+  let successMessage = $state('');
 
-  function handleRegister(e: Event) {
+  async function handleRegister(e: Event) {
     e.preventDefault();
     isLoading = true;
-    // Simulate registration
-    setTimeout(() => {
+    errorMessage = '';
+    successMessage = '';
+
+    try {
+      const response = await fetch('https://elenora-uncombining-martha.ngrok-free.dev/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          phone_number: phone,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        successMessage = data.message || 'Account created successfully! Redirecting to login...';
+        // Reset form
+        name = '';
+        email = '';
+        password = '';
+        phone = '';
+        // Redirect to login after a short delay
+        setTimeout(() => {
+          goto('/login');
+        }, 2000);
+      } else {
+        errorMessage = data.message || data.error || 'Registration failed. Please try again.';
+      }
+    } catch (err) {
+      errorMessage = 'Unable to connect to the server. Please check your connection and try again.';
+    } finally {
       isLoading = false;
-    }, 2000);
+    }
   }
 </script>
 
@@ -103,6 +141,23 @@
         </div>
 
         <form class="auth-form" onsubmit={handleRegister}>
+          <!-- Name Field -->
+          <div class="form-group">
+            <label for="register-name" class="form-label">Full name</label>
+            <div class="input-wrapper">
+              <User class="input-icon" />
+              <input
+                id="register-name"
+                type="text"
+                bind:value={name}
+                placeholder="John Doe"
+                required
+                autocomplete="name"
+                class="form-input"
+              />
+            </div>
+          </div>
+
           <!-- Email Field -->
           <div class="form-group">
             <label for="register-email" class="form-label">Email address</label>
@@ -202,6 +257,20 @@
               <ArrowRight class="h-4.5 w-4.5 btn-arrow" />
             {/if}
           </button>
+
+          <!-- Feedback Messages -->
+          {#if errorMessage}
+            <div class="message-toast error-toast">
+              <XCircle class="h-5 w-5 toast-icon" />
+              <span>{errorMessage}</span>
+            </div>
+          {/if}
+          {#if successMessage}
+            <div class="message-toast success-toast">
+              <CheckCircle class="h-5 w-5 toast-icon" />
+              <span>{successMessage}</span>
+            </div>
+          {/if}
         </form>
 
         <!-- Divider -->
@@ -846,4 +915,53 @@
       font-size: 1.5rem;
     }
   }
+
+  /* ========== FEEDBACK MESSAGES ========== */
+  .message-toast {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .message-toast :global(.toast-icon) {
+    flex-shrink: 0;
+  }
+
+  .error-toast {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+  }
+
+  .error-toast :global(.toast-icon) {
+    color: #ef4444;
+  }
+
+  .success-toast {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #86efac;
+  }
+
+  .success-toast :global(.toast-icon) {
+    color: #22c55e;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 </style>
