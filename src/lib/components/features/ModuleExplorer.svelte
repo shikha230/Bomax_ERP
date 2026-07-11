@@ -1,125 +1,782 @@
 <script lang="ts">
-  import { ArrowRight, FileText, Package, Factory, Diamond, Receipt, Landmark, Users, BarChart3, CheckCircle2, Sparkles, Search, ChevronRight, Plus, Calendar, Phone, Mail, Hash, CreditCard, IndianRupee, User, MapPin, Percent, FileDown } from 'lucide-svelte';
+  import {
+    FileText, Package, Factory, Diamond, Landmark, Users, BarChart3,
+    CheckCircle2, Sparkles, Search, ChevronRight, Phone, Mail, User,
+    ChevronDown, ShoppingCart, Wallet
+  } from 'lucide-svelte';
+  import { slide } from 'svelte/transition';
+  import type { ComponentType } from 'svelte';
 
+  // ---------- Types ----------
+  interface Bullet {
+    bold: string;
+    text: string;
+  }
+
+  interface Pillar {
+    title: string;
+    intro?: string;
+    bullets: Bullet[];
+  }
+
+  type MockupKind =
+    | 'quotation'
+    | 'inventory'
+    | 'production'
+    | 'accounts'
+    | 'optimizer'
+    | 'hr'
+    | 'opex'
+    | 'sales';
+
+  interface ModuleData {
+    id: string;
+    label: string;
+    icon: ComponentType;
+    badge: string;
+    title: string;
+    description: string;
+    pillars: Pillar[];
+    tip: string;
+    cta: string;
+    mockup: MockupKind;
+  }
+
+  // ---------- State ----------
   let activeModule = $state(0);
+  let openPillar = $state<number | null>(0);
 
-  const modules = [
-    {
-      id: 'quotation',
-      label: 'Quotation',
-      icon: FileText,
-      badge: 'Quotation Module',
-      title: 'Smart Glass Quotation System',
-      description: 'Generate accurate, professional quotations in minutes. Auto-calculate glass area, cutting charges, hardware costs, and GST — all in one flow.',
-      features: [
-        'Auto glass area & cost calculation',
-        'Multi-item, multi-rate quotation builder',
-        'PDF generation & WhatsApp sharing',
-        'One-click quote-to-order conversion',
-      ],
-      tip: 'Reduce quotation time by 80% · Close deals 3x faster · Never miss a quote follow-up',
-      cta: 'Explore Module',
-    },
-    {
-      id: 'inventory',
-      label: 'Inventory',
-      icon: Package,
-      badge: 'Inventory Module',
-      title: 'Real-Time Inventory Tracking',
-      description: 'Track every glass sheet, hardware piece, and raw material across warehouses. Get instant stock visibility with smart alerts.',
-      features: [
-        'Multi-warehouse stock management',
-        'Low stock & reorder point alerts',
-        'Batch tracking & serial numbers',
-        'Barcode scanning integration',
-      ],
-      tip: 'Eliminate stockouts · Reduce excess inventory by 40% · Full material traceability',
-      cta: 'Explore Module',
-    },
-    {
-      id: 'production',
-      label: 'Production',
-      icon: Factory,
-      badge: 'Production Module',
-      title: 'Production Floor Management',
-      description: 'Plan cutting jobs, assign workers, track job cards, and monitor real-time production progress from a single dashboard.',
-      features: [
-        'Job card creation & assignment',
-        'Real-time production tracking',
-        'Worker performance analytics',
-        'Quality control checkpoints',
-      ],
-      tip: 'Boost production efficiency by 60% · Reduce job delays · Full shop floor visibility',
-      cta: 'Explore Module',
-    },
+  function selectModule(index: number) {
+    activeModule = index;
+    openPillar = 0;
+  }
+
+  function togglePillar(i: number) {
+    openPillar = openPillar === i ? null : i;
+  }
+
+  // ---------- Module Data ----------
+  const modules: ModuleData[] = [
+    // 1. AI Optimizer
     {
       id: 'optimizer',
-      label: 'Glass Optimizer',
+      label: 'AI Optimizer',
       icon: Diamond,
-      badge: 'Optimizer Module',
-      title: 'AI Glass Cutting Optimizer',
-      description: 'Maximize glass yield with AI-powered nesting algorithms. Reduce scrap wastage and save costs on every cutting job.',
-      features: [
-        'AI-powered cutting layout optimization',
-        'Automatic nesting for minimal waste',
-        'Multi-sheet optimization support',
-        'Scrap tracking & reuse suggestions',
-      ],
-      tip: 'Save 15-25% on raw material costs · Minimize scrap · Optimize every sheet',
+      badge: 'AI Optimizer Module',
+      title: 'AI-Powered Optimization Engine',
+      description:
+        'Maximize yield, eliminate waiting times, and slash raw material costs with a background AI that works faster than your machines.',
+      mockup: 'optimizer',
+      tip: 'Save 15-25% on raw material costs · Zero CNC waiting time · Predictive sheet planning',
       cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. Always-On Background Optimization',
+          bullets: [
+            {
+              bold: 'Continuous Calculation:',
+              text: 'The moment an order is confirmed, our AI optimizer instantly goes to work in the background. It continuously calculates millions of cutting layouts until your target wastage percentage is achieved—no manual triggering required.',
+            },
+          ],
+        },
+        {
+          title: '2. Instant Production Triggers',
+          bullets: [
+            {
+              bold: 'Real-Time Green-Light:',
+              text: 'Once the AI calculates a high-yield layout (e.g., dropping wastage below 10%), it instantly sends a real-time trigger to the dashboard. With one glance, floor managers know the batch is ready for immediate production.',
+            },
+          ],
+        },
+        {
+          title: '3. Zero CNC Bottlenecks',
+          bullets: [
+            {
+              bold: 'Faster Cutting Tables:',
+              text: "Completely eliminate downtime caused by manually entering dimensions into the CNC machine's optimizer. The ERP's AI handles the heavy computational lifting upfront, so cutting tables spend less time waiting and more time cutting glass.",
+            },
+          ],
+        },
+        {
+          title: '4. Intelligent Auto-Separation of Quote Data',
+          bullets: [
+            {
+              bold: 'Automatic Batching:',
+              text: 'Never waste time manually filtering mixed orders. The AI automatically parses complex, multi-item quotes and instantly separates the data, creating dedicated optimization batches based strictly on glass type, thickness, and color.',
+            },
+          ],
+        },
+        {
+          title: '5. Smart Cost-Based Material Routing',
+          bullets: [
+            {
+              bold: 'Primary vs Secondary Stock:',
+              text: 'Maximize profit margins by defining Primary and Secondary optimization parameters. The AI intelligently prioritizes cutting from your Primary inventory (discounted rate) over your Secondary inventory (premium rate).',
+            },
+          ],
+        },
+        {
+          title: '6. Proactive Financial Control',
+          bullets: [
+            {
+              bold: 'Scenario Simulation:',
+              text: 'Simulate different material batches and yield scenarios before committing. Definitively analyze raw material wastage and protect your bottom-line profit before a single physical cut is made.',
+            },
+          ],
+        },
+        {
+          title: '7. Predictive Sheet Calculation',
+          bullets: [
+            {
+              bold: 'Upfront Sheet Count:',
+              text: 'Get an exact, upfront count of the raw glass jumbo sheets required to complete an entire order—preventing mid-shift inventory shortages and production halts.',
+            },
+          ],
+        },
+        {
+          title: '8. Pre-Production Decision Making',
+          bullets: [
+            {
+              bold: 'Predictive Yields:',
+              text: "While CNC software handles final physical machine paths, the ERP's optimizer provides highly accurate predictive yields in advance—giving plant heads the data needed to approve runs, delay batches, or adjust parameters.",
+            },
+          ],
+        },
+        {
+          title: '9. Seamless Manual Override',
+          bullets: [
+            {
+              bold: 'Full Operator Control:',
+              text: 'Automation is powerful, but flexibility is essential. A fully functional manual optimization option is always available for highly customized or unique cutting runs.',
+            },
+          ],
+        },
+        {
+          title: '10. Maximum Yield with Half-Cut Utilization',
+          bullets: [
+            {
+              bold: 'Offcut Reuse:',
+              text: "Don't let valuable offcuts eat into your profits. Manual optimization mode lets your team integrate existing half-cuts, offcuts, and remnants into the current production run.",
+            },
+          ],
+        },
+      ],
     },
+
+    // 2. Financial & Accounting
     {
       id: 'accounts',
-      label: 'Accounts',
+      label: 'Financial & Accounting',
       icon: Landmark,
       badge: 'Accounts Module',
-      title: 'Complete Accounting Suite',
-      description: 'Full double-entry accounting with automated ledgers, P&L statements, balance sheets, and GST-ready reports.',
-      features: [
-        'Double-entry bookkeeping system',
-        'Auto ledger & journal entries',
-        'GST filing & compliance reports',
-        'Tally-compatible data export',
-      ],
+      title: 'Financial & Accounting Module',
+      description:
+        'Gain total control over your factory’s finances with an automated, GST-compliant accounting engine built specifically for the speed of the glass industry.',
+      mockup: 'accounts',
       tip: 'Automate 90% of accounting tasks · Stay GST compliant · Export to Tally instantly',
       cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. True Double-Entry Foundation',
+          bullets: [
+            {
+              bold: 'Bulletproof Architecture:',
+              text: 'Firstcut24 utilizes a strict double-entry bookkeeping system, ensuring every single transaction is perfectly balanced, mathematically accurate, and trusted by chartered accountants.',
+            },
+          ],
+        },
+        {
+          title: '2. Zero-Touch Ledger Automation',
+          bullets: [
+            {
+              bold: 'Instant Journal Posting:',
+              text: 'The moment a quotation is converted into a confirmed invoice or a payment is logged, the system automatically posts the exact journal entries to the appropriate ledgers in real-time.',
+            },
+          ],
+        },
+        {
+          title: '3. Frictionless GST Compliance',
+          bullets: [
+            {
+              bold: 'HSN-Based Auto-Tax:',
+              text: 'The system automatically calculates taxes based on precise HSN codes and generates comprehensive, error-free GST compliance reports (GSTR-1, GSTR-2, GSTR-3B) ready for direct filing.',
+            },
+          ],
+        },
+        {
+          title: '4. Seamless Tally Prime Export',
+          bullets: [
+            {
+              bold: 'One-Click Migration:',
+              text: 'A highly optimized export tool formats your complex financial data perfectly for seamless, one-click migration directly into Tally Prime.',
+            },
+          ],
+        },
+        {
+          title: '5. Live P&L and Balance Sheets',
+          bullets: [
+            {
+              bold: 'Up-to-the-Second Reports:',
+              text: 'Never wait until month-end to know if your factory is making money. Instantly generate live Profit & Loss statements and Balance Sheets.',
+            },
+          ],
+        },
+        {
+          title: '6. Unified Quote-to-Cash Workflow',
+          bullets: [
+            {
+              bold: 'Zero Re-Typing:',
+              text: 'Because accounting is deeply integrated with the Quotation and Production modules, a single click turns a finalized dispatch into a fully accounted tax invoice.',
+            },
+          ],
+        },
+        {
+          title: '7. Audit-Ready Financial Tracking',
+          bullets: [
+            {
+              bold: 'Total Transparency:',
+              text: 'Every transaction, adjustment, and auto-journal entry leaves a crystal-clear digital paper trail, permanently ready for financial audits.',
+            },
+          ],
+        },
+        {
+          title: '8. Intelligent Tax Configuration',
+          bullets: [
+            {
+              bold: 'Inclusive or Exclusive:',
+              text: 'Whether clients require quotes inclusive or exclusive of tax, the system handles the complex reverse-calculations instantly.',
+            },
+          ],
+        },
+      ],
     },
+
+    // 3. HR & Payroll
     {
       id: 'hr',
       label: 'HR & Payroll',
       icon: Users,
       badge: 'HR Module',
-      title: 'HR & Payroll Management',
-      description: 'Manage employee lifecycle from onboarding to payroll. Track attendance, leaves, salaries, and statutory compliance.',
-      features: [
-        'Employee records & onboarding',
-        'Attendance & biometric sync',
-        'Leave management & approvals',
-      ],
-      tip: 'Process payroll in minutes · Zero attendance errors · Full compliance coverage',
+      title: 'HR & Payroll Management Module',
+      description:
+        'Empower your workforce and automate your payroll with a system designed specifically for the dynamic shifts and complex labor requirements of a manufacturing floor.',
+      mockup: 'hr',
+      tip: 'Process payroll in minutes · Zero attendance errors · Full statutory compliance',
       cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. Paperless Employee Onboarding',
+          bullets: [
+            {
+              bold: 'Digital Day-One:',
+              text: 'Digitally onboard new factory workers, machine operators, and administrative staff, capturing all essential KYC documents, bank details, and contracts in one secure system.',
+            },
+          ],
+        },
+        {
+          title: '2. Centralized Digital Profiles',
+          bullets: [
+            {
+              bold: 'Searchable Workforce Database:',
+              text: 'Maintain a comprehensive, instantly searchable database of your entire workforce, including emergency contacts, skill sets, training history, and role assignments.',
+            },
+          ],
+        },
+        {
+          title: '3. Seamless Biometric Integration',
+          bullets: [
+            {
+              bold: 'Hardware Sync:',
+              text: "Firstcut24 seamlessly syncs with your existing biometric scanners, RFID badge readers, or facial recognition devices to capture perfectly accurate punch-in and punch-out times.",
+            },
+          ],
+        },
+        {
+          title: '4. Real-Time Factory Attendance',
+          bullets: [
+            {
+              bold: 'Live Dashboard:',
+              text: 'The live attendance dashboard instantly displays exactly who is on the factory floor, who is late, and who is absent—allowing you to reassign machines and prevent bottlenecks.',
+            },
+          ],
+        },
+        {
+          title: '5. Smart Shift & Overtime Tracking',
+          bullets: [
+            {
+              bold: 'Automatic OT Calculation:',
+              text: 'Effortlessly manage complex, multi-shift factory schedules. The system automatically calculates precise overtime hours based on your custom factory rules.',
+            },
+          ],
+        },
+        {
+          title: '6. Automated Leave Management',
+          bullets: [
+            {
+              bold: 'Digital Approvals:',
+              text: 'Employees and managers can track leave balances, apply for time off, and process hierarchical approvals digitally—no more paper slips or WhatsApp requests.',
+            },
+          ],
+        },
+        {
+          title: '7. Flexible Salary Structures & Advances',
+          bullets: [
+            {
+              bold: 'Hourly, Fixed & Bonus:',
+              text: 'Easily configure complex salary structures that accommodate hourly wages, fixed salaries, production bonuses, plus tracking of employee loans and salary advances.',
+            },
+          ],
+        },
+        {
+          title: '8. 1-Click Payroll Generation',
+          bullets: [
+            {
+              bold: 'Five-Minute Payroll:',
+              text: 'Once attendance, overtime, and leaves are verified, Firstcut24 instantly calculates net pay and generates bulk salary slips ready for bank disbursement.',
+            },
+          ],
+        },
+        {
+          title: '9. Bulletproof Statutory Compliance',
+          bullets: [
+            {
+              bold: 'PF, ESI, PT & TDS:',
+              text: 'The system automatically calculates highly complex statutory deductions, generating reports ready for government filing.',
+            },
+          ],
+        },
+        {
+          title: '10. Integrated Labor Costing (OpEx)',
+          bullets: [
+            {
+              bold: 'Real-Time Cost Mapping:',
+              text: 'Firstcut24 intelligently maps your labor and overtime payouts directly into your Operational Expenditure dashboard for a true picture of manufacturing costs.',
+            },
+          ],
+        },
+      ],
     },
+
+    // 4. OpEx Dashboard
     {
-      id: 'reports',
-      label: 'Reports',
-      icon: BarChart3,
-      badge: 'Reports Module',
-      title: 'Business Intelligence & Reports',
-      description: 'Real-time dashboards with profit-per-job insights, sales trends, and custom executive reports for data-driven decisions.',
-      features: [
-        'Real-time business dashboards',
-        'Profit-per-job analysis',
-        'Custom report builder',
-        'Scheduled email reports',
-      ],
-      tip: 'Make data-driven decisions · Track profitability in real-time · Executive-ready reports',
+      id: 'opex',
+      label: 'OpEx Dashboard',
+      icon: Wallet,
+      badge: 'OpEx Module',
+      title: 'Operational Expenditure (OpEx) Dashboard',
+      description:
+        'Stop waiting for month-end accountant reports to find out where your money went. Track, control, and optimize your factory’s daily running costs in real-time to fiercely protect your profit margins.',
+      mockup: 'opex',
+      tip: 'Track cost-per-SqM in real time · Catch budget overruns instantly · Protect your margins',
       cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. Real-Time Expense Master View',
+          bullets: [
+            {
+              bold: 'Unified Screen:',
+              text: 'The OpEx dashboard provides a live, highly visual breakdown of all your operational expenses—from massive electricity bills down to minor petty cash payouts.',
+            },
+          ],
+        },
+        {
+          title: '2. True Cost-Per-Square-Meter (SqM) Analytics',
+          bullets: [
+            {
+              bold: 'Ultimate Performance Metric:',
+              text: 'The system continuously divides your total daily running costs by your total glass output, giving owners the exact, real-time cost of producing every square meter of glass.',
+            },
+          ],
+        },
+        {
+          title: '3. Integrated Labor & Overtime Costing',
+          bullets: [
+            {
+              bold: 'HR-Linked Data:',
+              text: 'The dashboard automatically pulls your live payroll data, comparing daily labor and overtime payouts directly against factory output.',
+            },
+          ],
+        },
+        {
+          title: '4. Energy & Power Consumption Tracking',
+          bullets: [
+            {
+              bold: 'Spot the Spikes:',
+              text: 'Log and track heavy electricity and gas bills over time to identify sudden spikes in power usage and optimize machine idle times.',
+            },
+          ],
+        },
+        {
+          title: '5. Financial Impact of Breakage (Wastage Value)',
+          bullets: [
+            {
+              bold: 'Mistakes in Rupees:',
+              text: 'The dashboard takes scrap and breakage data from the Production module and calculates the exact, real-time monetary value of the raw glass you are losing.',
+            },
+          ],
+        },
+        {
+          title: '6. Machine Maintenance & Spares Expenditure',
+          bullets: [
+            {
+              bold: 'Repair vs Replace:',
+              text: 'Track exactly how much is being spent repairing specific CNC cutters, edgers, or furnaces, giving you the hard data to decide when to replace aging equipment.',
+            },
+          ],
+        },
+        {
+          title: '7. Consumables Usage Monitoring',
+          bullets: [
+            {
+              bold: 'Hidden Daily Costs:',
+              text: 'Track spending trends on fast-moving factory consumables like diamond grinding wheels, polishing belts, cerium oxide powder, coolants, and silicones.',
+            },
+          ],
+        },
+        {
+          title: '8. Fixed vs. Variable Overhead Categorization',
+          bullets: [
+            {
+              bold: 'True Breakeven Point:',
+              text: 'The system intelligently separates fixed costs (rent, fixed salaries, insurance) from variable costs (power, hourly wages, consumables) for clear forecasting.',
+            },
+          ],
+        },
+        {
+          title: '9. Automated Budget vs. Actual Alerts',
+          bullets: [
+            {
+              bold: 'Proactive Protection:',
+              text: 'Set strict monthly budgets for departments or expense categories. The dashboard instantly triggers visual alerts if spending trends dangerously close to the limit.',
+            },
+          ],
+        },
+        {
+          title: '10. Historic Expense Trendlines',
+          bullets: [
+            {
+              bold: 'Week/Month/Year Comparison:',
+              text: 'Automated period-over-period comparison charts let you monitor long-term expense trends and instantly adjust your sales pricing strategy.',
+            },
+          ],
+        },
+      ],
+    },
+
+    // 5. Production & Tracking
+    {
+      id: 'production',
+      label: 'Production & Tracking',
+      icon: Factory,
+      badge: 'Production Module',
+      title: 'Production & Tracking Module',
+      description:
+        'Transform your factory floor into a smart, transparent, and highly efficient assembly line with real-time visibility.',
+      mockup: 'production',
+      tip: 'Boost production efficiency by 60% · Reduce job delays · Full shop floor visibility',
+      cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. Automated Job Card Generation',
+          bullets: [
+            {
+              bold: 'One-Click Job Cards:',
+              text: 'The moment an order is released for production, Firstcut24 instantly generates detailed, error-free job cards—bridging the gap between sales and the factory floor.',
+            },
+          ],
+        },
+        {
+          title: '2. Granular Piece-by-Piece Barcode Tracking',
+          bullets: [
+            {
+              bold: 'Live Completion Status:',
+              text: 'Equip your factory floor with barcode scanning to track every individual piece in real-time, giving plant heads an instant, live view of order completion.',
+            },
+          ],
+        },
+        {
+          title: '3. Fully Customizable Factory Routing',
+          bullets: [
+            {
+              bold: 'Map Your Floor:',
+              text: "Create and define custom production departments tailored to your exact physical layout—Cutting, Edging, Washing, Tempering, or Lamination.",
+            },
+          ],
+        },
+        {
+          title: '4. Multi-Department Workflow Scanning',
+          bullets: [
+            {
+              bold: 'Instant Bottleneck Alerts:',
+              text: 'As glass moves through the factory, operators scan pieces in and out of every department, letting you spot bottlenecks immediately.',
+            },
+          ],
+        },
+        {
+          title: '5. Integrated Quality Inspection Gates',
+          bullets: [
+            {
+              bold: 'Built-In QC Checkpoints:',
+              text: 'Set mandatory quality inspection checkpoints at critical stages to ensure no scratched, chipped, or defective glass ever reaches dispatch.',
+            },
+          ],
+        },
+        {
+          title: '6. End-to-End Visibility Until Dispatch',
+          bullets: [
+            {
+              bold: 'Cut-to-Truck Tracking:',
+              text: 'Experience pure, uninterrupted tracking from the moment raw float glass is cut to the second the finished product is loaded onto the delivery truck.',
+            },
+          ],
+        },
+      ],
+    },
+
+    // 6. Quotation
+    {
+      id: 'quotation',
+      label: 'Quotation',
+      icon: FileText,
+      badge: 'Quotation Module',
+      title: 'Smart Quotation Module: Built for the Complexities of Glass',
+      description:
+        'Stop losing money on miscalculated edge polishing, wrong chargeable areas, and forgotten transport fees. The Firstcut24 Quotation Module is an ultra-flexible, intelligent pricing engine designed specifically for the glass and hardware industry. Create 100% accurate, multi-item project quotes in seconds, and convert them to invoices with a single click.',
+      mockup: 'quotation',
+      tip: 'Calculate glass sizes, perimeters, and weights instantly. Detect Jumbo glass sizes and convert quotes to invoices with one click.',
+      cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. Total Dimensional & Pricing Freedom',
+          intro: 'Your clients speak different languages when it comes to measurements. Firstcut24 understands them all.',
+          bullets: [
+            { bold: 'Any Measurement Unit:', text: 'Enter glass sizes seamlessly in Millimeters (mm), Inches, Meters, or Feet.' },
+            { bold: 'Dynamic Pricing Models:', text: 'Price your items exactly how you sell them—per Sq.Ft, per Sq.Meter, per Piece, or even thickness-based pricing (Sq.Ft/mm or Sq.Meter/mm).' },
+          ],
+        },
+        {
+          title: '2. Error-Free Area & Polish Calculations',
+          intro: "Eliminate human error from your sales team's calculators.",
+          bullets: [
+            { bold: 'Smart Chargeable Area Logic:', text: "Automatically calculate billing areas based on your factory's specific rules (Exact mm, Standard Round-offs, or Even Inch calculations)." },
+            { bold: 'Automated Edge Polishing:', text: 'Just select the finish (Clean Polish/CP, Bevel, Half-C, Rough Grind/RG, or Full-C) and Firstcut24 automatically calculates the linear running perimeter and applies the correct rates.' },
+          ],
+        },
+        {
+          title: '3. Built-In Logistics & Jumbo Detection',
+          intro: 'Never undercharge for heavy transport or oversized handling again.',
+          bullets: [
+            { bold: 'Instant Transport Weight:', text: 'Once you enter the glass sizes and thickness, Firstcut24 instantly calculates the total combined weight of the entire order. No more guessing for transport capacity!' },
+            { bold: 'Jumbo Glass Auto-Detection:', text: 'The system automatically highlights rows if the entered glass dimensions qualify as "Jumbo" size, ensuring your team never forgets to apply oversized handling premiums.' },
+          ],
+        },
+        {
+          title: '4. Unified Project Quoting (Beyond Just Glass)',
+          intro: "Don't send multiple quotes for one project. Build comprehensive, multipurpose estimates.",
+          bullets: [
+            { bold: 'Project-Based Quoting:', text: 'Group items logically by project or room.' },
+            { bold: 'Hardware & Aluminum Ready:', text: 'Add hardware fittings, aluminum profiles, and accessories into the exact same quote alongside your glass items.' },
+          ],
+        },
+        {
+          title: '5. Seamless Add-Ons & Service Charges',
+          intro: 'Your quotes need to reflect the reality of your hard work.',
+          bullets: [
+            { bold: 'Instant Surcharges:', text: 'Easily append extra line items for Fabrication, Designing, Handling, Transport, and Admin charges with just a few clicks. Firstcut24 tallies it all up perfectly.' },
+          ],
+        },
+        {
+          title: '6. Smart Tax & 1-Click Invoicing',
+          intro: 'Close the deal and bill the client without doing the math twice.',
+          bullets: [
+            { bold: 'Inclusive or Exclusive Tax:', text: 'Toggle your entire quote to be Tax Inclusive or Tax Exclusive with a single button. Firstcut24 handles the reverse-math automatically.' },
+            { bold: 'Auto-Tax Calculation:', text: 'GST/Tax brackets are automatically applied based on the item categories (Glass vs. Hardware vs. Services).' },
+            { bold: '1-Click Quote-to-Invoice:', text: 'Once a client confirms the project, convert the entire quotation into a final Tax Invoice with zero manual data entry. Hassle-free, error-free billing.' },
+          ],
+        },
+      ],
+    },
+
+    // 7. Sales & Purchase
+    {
+      id: 'sales',
+      label: 'Sales & Purchase',
+      icon: ShoppingCart,
+      badge: 'Sales & Purchase Module',
+      title: 'Sales & Purchase Management Module',
+      description:
+        'Gain absolute control over your cash flow. Seamlessly manage client orders, track supplier purchases, and monitor your bottom line from a single, unified command center.',
+      mockup: 'sales',
+      tip: 'See sales & purchases side-by-side · Auto-generate POs · Protect margins with credit checks',
+      cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. The Unified Cash Flow Dashboard',
+          bullets: [
+            {
+              bold: 'Real-Time Money Movement:',
+              text: 'The combined Sales & Purchase dashboard places daily sales revenue side-by-side with procurement expenses, giving an instant, overarching picture of daily profitability.',
+            },
+          ],
+        },
+        {
+          title: '2. Seamless Quote-to-Order Conversion',
+          bullets: [
+            {
+              bold: 'One Click, Instant Trigger:',
+              text: 'Convert a confirmed client quotation directly into an active Sales Order, instantly triggering the AI Optimizer and notifying the Production floor.',
+            },
+          ],
+        },
+        {
+          title: '3. Automated Purchase Order (PO) Generation',
+          bullets: [
+            {
+              bold: 'Low-Stock Triggered POs:',
+              text: 'When Inventory flags low stock for jumbo glass sheets or hardware, instantly generate and email a perfectly formatted Purchase Order to your preferred vendor.',
+            },
+          ],
+        },
+        {
+          title: '4. Comprehensive Client Credit Tracking',
+          bullets: [
+            {
+              bold: 'Bad-Debt Protection:',
+              text: 'Firstcut24 actively monitors client ledgers and alerts your sales team if a customer has exceeded their credit limit or has long-pending outstandings.',
+            },
+          ],
+        },
+        {
+          title: '5. Intelligent Vendor Management',
+          bullets: [
+            {
+              bold: 'Bulletproof Supply Chain:',
+              text: 'Track all your glass and hardware suppliers in one centralized database, monitoring historical pricing, delivery reliability, and material quality.',
+            },
+          ],
+        },
+        {
+          title: '6. Goods Receipt Note (GRN) Automation',
+          bullets: [
+            {
+              bold: 'Closed-Loop Procurement:',
+              text: 'When a delivery truck arrives, easily generate a GRN that instantly updates live inventory counts and pushes the payable amount to Accounting.',
+            },
+          ],
+        },
+        {
+          title: '7. Sales Team Performance & Target Tracking',
+          bullets: [
+            {
+              bold: 'Targets vs Achieved:',
+              text: 'Track individual sales rep targets versus actual achievements, quote-to-order conversion rates, and who is driving the most revenue.',
+            },
+          ],
+        },
+        {
+          title: '8. Dynamic Discount Approval Workflows',
+          bullets: [
+            {
+              bold: 'Auto-Approve or Escalate:',
+              text: 'Standard discounts are auto-approved, while heavy price drops on large projects automatically trigger a digital approval request to the plant head or CEO.',
+            },
+          ],
+        },
+        {
+          title: '9. Smart Order Fulfillment Visibility',
+          bullets: [
+            {
+              bold: 'Accurate Delivery Timelines:',
+              text: 'The sales dashboard tracks the real-time production status of every order, letting reps give clients accurate delivery timelines instantly.',
+            },
+          ],
+        },
+        {
+          title: '10. Complete Digital Audit Trails',
+          bullets: [
+            {
+              bold: 'Fully Traceable Chain:',
+              text: 'Every transaction links its corresponding Quotation, Sales Order, Purchase Order, GRN, and Tax Invoice into one fully traceable digital chain.',
+            },
+          ],
+        },
+      ],
+    },
+
+    // 8. Inventory
+    {
+      id: 'inventory',
+      label: 'Inventory',
+      icon: Package,
+      badge: 'Inventory Module',
+      title: 'Smart Inventory Module: Total Control Over Every Sheet, Fitting, and Profile',
+      description:
+        'Stop losing track of expensive jumbo sheets, misplacing hardware, and halting production due to unexpected stock-outs. The Firstcut24 Inventory Module gives you absolute, real-time visibility over your entire supply chain—from the moment materials arrive at the warehouse to the moment they hit the cutting table.',
+      mockup: 'inventory',
+      tip: 'Eliminate stockouts · Reduce excess inventory by 40% · Full material traceability',
+      cta: 'Explore Module',
+      pillars: [
+        {
+          title: '1. Universal Dimensional Tracking for Glass',
+          intro: 'Stop wasting time doing manual math to convert supplier invoices.',
+          bullets: [
+            {
+              bold: 'Input How You Buy:',
+              text: 'Log incoming glass sheets effortlessly in Millimeters (mm), Inches, Meters, or Feet. The system automatically unifies your stock counts so you always know your total area on hand.',
+            },
+          ],
+        },
+        {
+          title: '2. Granular Glass Attribute Filters',
+          intro: 'Never lose a specific sheet in your racks again.',
+          bullets: [
+            {
+              bold: 'Deep Categorization:',
+              text: 'Track inventory by exact Glass Type (Float, Toughened, Laminated), Thickness (4mm, 8mm, 12mm), and Color/Tint (Clear, Extra Clear, Bronze, Grey).',
+            },
+          ],
+        },
+        {
+          title: '3. Unified Multi-Material Management',
+          intro: 'Your business installs more than just glass. Your software should track it all.',
+          bullets: [
+            {
+              bold: 'Beyond the Glass Rack:',
+              text: 'Seamlessly add, track, and value hardware fittings, aluminum profiles, silicones, and consumable accessories in the same inventory module.',
+            },
+          ],
+        },
+        {
+          title: '4. Seamless Multi-Warehouse Transfers',
+          intro: 'Keep your factory floor fed without losing track of your assets.',
+          bullets: [
+            {
+              bold: 'Instant Stock Mobility:',
+              text: 'Easily transfer inventory between your main warehouse, the factory floor, or secondary branches. Firstcut24 logs every movement for total accountability.',
+            },
+          ],
+        },
+        {
+          title: '5. Smart Low-Stock Alerts & Dashboard Automation',
+          intro: "Never delay a client's project because you ran out of a crucial material.",
+          bullets: [
+            {
+              bold: 'Intelligent Reordering:',
+              text: 'Set custom minimum-stock thresholds for fast-moving items. Firstcut24 pushes automatic, real-time alerts when stock is low.',
+            },
+          ],
+        },
+        {
+          title: '6. Barcode Ready & Precision Batch Tracking',
+          intro: 'Eliminate manual stock-taking errors and messy clipboards.',
+          bullets: [
+            { bold: 'Barcode Integration:', text: 'Generate and scan barcodes to receive or issue materials in seconds.' },
+            { bold: 'Complete Traceability:', text: "Track exactly which batch of glass or hardware was used for which project, helping you identify affected inventory instantly if a supplier quality issue arises." },
+          ],
+        },
+      ],
     },
   ];
-
-  function selectModule(index: number) {
-    activeModule = index;
-  }
 </script>
 
 <!-- Module Explorer Section -->
@@ -133,18 +790,15 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="text-center mb-14 sm:mb-16 lg:mb-20">
-      <!-- Chip Badge -->
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 mb-6 shadow-sm">
         <Sparkles class="h-3.5 w-3.5" />
         <span class="text-xs font-bold font-jakarta tracking-wide">Interactive ERP Modules</span>
       </div>
 
-      <!-- Title -->
       <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
         Explore Each Module in Detail
       </h2>
 
-      <!-- Subtitle -->
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
         Click any module to see how it works, what it includes, and the business value it delivers.
       </p>
@@ -152,23 +806,23 @@
 
     <!-- Explorer Layout -->
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-0">
-      
+
       <!-- Left Sidebar Tabs -->
-      <div class="lg:w-[180px] flex-shrink-0">
+      <div class="lg:w-[200px] flex-shrink-0">
         <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
           {#each modules as mod, i}
             {@const TabIcon = mod.icon}
             <button
               onclick={() => selectModule(i)}
               class="flex items-center gap-2.5 px-4 py-3 rounded-xl text-left whitespace-nowrap transition-all duration-250 cursor-pointer min-w-max lg:min-w-0 lg:w-full
-                {activeModule === i 
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25' 
+                {activeModule === i
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
                   : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60 lg:border-0'
                 }"
             >
-              <TabIcon 
-                class="h-4 w-4 flex-shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}" 
-                strokeWidth={2} 
+              <TabIcon
+                class="h-4 w-4 flex-shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}"
+                strokeWidth={2}
               />
               <span class="text-[13px] font-semibold font-jakarta">{mod.label}</span>
             </button>
@@ -180,7 +834,7 @@
       <div class="flex-1 lg:ml-6">
         <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div class="flex flex-col xl:flex-row">
-            
+
             <!-- Module Detail (Left Content) -->
             <div class="flex-1 p-8 sm:p-10 xl:max-w-[480px]">
               {#key activeModule}
@@ -188,10 +842,7 @@
                 <div class="module-content-enter">
                   <!-- Module Badge -->
                   <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-600 mb-6">
-                    <DetailIcon 
-                      class="h-3.5 w-3.5" 
-                      strokeWidth={2} 
-                    />
+                    <DetailIcon class="h-3.5 w-3.5" strokeWidth={2} />
                     <span class="text-xs font-semibold font-jakarta">{modules[activeModule].badge}</span>
                   </div>
 
@@ -205,14 +856,38 @@
                     {modules[activeModule].description}
                   </p>
 
-                  <!-- Feature Checklist -->
-                  <div class="space-y-3.5 mb-8">
-                    {#each modules[activeModule].features as feature}
-                      <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0 mt-0.5">
-                          <CheckCircle2 class="h-[18px] w-[18px] text-emerald-500" strokeWidth={2.2} />
-                        </div>
-                        <span class="text-[13.5px] text-slate-700 font-medium leading-snug">{feature}</span>
+                  <!-- Accordion (same pattern for every module) -->
+                  <div class="space-y-2 mb-8">
+                    {#each modules[activeModule].pillars as pillar, pIndex}
+                      <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-slate-50/50">
+                        <button
+                          type="button"
+                          onclick={() => togglePillar(pIndex)}
+                          class="w-full px-4 py-3 flex items-center justify-between text-left cursor-pointer hover:bg-slate-100/60 transition-colors"
+                        >
+                          <span class="text-[13px] font-semibold text-slate-800 pr-3">{pillar.title}</span>
+                          <ChevronDown
+                            class="h-4 w-4 text-slate-400 flex-shrink-0 transition-transform duration-200 {openPillar === pIndex ? 'rotate-180 text-blue-600' : ''}"
+                          />
+                        </button>
+                        {#if openPillar === pIndex}
+                          <div
+                            transition:slide
+                            class="px-4 pb-4 pt-1 text-[12px] text-slate-500 leading-relaxed space-y-2 border-t border-slate-200/60"
+                          >
+                            {#if pillar.intro}
+                              <p>{pillar.intro}</p>
+                            {/if}
+                            <ul class="space-y-1.5 pl-1">
+                              {#each pillar.bullets as b}
+                                <li class="flex items-start gap-1.5">
+                                  <span class="text-blue-500 mt-0.5">•</span>
+                                  <span><strong class="text-slate-700">{b.bold}</strong> {b.text}</span>
+                                </li>
+                              {/each}
+                            </ul>
+                          </div>
+                        {/if}
                       </div>
                     {/each}
                   </div>
@@ -226,9 +901,11 @@
                   </div>
 
                   <!-- CTA Button -->
-                  <button class="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 hover:bg-blue-700 hover:shadow-blue-500/30 transition-all duration-200 cursor-pointer active:scale-[0.98] group">
+                  <button
+                    type="button"
+                    class="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all duration-200 cursor-default opacity-90"
+                  >
                     <span>{modules[activeModule].cta}</span>
-                    <ArrowRight class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </button>
                 </div>
               {/key}
@@ -238,28 +915,24 @@
             <div class="flex-1 xl:max-w-[520px] bg-slate-50/50 border-t xl:border-t-0 xl:border-l border-slate-200/60 p-4 sm:p-6 flex items-start justify-center overflow-hidden">
               {#key activeModule}
                 <div class="mockup-enter w-full">
+
                   <!-- Quotation Mockup -->
-                  {#if activeModule === 0}
+                  {#if modules[activeModule].mockup === 'quotation'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
-                      <!-- Top Search Bar -->
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
                         <span class="text-slate-400 text-[10px]">Search anything...</span>
                       </div>
-                      <!-- Breadcrumb -->
                       <div class="px-4 py-2 border-b border-slate-100 flex items-center gap-1.5 text-[10px] text-slate-400">
                         <span>...</span>
                         <ChevronRight class="h-2.5 w-2.5" />
                         <span class="text-slate-600 font-medium">New Quotation</span>
                       </div>
-                      <!-- Header Row -->
                       <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
                         <h4 class="font-bold text-slate-800 text-sm">New Quotation</h4>
                         <span class="text-slate-400 text-[10px] cursor-pointer hover:text-slate-600">Cancel</span>
                       </div>
-                      <!-- Two column form -->
                       <div class="grid grid-cols-2 divide-x divide-slate-100">
-                        <!-- Left form -->
                         <div class="p-4 space-y-3">
                           <div class="text-[10px] font-semibold text-slate-500 mb-2">Client Details</div>
                           <div class="space-y-2">
@@ -281,7 +954,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Right form -->
                         <div class="p-4 space-y-3">
                           <div class="text-[10px] font-semibold text-slate-500 mb-2">Quotation Details</div>
                           <div class="space-y-2">
@@ -304,7 +976,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- Items Table -->
                       <div class="mx-4 border border-slate-200 rounded-lg overflow-hidden mb-3">
                         <div class="bg-slate-700 text-white px-3 py-2 grid grid-cols-7 gap-1 text-[9px] font-semibold">
                           <span class="col-span-2">Item Name</span>
@@ -341,7 +1012,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- Footer -->
                       <div class="px-4 py-3 border-t border-slate-100 grid grid-cols-2 gap-4">
                         <div>
                           <div class="text-[9px] font-semibold text-slate-500 mb-1.5">Terms & Conditions</div>
@@ -370,7 +1040,7 @@
                     </div>
 
                   <!-- Inventory Mockup -->
-                  {:else if activeModule === 1}
+                  {:else if modules[activeModule].mockup === 'inventory'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
@@ -437,7 +1107,7 @@
                     </div>
 
                   <!-- Production Mockup -->
-                  {:else if activeModule === 2}
+                  {:else if modules[activeModule].mockup === 'production'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
@@ -450,9 +1120,7 @@
                           <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded-md text-[9px] font-semibold">Pending: 8</span>
                         </div>
                       </div>
-                      <!-- Kanban Style -->
                       <div class="p-4 grid grid-cols-3 gap-3">
-                        <!-- Pending Column -->
                         <div class="space-y-2">
                           <div class="text-[9px] font-bold text-amber-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                             <div class="w-2 h-2 rounded-full bg-amber-400"></div> Pending
@@ -474,7 +1142,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- In Progress Column -->
                         <div class="space-y-2">
                           <div class="text-[9px] font-bold text-blue-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                             <div class="w-2 h-2 rounded-full bg-blue-400"></div> In Progress
@@ -502,7 +1169,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Completed Column -->
                         <div class="space-y-2">
                           <div class="text-[9px] font-bold text-emerald-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                             <div class="w-2 h-2 rounded-full bg-emerald-400"></div> Completed
@@ -525,8 +1191,8 @@
                       </div>
                     </div>
 
-                  <!-- Glass Optimizer Mockup -->
-                  {:else if activeModule === 3}
+                  <!-- Optimizer Mockup -->
+                  {:else if modules[activeModule].mockup === 'optimizer'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
@@ -536,10 +1202,8 @@
                         <h4 class="font-bold text-slate-800 text-sm">Cutting Layout - Sheet #42</h4>
                         <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded-md text-[9px] font-semibold">Yield: 94.2%</span>
                       </div>
-                      <!-- Cutting Layout Visualization -->
                       <div class="p-4">
                         <div class="bg-sky-50 border-2 border-sky-300 rounded-lg p-3 relative" style="aspect-ratio: 16/10;">
-                          <!-- Glass Pieces arranged in optimization layout -->
                           <div class="grid grid-cols-4 grid-rows-3 gap-1 h-full">
                             <div class="col-span-2 row-span-2 bg-blue-200 border border-blue-400 rounded flex items-center justify-center text-[8px] font-bold text-blue-800">A1 — 800×600</div>
                             <div class="bg-emerald-200 border border-emerald-400 rounded flex items-center justify-center text-[8px] font-bold text-emerald-800">B1</div>
@@ -551,7 +1215,6 @@
                             <div class="bg-slate-200 border border-slate-400 rounded flex items-center justify-center text-[7px] text-slate-500 italic">Scrap</div>
                           </div>
                         </div>
-                        <!-- Stats -->
                         <div class="grid grid-cols-3 gap-3 mt-4">
                           <div class="bg-slate-50 rounded-lg p-2.5 text-center border border-slate-200/60">
                             <div class="text-[16px] font-black text-emerald-600">94.2%</div>
@@ -566,11 +1229,15 @@
                             <div class="text-[8px] text-slate-500 font-medium">Scrap</div>
                           </div>
                         </div>
+                        <div class="mt-3 flex items-center justify-between px-1">
+                          <span class="text-[8.5px] text-slate-400">AI running in background · Order #SO-1182</span>
+                          <span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-md text-[8px] font-semibold">Ready for Production</span>
+                        </div>
                       </div>
                     </div>
 
                   <!-- Accounts Mockup -->
-                  {:else if activeModule === 4}
+                  {:else if modules[activeModule].mockup === 'accounts'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
@@ -581,7 +1248,6 @@
                         <span class="text-[9px] text-slate-400 font-medium">FY 2024-25 | April - June</span>
                       </div>
                       <div class="p-4 space-y-3">
-                        <!-- Revenue -->
                         <div class="bg-emerald-50/50 rounded-lg p-3 border border-emerald-200/40">
                           <div class="text-[9px] font-bold text-emerald-700 uppercase tracking-wider mb-2">Revenue</div>
                           <div class="space-y-1.5">
@@ -599,7 +1265,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Expenses -->
                         <div class="bg-rose-50/50 rounded-lg p-3 border border-rose-200/40">
                           <div class="text-[9px] font-bold text-rose-700 uppercase tracking-wider mb-2">Expenses</div>
                           <div class="space-y-1.5">
@@ -621,7 +1286,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Net Profit -->
                         <div class="bg-blue-50 rounded-lg p-3 border border-blue-200/40 flex justify-between items-center">
                           <span class="text-[11px] font-bold text-slate-800">Net Profit</span>
                           <div class="text-right">
@@ -633,7 +1297,7 @@
                     </div>
 
                   <!-- HR Mockup -->
-                  {:else if activeModule === 5}
+                  {:else if modules[activeModule].mockup === 'hr'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
@@ -703,84 +1367,113 @@
                       </div>
                     </div>
 
-                  <!-- Reports Mockup -->
-                  {:else if activeModule === 6}
+                  <!-- OpEx Mockup -->
+                  {:else if modules[activeModule].mockup === 'opex'}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
                       <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
                         <Search class="h-3 w-3 text-slate-400" />
-                        <span class="text-slate-400 text-[10px]">Search reports...</span>
+                        <span class="text-slate-400 text-[10px]">Search expenses...</span>
                       </div>
                       <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
-                        <h4 class="font-bold text-slate-800 text-sm">Executive Dashboard</h4>
-                        <span class="text-[9px] text-slate-400 font-medium">Last 30 Days</span>
+                        <h4 class="font-bold text-slate-800 text-sm">OpEx Overview</h4>
+                        <span class="text-[9px] text-slate-400 font-medium">June 2024</span>
                       </div>
                       <div class="p-4 space-y-4">
-                        <!-- KPI Cards -->
                         <div class="grid grid-cols-3 gap-3">
                           <div class="bg-blue-50 rounded-lg p-3 text-center border border-blue-200/40">
-                            <div class="text-[15px] font-black text-blue-700">₹18.5L</div>
-                            <div class="text-[8px] text-slate-500 font-medium">Revenue</div>
-                            <div class="text-[8px] text-emerald-600 font-semibold mt-0.5">↑ 14%</div>
+                            <div class="text-[15px] font-black text-blue-700">₹19.5L</div>
+                            <div class="text-[8px] text-slate-500 font-medium">Total OpEx</div>
                           </div>
                           <div class="bg-emerald-50 rounded-lg p-3 text-center border border-emerald-200/40">
-                            <div class="text-[15px] font-black text-emerald-700">156</div>
-                            <div class="text-[8px] text-slate-500 font-medium">Orders</div>
-                            <div class="text-[8px] text-emerald-600 font-semibold mt-0.5">↑ 22%</div>
+                            <div class="text-[15px] font-black text-emerald-700">₹142</div>
+                            <div class="text-[8px] text-slate-500 font-medium">Cost / SqM</div>
                           </div>
-                          <div class="bg-amber-50 rounded-lg p-3 text-center border border-amber-200/40">
-                            <div class="text-[15px] font-black text-amber-700">92%</div>
-                            <div class="text-[8px] text-slate-500 font-medium">Yield</div>
-                            <div class="text-[8px] text-emerald-600 font-semibold mt-0.5">↑ 3%</div>
+                          <div class="bg-rose-50 rounded-lg p-3 text-center border border-rose-200/40">
+                            <div class="text-[15px] font-black text-rose-600">₹38K</div>
+                            <div class="text-[8px] text-slate-500 font-medium">Breakage Loss</div>
                           </div>
                         </div>
-                        <!-- Chart Area -->
                         <div class="bg-slate-50 rounded-lg p-3 border border-slate-200/40">
-                          <div class="text-[9px] font-bold text-slate-600 mb-3">Revenue Trend (6 Months)</div>
-                          <div class="flex items-end gap-2 h-[80px]">
-                            <div class="flex-1 flex flex-col items-center gap-1">
-                              <div class="w-full bg-blue-300 rounded-t" style="height: 40px"></div>
-                              <span class="text-[7px] text-slate-400">Jan</span>
-                            </div>
-                            <div class="flex-1 flex flex-col items-center gap-1">
-                              <div class="w-full bg-blue-400 rounded-t" style="height: 48px"></div>
-                              <span class="text-[7px] text-slate-400">Feb</span>
-                            </div>
-                            <div class="flex-1 flex flex-col items-center gap-1">
-                              <div class="w-full bg-blue-300 rounded-t" style="height: 36px"></div>
-                              <span class="text-[7px] text-slate-400">Mar</span>
-                            </div>
-                            <div class="flex-1 flex flex-col items-center gap-1">
-                              <div class="w-full bg-blue-500 rounded-t" style="height: 56px"></div>
-                              <span class="text-[7px] text-slate-400">Apr</span>
-                            </div>
-                            <div class="flex-1 flex flex-col items-center gap-1">
-                              <div class="w-full bg-blue-400 rounded-t" style="height: 52px"></div>
-                              <span class="text-[7px] text-slate-400">May</span>
-                            </div>
-                            <div class="flex-1 flex flex-col items-center gap-1">
-                              <div class="w-full bg-blue-600 rounded-t" style="height: 68px"></div>
-                              <span class="text-[7px] text-slate-400">Jun</span>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Top Clients -->
-                        <div class="bg-slate-50 rounded-lg p-3 border border-slate-200/40">
-                          <div class="text-[9px] font-bold text-slate-600 mb-2">Top Clients by Revenue</div>
+                          <div class="text-[9px] font-bold text-slate-600 mb-2">Expense Breakdown</div>
                           <div class="space-y-2">
                             <div class="flex items-center gap-2">
-                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div></div>
-                              <span class="text-[8px] text-slate-600 font-medium w-24 text-right">Future Tech ₹4.2L</span>
+                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 64%"></div></div>
+                              <span class="text-[8px] text-slate-600 font-medium w-28 text-right">Raw Material ₹12.4L</span>
                             </div>
                             <div class="flex items-center gap-2">
-                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-emerald-500 h-2 rounded-full" style="width: 68%"></div></div>
-                              <span class="text-[8px] text-slate-600 font-medium w-24 text-right">GlassCo ₹3.4L</span>
+                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-amber-500 h-2 rounded-full" style="width: 22%"></div></div>
+                              <span class="text-[8px] text-slate-600 font-medium w-28 text-right">Labour ₹4.2L</span>
                             </div>
                             <div class="flex items-center gap-2">
-                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-amber-500 h-2 rounded-full" style="width: 52%"></div></div>
-                              <span class="text-[8px] text-slate-600 font-medium w-24 text-right">BuildRight ₹2.6L</span>
+                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-purple-500 h-2 rounded-full" style="width: 10%"></div></div>
+                              <span class="text-[8px] text-slate-600 font-medium w-28 text-right">Power ₹1.9L</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                              <div class="flex-1 bg-slate-200 rounded-full h-2"><div class="bg-rose-500 h-2 rounded-full" style="width: 8%"></div></div>
+                              <span class="text-[8px] text-slate-600 font-medium w-28 text-right">Consumables ₹1.0L</span>
                             </div>
                           </div>
                         </div>
+                        <div class="bg-amber-50 border border-amber-200/50 rounded-lg p-2.5 flex items-center justify-between">
+                          <span class="text-[9px] font-semibold text-amber-700">⚠ Power budget 92% utilized</span>
+                          <span class="text-[8px] text-amber-600 font-medium">View Detail</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  <!-- Sales & Purchase Mockup -->
+                  {:else if modules[activeModule].mockup === 'sales'}
+                    <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
+                      <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
+                        <Search class="h-3 w-3 text-slate-400" />
+                        <span class="text-slate-400 text-[10px]">Search orders...</span>
+                      </div>
+                      <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
+                        <h4 class="font-bold text-slate-800 text-sm">Sales & Purchase Dashboard</h4>
+                        <span class="text-[9px] text-slate-400 font-medium">This Month</span>
+                      </div>
+                      <div class="p-4 space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                          <div class="bg-emerald-50/50 rounded-lg p-3 border border-emerald-200/40">
+                            <div class="text-[9px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Sales</div>
+                            <div class="text-[16px] font-black text-emerald-700">₹18.5L</div>
+                            <div class="text-[8px] text-slate-500">156 orders</div>
+                          </div>
+                          <div class="bg-rose-50/50 rounded-lg p-3 border border-rose-200/40">
+                            <div class="text-[9px] font-bold text-rose-700 uppercase tracking-wider mb-1">Purchases</div>
+                            <div class="text-[16px] font-black text-rose-600">₹9.2L</div>
+                            <div class="text-[8px] text-slate-500">34 POs</div>
+                          </div>
+                        </div>
+                        <div class="border border-slate-200 rounded-lg overflow-hidden">
+                          <div class="bg-slate-700 text-white px-3 py-2 grid grid-cols-5 gap-1 text-[9px] font-semibold">
+                            <span class="col-span-2">Client / Vendor</span>
+                            <span>Type</span>
+                            <span>Amount</span>
+                            <span>Status</span>
+                          </div>
+                          <div class="divide-y divide-slate-100">
+                            <div class="px-3 py-2 grid grid-cols-5 gap-1 text-[9.5px] items-center">
+                              <span class="col-span-2 text-slate-700 font-medium">Future Tech Pvt Ltd</span>
+                              <span class="text-slate-500">Sale</span>
+                              <span class="text-slate-700">₹4,20,000</span>
+                              <span class="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 rounded text-[8px] font-semibold w-fit">Confirmed</span>
+                            </div>
+                            <div class="px-3 py-2 grid grid-cols-5 gap-1 text-[9.5px] items-center bg-slate-50/40">
+                              <span class="col-span-2 text-slate-700 font-medium">AGC Glass Suppliers</span>
+                              <span class="text-slate-500">Purchase</span>
+                              <span class="text-slate-700">₹2,80,000</span>
+                              <span class="px-1.5 py-0.5 bg-amber-50 text-amber-700 rounded text-[8px] font-semibold w-fit">Pending GRN</span>
+                            </div>
+                            <div class="px-3 py-2 grid grid-cols-5 gap-1 text-[9.5px] items-center">
+                              <span class="col-span-2 text-slate-700 font-medium">BuildRight Interiors</span>
+                              <span class="text-slate-500">Sale</span>
+                              <span class="text-slate-700">₹2,60,000</span>
+                              <span class="px-1.5 py-0.5 bg-red-50 text-red-600 rounded text-[8px] font-semibold w-fit">Credit Hold</span>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="w-full px-3 py-2 bg-blue-600 text-white rounded-md text-[9px] font-semibold">+ New Purchase Order</button>
                       </div>
                     </div>
 
@@ -826,7 +1519,6 @@
     }
   }
 
-  /* Hide scrollbar for horizontal tab scroll */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

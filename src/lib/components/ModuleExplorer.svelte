@@ -9,15 +9,15 @@
       label: 'Quotation',
       icon: FileText,
       badge: 'Quotation Module',
-      title: 'Smart Glass Quotation System',
-      description: 'Generate accurate, professional quotations in minutes. Auto-calculate glass area, cutting charges, hardware costs, and GST — all in one flow.',
+      title: 'Smart Quotation Module: Built for Glass Complexities',
+      description: 'Stop losing money on miscalculated edge polishing, wrong chargeable areas, and forgotten transport fees. Firstcut24 is an ultra-flexible pricing engine designed specifically for the glass and hardware industry.',
       features: [
-        'Auto glass area & cost calculation',
-        'Multi-item, multi-rate quotation builder',
-        'PDF generation & WhatsApp sharing',
-        'One-click quote-to-order conversion',
+        'Total Dimensional & Pricing Freedom (mm, in, m, ft)',
+        'Error-Free Area & Polish CP/RG/Bevel Calculations',
+        'Logistics Weight & Jumbo Glass Auto-Detection',
+        'Unified Project Quoting & 1-Click Invoice Conversion',
       ],
-      tip: 'Reduce quotation time by 80% · Close deals 3x faster · Never miss a quote follow-up',
+      tip: 'Calculate glass sizes, perimeters, and weights instantly. Detect Jumbo glass sizes and convert quotes to invoices with one click.',
       cta: 'Explore Module',
     },
     {
@@ -157,6 +157,7 @@
       <div class="lg:w-[180px] flex-shrink-0">
         <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
           {#each modules as mod, i}
+            {@const TabIcon = mod.icon}
             <button
               onclick={() => selectModule(i)}
               class="flex items-center gap-2.5 px-4 py-3 rounded-xl text-left whitespace-nowrap transition-all duration-250 cursor-pointer min-w-max lg:min-w-0 lg:w-full
@@ -165,8 +166,7 @@
                   : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60 lg:border-0'
                 }"
             >
-              <svelte:component 
-                this={mod.icon} 
+              <TabIcon 
                 class="h-4 w-4 flex-shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}" 
                 strokeWidth={2} 
               />
@@ -184,11 +184,11 @@
             <!-- Module Detail (Left Content) -->
             <div class="flex-1 p-8 sm:p-10 xl:max-w-[480px]">
               {#key activeModule}
+                {@const DetailIcon = modules[activeModule].icon}
                 <div class="module-content-enter">
                   <!-- Module Badge -->
                   <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-600 mb-6">
-                    <svelte:component 
-                      this={modules[activeModule].icon} 
+                    <DetailIcon 
                       class="h-3.5 w-3.5" 
                       strokeWidth={2} 
                     />
@@ -226,10 +226,13 @@
                   </div>
 
                   <!-- CTA Button -->
-                  <button class="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 hover:bg-blue-700 hover:shadow-blue-500/30 transition-all duration-200 cursor-pointer active:scale-[0.98] group">
+                  <a
+                    href={modules[activeModule].id === 'quotation' ? '/modules/quotation' : '#'}
+                    class="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 hover:bg-blue-700 hover:shadow-blue-500/30 transition-all duration-200 cursor-pointer active:scale-[0.98] group"
+                  >
                     <span>{modules[activeModule].cta}</span>
                     <ArrowRight class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </button>
+                  </a>
                 </div>
               {/key}
             </div>

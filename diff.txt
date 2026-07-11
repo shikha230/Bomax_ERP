@@ -1,0 +1,19 @@
+diff --git a/src/routes/resources/+page.svelte b/src/routes/resources/+page.svelte
+index ba79310..0ea1449 100644
+--- a/src/routes/resources/+page.svelte
++++ b/src/routes/resources/+page.svelte
+@@ -28,14 +28,6 @@
+ 			badgeColor: 'bg-red-50 text-red-700 border-red-100',
+ 			linkText: 'Watch Video Guides'
+ 		},
+-		{
+-			title: 'API Reference & Integrations',
+-			description: 'Developer instructions to fetch order details, sync client profiles or connect machine nesting systems directly.',
+-			icon: Code2,
+-			badge: 'API Hub',
+-			badgeColor: 'bg-purple-50 text-purple-700 border-purple-100',
+-			linkText: 'Explore API Docs'
+-		},
+ 		{
+ 			title: 'Glass Industry Guides',
+ 			description: 'Industry articles on reducing cutting scraps, machinery upkeep checklists, and managing glass dispatch safety protocols.',

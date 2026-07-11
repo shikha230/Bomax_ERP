@@ -11,8 +11,6 @@
     { label: 'Home', href: '/' },
     { label: 'Features', href: '/features' },
     { label: 'Modules', href: '/modules' },
-    { label: 'Pricing', href: '#' },
-    { label: 'Customers', href: '#' },
     { label: 'Resources', href: '/resources' },
     { label: 'Contact', href: '/contact' }
   ];

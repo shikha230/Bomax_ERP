@@ -118,7 +118,13 @@
 						<li
 							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
 						>
-							{item}
+							{#if item === 'Partners'}
+								<a href="/partners" class="block">{item}</a>
+							{:else if item === 'Blog'}
+								<a href="/blog" class="block">{item}</a>
+							{:else}
+								{item}
+							{/if}
 						</li>
 					{/each}
 				</ul>
@@ -171,7 +177,7 @@
 			class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-sm text-slate-500 md:flex-row"
 		>
 			<p>
-				© 2025 GlassERP. All rights reserved.
+				© 2026 GlassERP. All rights reserved.
 			</p>
 
 			<div class="flex flex-wrap gap-6">

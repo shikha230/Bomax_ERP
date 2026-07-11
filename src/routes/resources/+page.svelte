@@ -29,14 +29,6 @@
 			linkText: 'Watch Video Guides'
 		},
 		{
-			title: 'API Reference & Integrations',
-			description: 'Developer instructions to fetch order details, sync client profiles or connect machine nesting systems directly.',
-			icon: Code2,
-			badge: 'API Hub',
-			badgeColor: 'bg-purple-50 text-purple-700 border-purple-100',
-			linkText: 'Explore API Docs'
-		},
-		{
 			title: 'Glass Industry Guides',
 			description: 'Industry articles on reducing cutting scraps, machinery upkeep checklists, and managing glass dispatch safety protocols.',
 			icon: FileText,
