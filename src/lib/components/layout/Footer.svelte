@@ -181,15 +181,15 @@
 			</p>
 
 			<div class="flex flex-wrap gap-6">
-				<span class="cursor-pointer hover:text-white">
+				<a href="/privacy" class="cursor-pointer hover:text-white">
 					Privacy Policy
-				</span>
+				</a>
 
 				<span class="cursor-pointer hover:text-white">
 					Terms of Service
 				</span>
 
-				<span class="cursor-pointer hover:text-white">
+				<span class="cursor-pointer hover:text-white font-sans">
 					Cookie Policy
 				</span>
 			</div>
