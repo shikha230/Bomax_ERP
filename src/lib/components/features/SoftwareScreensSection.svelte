@@ -85,7 +85,7 @@
 <!-- Software Screens Section -->
 <section
   id="screens"
-  class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden"
+  class="relative w-full bg-white py-10 sm:py-10 lg:py-10 overflow-hidden"
 >
   <!-- Subtle background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">

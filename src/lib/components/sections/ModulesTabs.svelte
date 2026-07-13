@@ -16,7 +16,7 @@
 	import { resolve } from '$app/paths';
 </script>
 
-<section class="bg-slate-50 pt-16 sm:pt-20 lg:pt-24 pb-24">
+<section class="bg-slate-50 pt-10 pb-14 sm:pt-10 sm:pb-16 lg:pt-10 lg:pb-20">
 	<div class="mx-auto max-w-7xl px-6">
 
 

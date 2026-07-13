@@ -18,7 +18,7 @@
 
 <section
   id="cta"
-  class="relative w-full py-10 sm:py-14 lg:py-16 overflow-hidden bg-linear-to-r from-blue-600 to-indigo-700 text-white"
+  class="relative w-full py-10 sm:py-10 lg:py-10 overflow-hidden bg-linear-to-r from-blue-600 to-indigo-700 text-white"
 >
   <!-- Background circular graphics -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden">

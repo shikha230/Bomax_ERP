@@ -31,8 +31,9 @@
 <Header />
 
 <main
-	class="bg-[#E8F4FF] flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3 lg:pt-5 pb-10 lg:pb-20 flex items-center justify-center"
+	class="bg-[#E8F4FF] w-full pt-3 lg:pt-5 pb-10 lg:pb-20 overflow-hidden"
 >
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-center">
 	<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center w-full">
 		<section
 			class="  lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 md:space-y-8 animate-slide-up-fade"
@@ -84,6 +85,7 @@
 				/>
 			</div>
 		</section>
+	</div>
 	</div>
 </main>
 

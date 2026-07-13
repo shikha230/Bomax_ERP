@@ -85,7 +85,7 @@
 	];
 </script>
 
-<section class="bg-slate-100 py-14 sm:py-20 lg:py-24">
+<section class="bg-slate-100 py-10 sm:py-10 lg:py-10">
 	<div class="mx-auto max-w-4xl px-4 sm:px-6">
 
 		<div class="text-center">

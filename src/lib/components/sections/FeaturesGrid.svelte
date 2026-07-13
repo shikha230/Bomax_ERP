@@ -280,7 +280,7 @@
   }
 </script>
 
-<section class="bg-white pt-14 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10">
+<section class="bg-white py-18 sm:py-18 lg:py-18">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <SectionHeading
       title="Everything Your Glass Business Needs"

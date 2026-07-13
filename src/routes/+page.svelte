@@ -34,8 +34,13 @@
 
 <DashboardShowcase />
 <BusinessTypes />
-<TimelineSection />
-<StatsSection />
+
+<div class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+	<div class="bg-slate-50/70 border border-slate-200/60 rounded-3xl shadow-sm p-8 sm:p-12 lg:p-16 space-y-12 sm:space-y-16">
+		<TimelineSection />
+		<StatsSection />
+	</div>
+</div>
 
 <!-- <div id="customers">
 	<Testimonials />

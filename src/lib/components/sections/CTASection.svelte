@@ -1,5 +1,5 @@
 <section
-	class="bg-linear-to-r from-blue-700 via-blue-600 to-cyan-500 py-16 sm:py-20 lg:py-24"
+	class="bg-linear-to-r from-blue-700 via-blue-600 to-cyan-500 py-10 sm:py-10 lg:py-10"
 >
 	<div class="mx-auto max-w-5xl px-4 sm:px-6 text-center">
 
@@ -29,4 +29,4 @@
 		</div>
 
 	</div>
-</section>
+</section>

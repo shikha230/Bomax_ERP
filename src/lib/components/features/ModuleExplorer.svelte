@@ -780,7 +780,7 @@
 </script>
 
 <!-- Module Explorer Section -->
-<section id="modules" class="relative w-full bg-slate-100 py-12 sm:py-16 lg:py-20 overflow-hidden">
+<section id="modules" class="relative w-full bg-slate-100 py-10 sm:py-10 lg:py-10 overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-25"></div>

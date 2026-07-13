@@ -19,7 +19,7 @@
 		</div>
 	{/if}
 
-	<h2 class="mb-4 text-3xl font-bold text-slate-900 md:text-5xl">
+	<h2 class="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">
 		{title}
 	</h2>
 

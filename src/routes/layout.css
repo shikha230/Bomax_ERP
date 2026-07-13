@@ -14,3 +14,9 @@ html {
   scroll-padding-top: 5rem; /* offset for sticky header (h-20 = 5rem) */
   font-family: 'Poppins', sans-serif;
 }
+
+button, 
+a, 
+[role="button"] {
+  cursor: pointer;
+}

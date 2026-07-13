@@ -71,7 +71,7 @@
 </script>
 
 <!-- Features / Modules Section -->
-<section id="features" class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
+<section id="features" class="relative w-full bg-white py-10 sm:py-10 lg:py-10 overflow-hidden">
   <!-- Subtle background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-40"></div>
@@ -82,7 +82,7 @@
 <div class="text-center mb-14 sm:mb-16 lg:mb-20 animate-section-header  rounded-xl px-8 py-8">
 
   <!-- Title -->
-  <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
+  <h2 class="text-4xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
     8 Powerful Modules
     One Unified Platform
   </h2>

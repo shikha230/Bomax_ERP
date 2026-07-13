@@ -1,196 +1,164 @@
 <script lang="ts">
-	import { Layers } from 'lucide-svelte';
-	import { resolve } from '$app/paths';
+  import { Layers } from 'lucide-svelte';
+  import { resolve } from '$app/paths';
 
-	const productLinks = [
-		'Features',
-		'Modules',
-		// 'Pricing',
-		'Changelog',
-		'Roadmap'
-	];
+  const productLinks = [
+    { name: 'Features', href: '/features' },
+    { name: 'Modules', href: '/modules' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Changelog', href: '#' },
+    { name: 'Roadmap', href: '#' }
+  ];
 
-	const companyLinks = [
-		'Careers',
-		'Blog',
-		'Press',
-		'Partners'
-	];
+  const companyLinks = [
+    { name: 'About Us', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Press', href: '#' },
+    { name: 'Partners', href: '/partners' }
+  ];
 
-	const supportLinks = [
-		'Help Center',
-		'Community',
-		'Status Page'
-	];
+  const supportLinks = [
+    { name: 'Help Center', href: '#' },
+    { name: 'Community', href: '#' },
+    { name: 'Status Page', href: '#' }
+  ];
 
-	const contactLinks = [
-		'+91 98765 43210',
-		'hello@glasserp.in',
-		'WhatsApp Chat',
-		'Book a Demo'
-	];
+  const contactLinks = [
+    { name: '+91 98765 43210', href: 'tel:+919876543210' },
+    { name: 'hello@glasserp.in', href: 'mailto:hello@glasserp.in' },
+    { name: 'WhatsApp Chat', href: 'https://wa.me/919876543210' },
+    { name: 'Book a Demo', href: '/contact' }
+  ];
 </script>
 
-<footer class="bg-[#061330] text-white">
-	<div class="mx-auto max-w-7xl px-6 py-6">
-		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-			<!-- Logo Section -->
+<footer class="bg-[#061330] text-white mt-1">
+  <div class="mx-auto max-w-7xl px-6 py-6 sm:py-12 lg:py-16">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+      <!-- Logo Section -->
+      <div class="lg:col-span-1">
+        <a href={resolve('/')} class="flex items-center gap-2.5 group">
+          <div class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105">
+            <Layers class="h-5.5 w-5.5 text-white" />
+            <div class="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse border border-[#061330]"></div>
+          </div>
+          <span class="text-xl font-extrabold tracking-tight text-white font-heading">
+            Bomax <span class="bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ERP</span>
+          </span>
+        </a>
 
-			<div class="lg:col-span-1">
-				<div class="flex items-center gap-2.5">
-					<div
-						class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20"
-					>
-						<Layers class="h-5.5 w-5.5 text-white" />
-						<div class="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse border border-[#061330]"></div>
-					</div>
+        <p class="mt-3.5 max-w-xs text-[15px] leading-relaxed text-slate-350">
+          The all-in-one ERP platform built exclusively for glass businesses across India and beyond.
+        </p>
 
-					<h3 class="text-2xl font-bold tracking-tight text-white font-heading">
-						GlassERP
-					</h3>
-				</div>
+        <div class="mt-5 flex gap-3">
+          {#each ['T', 'L', 'I', 'F'] as icon}
+            <div class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-sm font-semibold text-slate-400 transition hover:bg-slate-700 hover:text-white">
+              {icon}
+            </div>
+          {/each}
+        </div>
+      </div>
 
-				<p
-					class="mt-2.5 max-w-xs text-sm leading-6 text-slate-400"
-				>
-					The all-in-one ERP platform built exclusively for
-					glass businesses across India and beyond.
-				</p>
+      <!-- Product -->
+      <div>
+        <h4 class="mb-4 text-base font-bold uppercase tracking-wider text-slate-100">
+          Product
+        </h4>
+        <ul class="space-y-2">
+          {#each productLinks as item (item.name)}
+            <li>
+              {#if item.href === '#'}
+                <span class="cursor-pointer text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                  {item.name}
+                </span>
+              {:else}
+                <a href={resolve(item.href as any)} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                  {item.name}
+                </a>
+              {/if}
+            </li>
+          {/each}
+        </ul>
+      </div>
 
-				<div class="mt-4 flex gap-3">
-					<div
-						class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-slate-400 transition hover:bg-slate-700"
-					>
-						T
-					</div>
+      <!-- Company -->
+      <div>
+        <h4 class="mb-4 text-base font-bold uppercase tracking-wider text-slate-100">
+          Company
+        </h4>
+        <ul class="space-y-2">
+          {#each companyLinks as item (item.name)}
+            <li>
+              {#if item.href === '#'}
+                <span class="cursor-pointer text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                  {item.name}
+                </span>
+              {:else}
+                <a href={resolve(item.href as any)} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                  {item.name}
+                </a>
+              {/if}
+            </li>
+          {/each}
+        </ul>
+      </div>
 
-					<div
-						class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-slate-400 transition hover:bg-slate-700"
-					>
-						L
-					</div>
+      <!-- Support -->
+      <div>
+        <h4 class="mb-4 text-base font-bold uppercase tracking-wider text-slate-100">
+          Support
+        </h4>
+        <ul class="space-y-2">
+          {#each supportLinks as item (item.name)}
+            <li>
+              {#if item.href === '#'}
+                <span class="cursor-pointer text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                  {item.name}
+                </span>
+              {:else}
+                <a href={resolve(item.href as any)} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                  {item.name}
+                </a>
+              {/if}
+            </li>
+          {/each}
+        </ul>
+      </div>
 
-					<div
-						class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-slate-400 transition hover:bg-slate-700"
-					>
-						I
-					</div>
+      <!-- Contact -->
+      <div>
+        <h4 class="mb-4 text-base font-bold uppercase tracking-wider text-slate-100">
+          Contact
+        </h4>
+        <ul class="space-y-2">
+          {#each contactLinks as item (item.name)}
+            <li>
+              <a href={item.href} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
+                {item.name}
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    </div>
 
-					<div
-						class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-slate-400 transition hover:bg-slate-700"
-					>
-						F
-					</div>
-				</div>
-			</div>
+    <!-- Bottom Section -->
+    <div class="mt-12 sm:mt-16 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-8 text-[15px] text-white md:flex-row">
+      <p>
+        © 2026 BomaxERP. All rights reserved.
+      </p>
 
-			<!-- Product -->
-
-			<div>
-				<h4
-					class="mb-3 text-sm font-semibold uppercase tracking-wider"
-				>
-					Product
-				</h4>
-
-				<ul class="space-y-1.5">
-					{#each productLinks as item (item)}
-						<li
-							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
-						>
-							{item}
-						</li>
-					{/each}
-				</ul>
-			</div>
-
-			<!-- Company -->
-
-			<div>
-				<h4
-					class="mb-3 text-sm font-semibold uppercase tracking-wider"
-				>
-					Company
-				</h4>
-
-				<ul class="space-y-1.5">
-					{#each companyLinks as item (item)}
-						<li
-							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
-						>
-							{#if item === 'Partners'}
-								<a href={resolve('/partners')} class="block">{item}</a>
-							{:else}
-								{item}
-							{/if}
-						</li>
-					{/each}
-				</ul>
-			</div>
-
-			<!-- Support -->
-
-			<div>
-				<h4
-					class="mb-3 text-sm font-semibold uppercase tracking-wider"
-				>
-					Support
-				</h4>
-
-				<ul class="space-y-1.5">
-					{#each supportLinks as item (item)}
-						<li
-							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
-						>
-							{item}
-						</li>
-					{/each}
-				</ul>
-			</div>
-
-			<!-- Contact -->
-
-			<div>
-				<h4
-					class="mb-3 text-sm font-semibold uppercase tracking-wider"
-				>
-					Contact
-				</h4>
-
-				<ul class="space-y-1.5">
-					{#each contactLinks as item (item)}
-						<li
-							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
-						>
-							{item}
-						</li>
-					{/each}
-				</ul>
-			</div>
-		</div>
-
-		<!-- Bottom -->
-
-		<div
-			class="mt-6 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-4 text-sm text-slate-500 md:flex-row"
-		>
-			<p>
-				© 2026 GlassERP. All rights reserved.
-			</p>
-
-			<div class="flex flex-wrap gap-6">
-				<a href={resolve('/privacy')} class="cursor-pointer hover:text-white">
-					Privacy Policy
-				</a>
-
-				<span class="cursor-pointer hover:text-white">
-					Terms of Service
-				</span>
-
-				<span class="cursor-pointer hover:text-white font-sans">
-					Cookie Policy
-				</span>
-			</div>
-		</div>
-	</div>
+      <div class="flex flex-wrap gap-6 text-[15px]">
+        <a href={resolve('/privacy')} class="cursor-pointer hover:text-white">
+          Privacy Policy
+        </a>
+        <a href={resolve('/terms')} class="cursor-pointer hover:text-white">
+          Terms of Service
+        </a>
+        <span class="cursor-pointer hover:text-white font-sans">
+          Cookie Policy
+        </span>
+      </div>
+    </div>
+  </div>
 </footer>

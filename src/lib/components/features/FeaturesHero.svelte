@@ -1,4 +1,4 @@
-<section class="bg-[#E8F4FF] py-24">
+<section class="bg-[#E8F4FF] py-10 sm:py-10 lg:py-10">
 	<div class="mx-auto max-w-7xl px-6">
 		<div class="mx-auto max-w-4xl text-center">
 			<div

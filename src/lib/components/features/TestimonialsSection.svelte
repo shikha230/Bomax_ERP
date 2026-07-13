@@ -41,7 +41,7 @@
 
 <section
   id="testimonials"
-  class="relative w-full bg-slate-100 py-12 sm:py-16 lg:py-20 overflow-hidden border-t border-slate-100"
+  class="relative w-full bg-slate-100 py-10 sm:py-10 lg:py-10 overflow-hidden border-t border-slate-100"
 >
   <!-- Background details -->
   <div class="absolute inset-0 -z-10 pointer-events-none">

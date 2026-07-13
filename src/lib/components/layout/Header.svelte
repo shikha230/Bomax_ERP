@@ -29,16 +29,15 @@
 
 <header class="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
-    <!-- Logo (Static) -->
-    <div class="flex items-center gap-2.5">
-      <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20">
+    <a href={resolve('/')} class="flex items-center gap-2.5 group">
+      <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20 transition-transform duration-350 group-hover:scale-105">
         <Layers class="h-5.5 w-5.5 text-white" />
         <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-400 animate-pulse border-2 border-white"></div>
       </div>
       <span class="text-xl font-extrabold tracking-tight text-slate-900 font-heading">
         Bomax <span class="bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ERP</span>
       </span>
-    </div>
+    </a>
 
     <!-- Desktop Navigation -->
     <nav class="hidden lg:flex items-center gap-6 xl:gap-8">

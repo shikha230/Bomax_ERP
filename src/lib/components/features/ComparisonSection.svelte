@@ -178,7 +178,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      Firstcut24 vs. The Market — 45-Point Comparison
 ═══════════════════════════════════════════════════════════ -->
-<section class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden ">
+<section class="relative w-full bg-white py-10 sm:py-10 lg:py-10 overflow-hidden ">
   <!-- Background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-30"></div>

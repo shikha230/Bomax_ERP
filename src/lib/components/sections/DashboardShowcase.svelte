@@ -3,7 +3,7 @@
 
 		<div class="text-center">
 			<h2 class="mt-4 sm:mt-5 text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
-				See GlassERP In Action
+				SEE GLASSERP IN ACTION
 			</h2>
 
 			<p class="mt-3 text-blue-100 text-sm sm:text-base px-2 sm:px-0">
@@ -12,7 +12,7 @@
 			</p>
 		</div>
 
-		<div class="relative mt-8 sm:mt-12">
+		<!-- <div class="relative mt-8 sm:mt-12">
 			<img
 				src="/dashboard-preview.webp"
 				alt="Dashboard"
@@ -24,7 +24,7 @@
 			>
 				▶
 			</button>
-		</div>
+		</div> -->
 
 		<div
 			class="grid gap-8 sm:gap-10 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500 px-4 sm:px-8 lg:px-10 py-10 sm:py-14 lg:grid-cols-2"
@@ -123,4 +123,4 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section>

@@ -9,7 +9,7 @@
 	];
 </script>
 
-<section class="bg-white py-12 lg:py-16">
+<section class="bg-white py-10 sm:py-10 lg:py-10">
 	<div class="mx-auto max-w-7xl px-6">
 		<p
 			class="text-center text-sm font-bold uppercase tracking-wide text-slate-900"
