@@ -1,7 +1,7 @@
 <script lang="ts">
   import {
-    FileText, Package, Factory, Diamond, Landmark, Users, BarChart3,
-    CheckCircle2, Sparkles, Search, ChevronRight, Phone, Mail, User,
+    FileText, Package, Factory, Diamond, Landmark, Users,
+    Sparkles, Search, ChevronRight, Phone, Mail, User,
     ChevronDown, ShoppingCart, Wallet
   } from 'lucide-svelte';
   import { slide } from 'svelte/transition';
@@ -780,22 +780,19 @@
 </script>
 
 <!-- Module Explorer Section -->
-<section id="modules" class="relative w-full bg-slate-50/60 py-12 sm:py-16 lg:py-20 overflow-hidden">
+<section id="modules" class="relative w-full bg-slate-100 py-12 sm:py-16 lg:py-20 overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-25"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-b from-blue-100/30 to-transparent blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-25"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 h-150 w-200 rounded-full bg-linear-to-b from-blue-100/30 to-transparent blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="text-center mb-14 sm:mb-16 lg:mb-20">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 mb-6 shadow-sm">
-        <Sparkles class="h-3.5 w-3.5" />
-        <span class="text-xs font-bold font-jakarta tracking-wide">Interactive ERP Modules</span>
-      </div>
 
-      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
+
+      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading">
         Explore Each Module in Detail
       </h2>
 
@@ -808,9 +805,9 @@
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-0">
 
       <!-- Left Sidebar Tabs -->
-      <div class="lg:w-[200px] flex-shrink-0">
-        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
-          {#each modules as mod, i}
+      <div class="lg:w-50 shrink-0">
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 [-ms-overflow-style:none] [scrollbar-none] [&::-webkit-scrollbar]:hidden">
+          {#each modules as mod, i (mod.id)}
             {@const TabIcon = mod.icon}
             <button
               onclick={() => selectModule(i)}
@@ -821,7 +818,7 @@
                 }"
             >
               <TabIcon
-                class="h-4 w-4 flex-shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}"
+                class="h-4 w-4 shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}"
                 strokeWidth={2}
               />
               <span class="text-[13px] font-semibold font-jakarta">{mod.label}</span>
@@ -836,10 +833,10 @@
           <div class="flex flex-col xl:flex-row">
 
             <!-- Module Detail (Left Content) -->
-            <div class="flex-1 p-8 sm:p-10 xl:max-w-[480px]">
+            <div class="flex-1 p-8 sm:p-10 xl:max-w-120">
               {#key activeModule}
                 {@const DetailIcon = modules[activeModule].icon}
-                <div class="module-content-enter">
+                <div class="animate-fade-in-up">
                   <!-- Module Badge -->
                   <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-600 mb-6">
                     <DetailIcon class="h-3.5 w-3.5" strokeWidth={2} />
@@ -858,7 +855,7 @@
 
                   <!-- Accordion (same pattern for every module) -->
                   <div class="space-y-2 mb-8">
-                    {#each modules[activeModule].pillars as pillar, pIndex}
+                    {#each modules[activeModule].pillars as pillar, pIndex (pillar.title)}
                       <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-slate-50/50">
                         <button
                           type="button"
@@ -867,7 +864,7 @@
                         >
                           <span class="text-[13px] font-semibold text-slate-800 pr-3">{pillar.title}</span>
                           <ChevronDown
-                            class="h-4 w-4 text-slate-400 flex-shrink-0 transition-transform duration-200 {openPillar === pIndex ? 'rotate-180 text-blue-600' : ''}"
+                            class="h-4 w-4 text-slate-400 shrink-0 transition-transform duration-200 {openPillar === pIndex ? 'rotate-180 text-blue-600' : ''}"
                           />
                         </button>
                         {#if openPillar === pIndex}
@@ -879,7 +876,7 @@
                               <p>{pillar.intro}</p>
                             {/if}
                             <ul class="space-y-1.5 pl-1">
-                              {#each pillar.bullets as b}
+                              {#each pillar.bullets as b (b.bold)}
                                 <li class="flex items-start gap-1.5">
                                   <span class="text-blue-500 mt-0.5">•</span>
                                   <span><strong class="text-slate-700">{b.bold}</strong> {b.text}</span>
@@ -894,7 +891,7 @@
 
                   <!-- Tip Bar -->
                   <div class="flex items-start gap-3 px-4 py-3.5 bg-blue-50/60 border-l-[3px] border-blue-500 rounded-r-lg mb-8">
-                    <Sparkles class="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <Sparkles class="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
                     <p class="text-[12.5px] text-blue-700 font-medium leading-relaxed">
                       {modules[activeModule].tip}
                     </p>
@@ -912,9 +909,9 @@
             </div>
 
             <!-- Module Mockup (Right Side) -->
-            <div class="flex-1 xl:max-w-[520px] bg-slate-50/50 border-t xl:border-t-0 xl:border-l border-slate-200/60 p-4 sm:p-6 flex items-start justify-center overflow-hidden">
+            <div class="flex-1 xl:max-w-130 bg-slate-50/50 border-t xl:border-t-0 xl:border-l border-slate-200/60 p-4 sm:p-6 flex items-start justify-center overflow-hidden">
               {#key activeModule}
-                <div class="mockup-enter w-full">
+                <div class="animate-mockup-slide w-full">
 
                   <!-- Quotation Mockup -->
                   {#if modules[activeModule].mockup === 'quotation'}
@@ -945,7 +942,7 @@
                               <span class="text-slate-600">Rahul Sharma</span>
                             </div>
                             <div class="flex items-center gap-2 px-2.5 py-1.5 bg-slate-50 rounded-md border border-slate-200/60 overflow-hidden min-w-0">
-                              <Mail class="h-3 w-3 text-slate-400 flex-shrink-0" />
+                              <Mail class="h-3 w-3 text-slate-400 shrink-0" />
                               <span class="text-slate-500 truncate min-w-0">rahul.sharma@futuretech.com</span>
                             </div>
                             <div class="flex items-center gap-2 px-2.5 py-1.5 bg-slate-50 rounded-md border border-slate-200/60">
@@ -1487,43 +1484,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .module-content-enter {
-    animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .mockup-enter {
-    animation: mockupSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes mockupSlide {
-    from {
-      opacity: 0;
-      transform: translateX(16px) scale(0.97);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-  }
-
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-</style>

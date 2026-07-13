@@ -12,7 +12,6 @@
 	import Testimonials from '$lib/components/sections/Testimonials.svelte';
 	// import PricingSection from '$lib/components/sections/PricingSection.svelte';
 	import CTASection from '$lib/components/sections/CTASection.svelte';
-	import FAQSection from '$lib/components/sections/FAQSection.svelte';
 </script>
 
 <svelte:head>
@@ -46,9 +45,6 @@
 	<PricingSection />
 </div> -->
 
-<div id="resources">
-	<FAQSection />
-</div>
 
 <div id="contact">
 	<CTASection />

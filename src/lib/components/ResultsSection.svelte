@@ -72,7 +72,7 @@
 >
   <!-- Subtle background grid -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-20"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,14 +101,13 @@
 
     <!-- Benefits Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-      {#each benefits as b, i}
+      {#each benefits as b (b.title)}
         <div
-          class="group bg-white border border-slate-200/80 rounded-2xl p-7 flex flex-col gap-4 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 result-card"
-          style="animation-delay: {i * 80}ms"
+          class="group relative bg-white border border-slate-200/80 rounded-2xl p-7 flex flex-col gap-4 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1"
         >
           <!-- Icon -->
           <div class="flex items-center justify-center w-11 h-11 {b.iconBg} {b.iconColor} rounded-xl shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 self-start">
-            <svelte:component this={b.icon} class="h-5 w-5" strokeWidth={1.8} />
+            <b.icon class="h-5 w-5" strokeWidth={1.8} />
           </div>
 
           <!-- Text -->
@@ -124,30 +123,10 @@
           </div>
 
           <!-- Hover gradient overlay -->
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent via-transparent to-emerald-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+          <div class="absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-transparent to-emerald-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
         </div>
       {/each}
     </div>
 
   </div>
 </section>
-
-<style>
-  .result-card {
-    position: relative;
-    animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-fill-mode: both;
-  }
-
-  @keyframes fadeSlideUp {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

@@ -12,17 +12,13 @@
 		'PDF quotation with your brand logo',
 		'Customer approval tracking via WhatsApp'
 	];
+
+	import { resolve } from '$app/paths';
 </script>
 
-<section class="bg-white py-24">
+<section class="bg-slate-50 pt-16 sm:pt-20 lg:pt-24 pb-24">
 	<div class="mx-auto max-w-7xl px-6">
-		<!-- Badge -->
 
-		<div class="flex justify-center">
-			<div class="rounded-full bg-blue-50 px-4 py-2 text-xs font-medium text-blue-600">
-				All-in-One Modules
-			</div>
-		</div>
 
 		<!-- Heading -->
 
@@ -53,11 +49,11 @@
 
 		<!-- Content Section -->
 
-		<div class="mt-14 grid items-center gap-14 lg:grid-cols-2">
+		<div class="mt-14 grid items-stretch gap-14 lg:grid-cols-2">
 			<!-- Left Image -->
 
-			<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-				<img src={moduleImage} alt="Module Dashboard" class="w-full" />
+			<div class="relative w-full h-full min-h-[300px] lg:min-h-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+				<img src={moduleImage} alt="Module Dashboard" class="w-full h-full object-cover object-top lg:absolute lg:inset-0" />
 			</div>
 
 			<!-- Right Content -->
@@ -89,9 +85,9 @@
 				</div>
 
 				<a
-					href="/modules"
-					class="mt-10 inline-block rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition hover:bg-blue-700"
-				>
+	href={resolve('/modules')}
+	class="mt-10 inline-block rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition hover:bg-blue-700"
+>
 					Explore Quotations Module →
 				</a>
 			</div>

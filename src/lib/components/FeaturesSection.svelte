@@ -65,12 +65,12 @@
 <section id="features" class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
   <!-- Subtle background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-40"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center mb-14 sm:mb-16 lg:mb-20 animate-section-header">
+    <div class="text-center mb-14 sm:mb-16 lg:mb-20">
       <!-- Chip Badge -->
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 mb-6 shadow-sm">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -93,14 +93,13 @@
 
     <!-- Module Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-      {#each modules as mod, i}
+      {#each modules as mod (mod.title)}
         <div
-          class="group relative bg-white border border-slate-200/80 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 feature-card"
-          style="animation-delay: {i * 80}ms"
+          class="group relative bg-white border border-slate-200/80 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1"
         >
           <!-- Icon Container -->
           <div class="flex items-center justify-center w-12 h-12 {mod.iconBg} rounded-xl mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm {mod.iconColor}">
-            <svelte:component this={mod.icon} class="h-5.5 w-5.5" strokeWidth={1.8} />
+            <mod.icon class="h-5.5 w-5.5" strokeWidth={1.8} />
           </div>
 
           <!-- Card Title -->
@@ -123,32 +122,9 @@
           </a>
 
           <!-- Hover gradient overlay -->
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent via-transparent to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+          <div class="absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-transparent to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
         </div>
       {/each}
     </div>
   </div>
 </section>
-
-<style>
-  .animate-section-header {
-    animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .feature-card {
-    animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-fill-mode: both;
-  }
-
-  @keyframes fadeSlideUp {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

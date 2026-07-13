@@ -14,8 +14,6 @@
 
 	import {
 		Calendar,
-		Phone,
-		Sparkles
 	} from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
@@ -33,20 +31,13 @@
 <Header />
 
 <main
-	class="flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3 lg:pt-5 pb-10 lg:pb-20 flex items-center justify-center"
+	class="bg-[#E8F4FF] flex-1 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3 lg:pt-5 pb-10 lg:pb-20 flex items-center justify-center"
 >
 	<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center w-full">
 		<section
-			class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 md:space-y-8 animate-slide-up-fade"
+			class="  lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 md:space-y-8 animate-slide-up-fade"
 		>
-			<div
-				class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200/50 text-blue-600 shadow-sm"
-			>
-				<Sparkles class="h-3.5 w-3.5" />
-				<span class="text-xs font-bold tracking-wide">
-					Powerful ERP Features
-				</span>
-			</div>
+
 
 			<h1
 				class="text-3xl sm:text-4xl lg:text-[40px] xl:text-[54px] font-black tracking-tight text-slate-900 leading-[1.08]"
@@ -88,7 +79,8 @@
 				<img
 					src={heroImage}
 					alt="Glass ERP Dashboard"
-					class="w-full object-cover"
+					class="w-full h-96"
+
 				/>
 			</div>
 		</section>

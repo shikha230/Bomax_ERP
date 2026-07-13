@@ -1,42 +1,29 @@
 <script lang="ts">
   import { Menu, X, Layers } from 'lucide-svelte';
   import { page } from '$app/stores';
-  import { base } from '$app/paths';
+  import { resolve } from '$app/paths';
 
   let mobileMenuOpen = $state(false);
 
   // Navigation links with proper routing
-  // 'Features' goes to /features page; the rest scroll to homepage sections
-  const links: { label: string; href: string }[] = [
+  // 'Features' goes to /features page; the rest are top-level pages too.
+  // Href values are typed to the app's known routes so resolve() can validate them.
+  type NavHref = '/' | '/features' | '/modules' | '/about';
+
+  const links: { label: string; href: NavHref }[] = [
     { label: 'Home', href: '/' },
     { label: 'Features', href: '/features' },
     { label: 'Modules', href: '/modules' },
-    { label: 'Resources', href: '/resources' },
-    { label: 'Contact', href: '/contact' }
+    { label: 'About Us', href: '/about' }
   ];
 
-  function isActive(linkHref: string): boolean {
+  function isActive(linkHref: NavHref): boolean {
     const currentPath = $page.url.pathname;
-    if (linkHref.startsWith('/#')) {
-      // Section links are "active" when we're on the homepage
-      return false;
-    }
     return currentPath === linkHref || currentPath.startsWith(linkHref + '/');
   }
 
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
-  }
-
-  function getLinkHref(href: string): string {
-    if (href === '#') {
-      return '#';
-    }
-    if (href.startsWith('/#')) {
-      // For hash links, resolve the base path and append hash
-      return base + href;
-    }
-    return base + href;
   }
 </script>
 
@@ -49,15 +36,15 @@
         <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-400 animate-pulse border-2 border-white"></div>
       </div>
       <span class="text-xl font-extrabold tracking-tight text-slate-900 font-heading">
-        Bomax <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ERP</span>
+        Bomax <span class="bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ERP</span>
       </span>
     </div>
 
     <!-- Desktop Navigation -->
     <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
-      {#each links as link}
+      {#each links as link (link.href)}
         <a
-          href={getLinkHref(link.href)}
+          href={resolve(link.href)}
           class="text-sm font-medium transition-colors hover:text-blue-600 relative py-1.5 {isActive(link.href) ? 'text-blue-600' : 'text-slate-600'}"
         >
           {link.label}
@@ -71,7 +58,7 @@
     <!-- Desktop Actions -->
     <div class="hidden lg:flex items-center gap-4">
       <a
-        href="/login"
+        href={resolve('/login')}
         class="rounded-xl px-5 py-2.5 text-sm font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-slate-50 transition-all duration-200 whitespace-nowrap"
       >
         Register
@@ -105,13 +92,13 @@
 
   <!-- Mobile Drawer Menu -->
   <div
-    class="fixed top-20 bottom-0 right-0 z-50 w-full max-w-[280px] border-l border-slate-100 bg-white p-6 shadow-2xl lg:hidden overflow-y-auto"
+    class="fixed top-20 bottom-0 right-0 z-50 w-full max-w-70 border-l border-slate-100 bg-white p-6 shadow-2xl lg:hidden overflow-y-auto"
   >
     <div class="flex flex-col gap-6">
       <nav class="flex flex-col gap-2">
-        {#each links as link}
+        {#each links as link (link.href)}
           <a
-            href={getLinkHref(link.href)}
+            href={resolve(link.href)}
             class="text-sm font-semibold px-4 py-3 rounded-xl hover:bg-slate-50 transition-colors {isActive(link.href) ? 'text-blue-600 bg-blue-50/50' : 'text-slate-600'}"
             onclick={() => mobileMenuOpen = false}
           >
@@ -124,7 +111,7 @@
 
       <div class="flex flex-col gap-3">
         <a
-          href="/login"
+          href={resolve('/login')}
           class="flex w-full items-center justify-center rounded-xl border border-blue-200 bg-white py-2.5 text-sm font-semibold text-blue-600 hover:bg-slate-50 transition-all duration-200"
           onclick={() => mobileMenuOpen = false}
         >

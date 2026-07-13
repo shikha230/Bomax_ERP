@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { X, PhoneCall, Mail, MessageSquare, Sparkles } from 'lucide-svelte';
+  import { X, PhoneCall,Sparkles } from 'lucide-svelte';
 
   // Props in Svelte 5
   let { isOpen = false, onClose = () => {} } = $props();

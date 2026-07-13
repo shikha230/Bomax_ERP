@@ -1,7 +1,18 @@
 <script lang="ts">
   import { GitCompare, XCircle, CheckCircle2 } from 'lucide-svelte';
 
-  const rows = [
+  interface TraditionalCell {
+    text: string;
+    type: 'text' | 'cross' | 'warning';
+  }
+
+  interface Row {
+    capability: string;
+    traditional: TraditionalCell;
+    bomax: string;
+  }
+
+  const rows: Row[] = [
     {
       capability: 'Inventory Management',
       traditional: { text: 'Manual spreadsheets, no real-time sync', type: 'text' },
@@ -52,7 +63,7 @@
 >
   <!-- Background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-30"></div>
   </div>
 
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,7 +108,7 @@
       </div>
 
       <!-- Table Rows -->
-      {#each rows as row, i}
+      {#each rows as row, i (row.capability)}
         <div
           class="grid grid-cols-[1.4fr_2fr_2fr] group transition-colors duration-150 {i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'} hover:bg-blue-50/30"
         >
@@ -122,7 +133,7 @@
           <!-- Bomax ERP Cell -->
           <div class="px-6 py-4 bg-blue-50/40 flex items-center justify-center {i < rows.length - 1 ? 'border-b border-slate-200/60' : ''}">
             <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[11.5px] font-semibold font-jakarta text-center leading-snug">
-              <CheckCircle2 class="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" strokeWidth={2.5} />
+              <CheckCircle2 class="h-3.5 w-3.5 text-emerald-500 shrink-0" strokeWidth={2.5} />
               {row.bomax}
             </span>
           </div>

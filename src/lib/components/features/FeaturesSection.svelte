@@ -1,63 +1,72 @@
 <script lang="ts">
   import { ArrowRight, FileText, Package, Factory, Diamond, Receipt, Landmark, Users, BarChart3 } from 'lucide-svelte';
+  import type { ComponentType } from 'svelte';
 
-  const modules = [
+  type Module = {
+    icon: ComponentType;
+    iconColor: string;
+    iconBg: string;
+    title: string;
+    description: string;
+  };
+
+  const modules: Module[] = [
     {
       icon: FileText,
       iconColor: 'text-blue-600',
       iconBg: 'bg-blue-50',
       title: 'Smart Quotations',
-      description: 'Generate accurate glass cutting quotations in minutes. Auto-calculate area, rates, wastage, and GST with one click.',
+      description: 'Generate accurate glass cutting quotations in minutes. Auto-calculate area, rates, wastage, and GST with one click.'
     },
     {
       icon: Package,
       iconColor: 'text-emerald-600',
       iconBg: 'bg-emerald-50',
       title: 'Inventory Management',
-      description: 'Track glass sheets, hardware, and raw materials in real-time. Get low-stock alerts and auto-reorder suggestions.',
+      description: 'Track glass sheets, hardware, and raw materials in real-time. Get low-stock alerts and auto-reorder suggestions.'
     },
     {
       icon: Factory,
       iconColor: 'text-indigo-600',
       iconBg: 'bg-indigo-50',
       title: 'Production Planning',
-      description: 'Plan cutting jobs, assign workers, track job cards, and monitor production floor progress from a single screen.',
+      description: 'Plan cutting jobs, assign workers, track job cards, and monitor production floor progress from a single screen.'
     },
     {
       icon: Diamond,
       iconColor: 'text-amber-600',
       iconBg: 'bg-amber-50',
       title: 'Glass Optimizer',
-      description: 'AI-powered cutting layout optimization that maximizes glass yield and minimizes scrap wastage on every job.',
+      description: 'AI-powered cutting layout optimization that maximizes glass yield and minimizes scrap wastage on every job.'
     },
     {
       icon: Receipt,
       iconColor: 'text-rose-600',
       iconBg: 'bg-rose-50',
       title: 'Billing & Invoicing',
-      description: 'Create GST-compliant invoices, manage payment terms, track outstanding dues, and send reminders automatically.',
+      description: 'Create GST-compliant invoices, manage payment terms, track outstanding dues, and send reminders automatically.'
     },
     {
       icon: Landmark,
       iconColor: 'text-amber-600',
       iconBg: 'bg-amber-50',
       title: 'Accounting',
-      description: 'Full double-entry accounting with ledgers, P&L, balance sheet, GST filing, and Tally-compatible reports.',
+      description: 'Full double-entry accounting with ledgers, P&L, balance sheet, GST filing, and Tally-compatible reports.'
     },
     {
       icon: Users,
       iconColor: 'text-sky-600',
       iconBg: 'bg-sky-50',
       title: 'HR & Payroll',
-      description: 'Manage employee records, attendance, leaves, salaries, and payroll processing with biometric sync support.',
+      description: 'Manage employee records, attendance, leaves, salaries, and payroll processing with biometric sync support.'
     },
     {
       icon: BarChart3,
       iconColor: 'text-orange-600',
       iconBg: 'bg-orange-50',
       title: 'Reports & Analytics',
-      description: 'Real-time dashboards, profit-per-job insights, sales trends, and custom executive reports for smarter decisions.',
-    },
+      description: 'Real-time dashboards, profit-per-job insights, sales trends, and custom executive reports for smarter decisions.'
+    }
   ];
 </script>
 
@@ -65,49 +74,47 @@
 <section id="features" class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
   <!-- Subtle background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-40"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center mb-14 sm:mb-16 lg:mb-20 animate-section-header">
-      <!-- Chip Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 mb-6 shadow-sm">
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <span class="text-xs font-bold font-jakarta tracking-wide">Feature Overview</span>
-      </div>
+<div class="text-center mb-14 sm:mb-16 lg:mb-20 animate-section-header  rounded-xl px-8 py-8">
 
-      <!-- Title -->
-      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
-        8 Powerful Modules.<br />
-        One Unified Platform.
-      </h2>
+  <!-- Title -->
+  <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
+    8 Powerful Modules
+    One Unified Platform
+  </h2>
 
-      <!-- Subtitle -->
-      <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-        Every tool your glass business needs — built into a single, intelligent ERP platform designed for the glass industry.
-      </p>
-    </div>
+  <!-- Subtitle -->
+  <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
+    Every tool your glass business needs, built into a single, intelligent ERP platform designed for the glass industry.
+  </p>
+
+</div>
 
     <!-- Module Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-      {#each modules as mod, i}
+      {#each modules as mod, i (mod.title)}
         {@const ModIcon = mod.icon}
         <div
           class="group relative bg-white border border-slate-200/80 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 feature-card"
           style="animation-delay: {i * 80}ms"
         >
-          <!-- Icon Container -->
-          <div class="flex items-center justify-center w-12 h-12 {mod.iconBg} rounded-xl mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm {mod.iconColor}">
-            <ModIcon class="h-5.5 w-5.5" strokeWidth={1.8} />
-          </div>
+          <!-- Icon + Title Row -->
+          <div class="flex items-center gap-3.5 mb-4">
+            <div class="flex items-center justify-center w-12 h-12 shrink-0 {mod.iconBg} {mod.iconColor} rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+              <ModIcon
+                class="h-6 w-6"
+                strokeWidth={1.8}
+              />
+            </div>
 
-          <!-- Card Title -->
-          <h3 class="text-[15px] font-bold text-slate-900 font-heading mb-2.5 tracking-tight">
-            {mod.title}
-          </h3>
+            <h3 class="text-[15px] font-bold text-slate-900 font-heading tracking-tight leading-snug">
+              {mod.title}
+            </h3>
+          </div>
 
           <!-- Card Description -->
           <p class="text-[13px] text-slate-500 leading-relaxed mb-5 font-medium">
@@ -124,7 +131,7 @@
           </a>
 
           <!-- Hover gradient overlay -->
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent via-transparent to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+          <div class="absolute inset-0 rounded-2xl bg-linear-to-b from-transparent via-transparent to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
         </div>
       {/each}
     </div>

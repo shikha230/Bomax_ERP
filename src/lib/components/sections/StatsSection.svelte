@@ -8,16 +8,16 @@
 	];
 </script>
 
-<section class="bg-linear-to-r from-blue-700 via-blue-600 to-blue-700 py-10 sm:py-12 lg:py-14">
+<section class="bg-linear-to-r from-blue-700 via-blue-600 to-blue-700 py-8 sm:py-10 lg:py-12">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6">
-		<div class="grid grid-cols-2 gap-6 text-center sm:grid-cols-3 lg:grid-cols-5">
+		<div class="grid grid-cols-2 gap-4 text-center sm:grid-cols-3 lg:grid-cols-5">
 			{#each stats as stat (stat.label)}
 				<div class="border-white/20 lg:border-r last:border-r-0 px-2">
-					<div class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+					<div class="text-lg sm:text-xl lg:text-2xl font-extrabold text-white">
 						{stat.value}
 					</div>
 
-					<div class="mt-2 sm:mt-3 text-sm sm:text-base text-blue-100">
+					<div class="mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-blue-100">
 						{stat.label}
 					</div>
 				</div>

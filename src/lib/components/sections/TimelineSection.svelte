@@ -33,7 +33,7 @@
 	];
 </script>
 
-<section class="bg-[#F8FAFC] py-14 sm:py-20 lg:py-24">
+<section class="bg-slate-200 py-14 sm:py-20 lg:py-24">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6">
 		<!-- Heading -->
 

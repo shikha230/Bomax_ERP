@@ -1,18 +1,12 @@
-<section class="overflow-hidden bg-[#071225]">
+<section class="overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 pt-14 sm:pt-20">
 
 		<div class="text-center">
-			<div
-				class="inline-flex rounded-full bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-400"
-			>
-				Product Demo
-			</div>
-
 			<h2 class="mt-4 sm:mt-5 text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
 				See GlassERP In Action
 			</h2>
 
-			<p class="mt-3 text-slate-400 text-sm sm:text-base px-2 sm:px-0">
+			<p class="mt-3 text-blue-100 text-sm sm:text-base px-2 sm:px-0">
 				Watch how GlassERP helps businesses manage end-to-end
 				operations efficiently.
 			</p>

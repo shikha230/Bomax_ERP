@@ -32,7 +32,7 @@
     {
       title: 'Order Management',
       description:
-        'Total lifecycle visibility — from quotation to dispatch — in one high-speed command center.',
+        'Total lifecycle visibility from quotation to dispatch in one high-speed command center.',
       icon: ClipboardList,
       bgColor: 'bg-blue-50',
       iconColor: 'text-blue-600',
@@ -72,7 +72,7 @@
     {
       title: 'Inventory Management',
       description:
-        'Precision stock control across glass, hardware, and consumables — in any unit, at any location.',
+        'Precision stock control across glass, hardware, and consumables in any unit, at any location.',
       icon: Package,
       bgColor: 'bg-blue-50',
       iconColor: 'text-blue-600',
@@ -112,7 +112,7 @@
     {
       title: 'Production Planning',
       description:
-        'Sync your factory floor — from job card to dispatch — with real-time visibility on every machine.',
+        'Sync your factory floor from job card to dispatch with real-time visibility on every machine.',
       icon: Factory,
       bgColor: 'bg-blue-50',
       iconColor: 'text-blue-600',
@@ -192,7 +192,7 @@
     {
       title: 'Employee Management',
       description:
-        'Attendance, payroll, compliance, and HR workflows — built for the pace of a manufacturing floor.',
+        'Attendance, payroll, compliance, and HR workflows built for the pace of a manufacturing floor.',
       icon: Users,
       bgColor: 'bg-yellow-50',
       iconColor: 'text-yellow-600',
@@ -232,7 +232,7 @@
     {
       title: 'Site Customers CRM',
       description:
-        'Manage sites, not just leads — with a sales pipeline and service history built for glass projects.',
+        'Manage sites, not just leads with a sales pipeline and service history built for glass projects.',
       icon: Truck,
       bgColor: 'bg-purple-50',
       iconColor: 'text-purple-600',
@@ -280,10 +280,9 @@
   }
 </script>
 
-<section class="bg-white py-14 sm:py-20 lg:py-24">
+<section class="bg-white pt-14 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <SectionHeading
-      badge="Everything You Need"
       title="Everything Your Glass Business Needs"
       description="Built from the ground up for glass fabricators, retailers, and contractors—every feature designed for your workflow"
     />
@@ -294,26 +293,32 @@
         <div
           class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 transition-all duration-300 hover:shadow-lg"
         >
-          <!-- Icon -->
-          <div
-            class={`mb-5 sm:mb-6 flex h-12 w-12 items-center justify-center rounded-xl ${feature.bgColor}`}
-          >
-            <FeatureIcon class={`h-6 w-6 ${feature.iconColor}`} strokeWidth={2} />
+          <!-- Header and Icon Layout -->
+          <div class="mb-5">
+            <!-- Icon -->
+            <div
+              class={`flex h-12 w-12 items-center justify-center rounded-xl mb-4 ${feature.bgColor}`}
+            >
+              <FeatureIcon class={`h-6 w-6 ${feature.iconColor}`} strokeWidth={2} />
+            </div>
+
+            <!-- Content Area -->
+            <div>
+              <!-- Title -->
+              <h3 class="mb-1.5 text-lg sm:text-xl font-semibold text-slate-900 leading-snug">
+                {feature.title}
+              </h3>
+
+              <!-- Short Description -->
+              <p class="leading-relaxed text-slate-500 text-sm sm:text-base">
+                {feature.description}
+              </p>
+            </div>
           </div>
-
-          <!-- Title -->
-          <h3 class="mb-3 text-lg sm:text-xl font-semibold text-slate-900">
-            {feature.title}
-          </h3>
-
-          <!-- Short Description -->
-          <p class="mb-5 leading-7 text-slate-500 text-sm sm:text-base">
-            {feature.description}
-          </p>
 
           <!-- Accordion: all points with full content -->
           <div class="space-y-2">
-            {#each feature.points as point, pIndex}
+            {#each feature.points as point, pIndex (point.title)}
               <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-slate-50/50">
                 <button
                   type="button"
@@ -324,7 +329,7 @@
                     {point.title}
                   </span>
                   <ChevronDown
-                    class="h-4 w-4 text-slate-400 flex-shrink-0 transition-transform duration-200 {openPoint[fIndex] === pIndex ? 'rotate-180 text-blue-600' : ''}"
+                    class="h-4 w-4 text-slate-400 shrink-0 transition-transform duration-200 {openPoint[fIndex] === pIndex ? 'rotate-180 text-blue-600' : ''}"
                   />
                 </button>
                 {#if openPoint[fIndex] === pIndex}

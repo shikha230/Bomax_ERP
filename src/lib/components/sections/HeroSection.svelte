@@ -16,52 +16,46 @@
 	}
 </script>
 
-<section class="bg-[#E8F4FF] m-0 p-0 overflow-hidden">
+<section class="bg-[#E8F4FF] m-0 p-0 pt-6 sm:pt-8 lg:pt-10 overflow-hidden">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-3 lg:pt-5 pb-12 sm:pb-16 lg:flex-row lg:gap-10 lg:pb-24"
+		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-8 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:flex-row lg:items-start lg:gap-10 lg:pb-24"
 	>
 		<!-- Left Content -->
 		<div class="w-full lg:w-5/12 text-center lg:text-left">
-			<div
-				class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600"
-			>
-				#1 ERP for Glass Businesses
-			</div>
-
 			<h1
-				class="mt-5 text-3xl sm:text-4xl font-extrabold leading-tight text-slate-800 lg:text-5xl"
+				class="text-3xl sm:text-4xl font-extrabold leading-tight text-slate-800 lg:text-5xl"
 			>
-				One ERP. Every
+				ONE ERP EVERY
 
-				<span class="block text-blue-600">
-					Glass Business.
+				<span class="block text-blue-600 whitespace-nowrap">
+					GLASS BUSINESS
 				</span>
 
-				<span class="block text-cyan-500">
-					Complete Control.
+				<span class="block text-cyan-500 whitespace-nowrap">
+					COMPLETE CONTROL
 				</span>
 			</h1>
 
 			<p
-				class="mt-5 sm:mt-8 mx-auto lg:mx-0 max-w-xl text-base sm:text-lg leading-7 sm:leading-8 text-slate-700"
+				class="mt-6 sm:mt-8 mx-auto lg:mx-0 max-w-xl text-lg sm:text-xl leading-8 sm:leading-9 text-slate-700"
 			>
 				Streamline operations, manage inventory,
-				automate cutting, and grow your glass business —
+				automate cutting, and grow your glass business
 				all from one powerful platform built exclusively
 				for the glass industry.
 			</p>
 
-			<div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
+			<div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
 				<button
 					onclick={openOptimizer}
-					class="w-full sm:w-auto rounded-lg bg-blue-600 px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-white shadow-lg transition hover:bg-blue-700"
+					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-transparent bg-blue-600 px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-white shadow-lg transition hover:bg-blue-700"
 				>
 					Try Free Optimizer
 				</button>
 
 				<button
 					onclick={openDemo}
-					class="w-full sm:w-auto rounded-lg border border-slate-300 bg-white px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-slate-700 transition hover:bg-slate-50"
+					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-slate-700 transition hover:bg-slate-50"
 				>
 					Book Demo
 				</button>

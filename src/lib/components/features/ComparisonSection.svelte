@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { GitCompare, XCircle, CheckCircle2, MinusCircle } from 'lucide-svelte';
+  import { XCircle, CheckCircle2, MinusCircle } from 'lucide-svelte';
 
   // ─────────────────────────────────────────────────────────────
   // Types
@@ -18,16 +18,27 @@
     rows: Row[];
   }
 
+  interface Competitor {
+    key: 'firstcut24' | 'legacy' | 'cloud' | 'tally';
+    label: string;
+    sub: string;
+  }
+
+  interface Verdict {
+    name: string;
+    text: string;
+  }
+
   // ─────────────────────────────────────────────────────────────
   // Data — word-for-word from "The Ultimate Glass ERP Comparison:
   // Firstcut24 vs. The Market"
   // ─────────────────────────────────────────────────────────────
-  const competitors = [
+  const competitors: Competitor[] = [
     { key: 'firstcut24', label: 'Firstcut24', sub: 'Native Glass ERP Cloud-based, Built specifically for glass' },
     { key: 'legacy', label: 'Generic ERPs (Legacy)', sub: 'SAP Business One, Microsoft Dynamics, local custom ERPs' },
     { key: 'cloud', label: 'Generic Cloud ERPs', sub: 'Zoho One, Odoo, NetSuite' },
-    { key: 'tally', label: 'Tally Prime', sub: "India’s standard accounting software" },
-  ] as const;
+    { key: 'tally', label: 'Tally Prime', sub: "India's standard accounting software" },
+  ];
 
   const sections: Section[] = [
     {
@@ -117,7 +128,7 @@
     },
   ];
 
-  const verdicts = [
+  const verdicts: Verdict[] = [
     { name: 'Tally Prime', text: 'Keep it for your Chartered Accountant. It is the gold standard for taxes, but it knows absolutely nothing about square meters, edge polishing, yield optimization, or tracking glass on a factory floor.' },
     { name: 'Generic ERPs (Legacy/On-Premise)', text: 'These are powerful but incredibly slow and expensive. You will pay lakhs of rupees to a consultant just to teach the software how to multiply width by height for glass dimensions.' },
     { name: 'Generic Cloud ERPs (Zoho/Odoo)', text: 'Fantastic software for standard trading companies. However, they completely lack AI nesting/optimization, native barcode floor-tracking on slow 3G networks, and out-of-the-box glass pricing formulas.' },
@@ -167,24 +178,20 @@
 <!-- ═══════════════════════════════════════════════════════════
      Firstcut24 vs. The Market — 45-Point Comparison
 ═══════════════════════════════════════════════════════════ -->
-<section class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
+<section class="relative w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden ">
   <!-- Background pattern -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-30"></div>
   </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- ── Page Header ── -->
     <div use:slideInRTL class="text-center mb-6">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200/80 text-slate-600 mb-6 shadow-sm">
-        <GitCompare class="h-3.5 w-3.5" />
-        <span class="text-xs font-bold tracking-wide">Comparison</span>
-      </div>
 
       <h1 class="text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight mb-5">
-        The Ultimate Glass ERP Comparison:<br />
-        <span class="text-blue-600">Firstcut24</span> vs. The Market
+        The Ultimate Glass ERP Comparison<br />
+        <span class="text-blue-600">Firstcut24</span> vs <span class="text-blue-600">The Market</span>
       </h1>
 
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
@@ -205,10 +212,10 @@
     </div>
 
     <!-- ── Sections ── -->
-    {#each sections as section, sIdx (section.heading)}
+    {#each sections as section (section.heading)}
       <div class="mb-12 sm:mb-16">
         <div use:slideInRTL class="flex items-center gap-3 mb-5">
-          <span class="text-[13px] font-black text-blue-600">{section.heading}</span>
+          <span class="text-[20px] font-black text-blue-600 mb-4">{section.heading}</span>
           <span class="flex-1 h-px bg-slate-200"></span>
         </div>
 
@@ -252,19 +259,19 @@
               <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">#</span>
             </div>
             <div class="bg-white px-6 py-3 border-b border-r border-slate-200/80 flex items-center">
-              <span class="text-[12px] font-bold text-slate-500 uppercase tracking-widest">Capability</span>
+              <span class="text-[14px] font-bold text-slate-800 ">Feature / Capability</span>
             </div>
             <div class="bg-blue-600 px-4 py-3 border-b border-r border-slate-200/80 flex items-center justify-center">
-              <span class="text-[12.5px] font-bold text-white">Firstcut24</span>
+              <span class="text-[14px] font-bold text-white">Firstcut24</span>
             </div>
             <div class="bg-slate-100/80 px-4 py-3 border-b border-r border-slate-200/80 flex items-center justify-center">
-              <span class="text-[12.5px] font-bold text-slate-600 text-center leading-tight">Generic ERPs<br /><span class="text-[10px] font-medium text-slate-400">(Legacy)</span></span>
+              <span class="text-[14px] font-bold text-slate-600 text-center leading-tight">Generic ERPs<br /><span class="text-[10px] font-medium text-slate-400">(Legacy)</span></span>
             </div>
             <div class="bg-slate-100/80 px-4 py-3 border-b border-r border-slate-200/80 flex items-center justify-center">
-              <span class="text-[12.5px] font-bold text-slate-600 text-center leading-tight">Generic Cloud<br /><span class="text-[10px] font-medium text-slate-400">ERPs</span></span>
+              <span class="text-[14px] font-bold text-slate-600 text-center leading-tight">Generic Cloud<br /><span class="text-[10px] font-medium text-slate-400">ERPs</span></span>
             </div>
             <div class="bg-slate-100/80 px-4 py-3 border-b border-slate-200/80 flex items-center justify-center">
-              <span class="text-[12.5px] font-bold text-slate-600">Tally Prime</span>
+              <span class="text-[14px] font-bold text-slate-600">Tally Prime</span>
             </div>
           </div>
 
@@ -288,7 +295,7 @@
                 </span>
               </div>
 
-              {#each [row.legacy, row.cloud, row.tally] as value, ci}
+              {#each [row.legacy, row.cloud, row.tally] as value, ci (ci)}
                 {@const kind = cellIcon(value)}
                 <div class="px-4 py-3.5 {ci < 2 ? 'border-r border-slate-200/60' : ''} flex items-center justify-center {rIdx < section.rows.length - 1 ? 'border-b' : ''}">
                   {#if kind === 'no'}
@@ -310,17 +317,17 @@
     <!-- ── Final Verdict ── -->
     <div use:slideInRTL class="mt-16 sm:mt-20">
       <div class="text-center mb-10">
-        <h2 class="text-xl sm:text-3xl font-black tracking-tight text-slate-900">The Final Verdict for Glass Processors</h2>
+        <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-slate-900">The Final Verdict for Glass Processors</h2>
       </div>
 
       <div class="grid sm:grid-cols-2 gap-4">
         {#each verdicts as v, i (v.name)}
           <div
             use:slideInRTL={{ delay: i * 100 }}
-            class="rounded-2xl border p-5 sm:p-6 {v.name === 'Firstcut24' ? 'bg-blue-600 border-blue-600' : 'bg-slate-50/60 border-slate-200'}"
+            class="group rounded-2xl border p-5 sm:p-6 bg-slate-50/60 border-slate-200 hover:bg-blue-600 hover:border-blue-600 transition-colors duration-300 cursor-pointer"
           >
-            <p class="text-[13px] font-black mb-2 {v.name === 'Firstcut24' ? 'text-white' : 'text-slate-800'}">{v.name}</p>
-            <p class="text-[12.5px] leading-relaxed font-medium {v.name === 'Firstcut24' ? 'text-blue-50' : 'text-slate-500'}">{v.text}</p>
+            <p class="text-[15px] font-black mb-2 text-slate-800 group-hover:text-white transition-colors duration-300">{v.name}</p>
+            <p class="text-[12.5px] leading-relaxed font-medium text-slate-500 group-hover:text-blue-50 transition-colors duration-300">{v.text}</p>
           </div>
         {/each}
       </div>
@@ -328,7 +335,7 @@
 
     <!-- Bottom note -->
     <p use:slideInRTL class="text-center text-[12.5px] text-slate-400 font-medium mt-10">
-      * A realistic, module-by-module breakdown — Firstcut24 vs. Generic ERPs (Legacy), Generic Cloud ERPs, and Tally Prime.
+      A realistic, module-by-module breakdown Firstcut24 vs Generic ERPs (Legacy), Generic Cloud ERPs, and Tally Prime.
     </p>
 
   </div>

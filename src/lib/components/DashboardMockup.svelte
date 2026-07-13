@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import {
     LayoutDashboard,
     IndianRupee,
@@ -16,11 +15,8 @@
     ChevronRight,
     Search,
     RefreshCw,
-    TrendingUp,
-    TrendingDown,
     Warehouse,
     Inbox,
-    User,
     Calendar,
     ChevronRightSquare
   } from 'lucide-svelte';
@@ -99,7 +95,7 @@
       stats.orders = 238 + Math.floor((Math.random() - 0.3) * 20);
       stats.production = 12540 + Math.floor((Math.random() - 0.2) * 500);
       stats.inventory = 2358750 + Math.floor((Math.random() - 0.5) * 80000);
-      
+
       // Perturb order qtys
       ordersList = ordersList.map(o => ({
         ...o,
@@ -160,10 +156,10 @@
   ];
 </script>
 
-<div class="w-full rounded-2xl border border-slate-200/80 bg-white shadow-2xl xl:shadow-blue-500/10 overflow-hidden flex h-[620px] font-sans text-xs select-none">
-  
+<div class="w-full rounded-2xl border border-slate-200/80 bg-white shadow-2xl xl:shadow-blue-500/10 overflow-hidden flex h-155 font-sans text-xs select-none">
+
   <!-- Sidebar -->
-  <aside 
+  <aside
     class="bg-slate-900 text-slate-400 hidden md:flex flex-col justify-between transition-all duration-300 ease-in-out shrink-0 border-r border-slate-800"
     class:w-48={!isSidebarCollapsed}
     class:w-14={isSidebarCollapsed}
@@ -175,17 +171,18 @@
           <Factory class="h-4 w-4" />
         </div>
         {#if !isSidebarCollapsed}
-          <span class="font-extrabold text-sm tracking-tight text-white font-heading whitespace-nowrap animate-fade-in">
+          <span class="font-extrabold text-sm tracking-tight text-white font-heading whitespace-nowrap">
             GlassPro <span class="text-blue-400">ERP</span>
           </span>
         {/if}
       </div>
 
       <!-- Nav Items -->
-      <nav class="p-2 space-y-1 overflow-y-auto max-h-[460px] custom-scrollbar">
-        {#each sidebarItems as item}
+      <nav class="p-2 space-y-1 overflow-y-auto max-h-115 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-700 [&::-webkit-scrollbar-thumb]:rounded-full">
+        {#each sidebarItems as item (item.name)}
           <button
             onclick={() => activeTab = item.name}
+            type="button"
             class="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg font-medium transition-all group relative {activeTab === item.name ? 'text-white bg-blue-600/90 shadow-sm' : 'hover:bg-slate-800 hover:text-white'}"
           >
             <!-- Vertical Active Pill Indicator -->
@@ -205,7 +202,8 @@
     <div class="p-2 border-t border-slate-800/80">
       <button
         onclick={() => isSidebarCollapsed = !isSidebarCollapsed}
-        class="w-full flex items-center justify-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800 hover:text-white text-slate-500 hover:text-slate-300 font-medium transition-colors"
+        type="button"
+        class="w-full flex items-center justify-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white font-medium transition-colors"
       >
         {#if isSidebarCollapsed}
           <ChevronRight class="h-4.5 w-4.5" />
@@ -231,9 +229,10 @@
           class="w-full pl-8.5 pr-3 py-1.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-xs text-slate-700 bg-slate-50/50 hover:bg-slate-50 transition-colors"
         />
         {#if searchQuery}
-          <button 
+          <button
             onclick={() => searchQuery = ''}
-            class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-650 px-1 font-sans rounded-full"
+            type="button"
+            class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 px-1 font-sans rounded-full"
           >
             ×
           </button>
@@ -258,23 +257,23 @@
     </header>
 
     <!-- Scrollable Workspace Details -->
-    <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+    <div class="flex-1 overflow-y-auto p-4 space-y-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-slate-300">
       <!-- Title Actions row -->
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
         <div>
           <h1 class="text-base font-extrabold text-slate-900 tracking-tight font-heading flex items-center gap-1.5">
             Dashboard
             {#if activeTab !== 'Dashboard'}
-              <span class="text-slate-350 text-xs font-normal">/ {activeTab}</span>
+              <span class="text-slate-300 text-xs font-normal">/ {activeTab}</span>
             {/if}
           </h1>
-          <p class="text-[10px] text-slate-450 mt-0.5">Overview of glass manufacturing operations.</p>
+          <p class="text-[10px] text-slate-400 mt-0.5">Overview of glass manufacturing operations.</p>
         </div>
 
         <div class="flex items-center gap-2 self-start sm:self-auto">
           <!-- Calendar Date Select -->
           <div class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-600 shadow-sm">
-            <Calendar class="h-3.5 w-3.5 text-slate-450" />
+            <Calendar class="h-3.5 w-3.5 text-slate-400" />
             <span class="font-semibold text-[10px]">May 20 - May 26, 2024</span>
           </div>
 
@@ -282,6 +281,7 @@
           <button
             onclick={handleRefresh}
             disabled={isRefreshing}
+            type="button"
             class="flex items-center gap-1.5 px-2.5 py-1.5 bg-white hover:bg-slate-50 active:bg-slate-100 disabled:bg-slate-50 border border-slate-200 rounded-lg text-slate-600 font-semibold shadow-sm transition-colors cursor-pointer"
           >
             <RefreshCw class="h-3 w-3 text-slate-500 {isRefreshing ? 'animate-spin' : ''}" />
@@ -294,7 +294,7 @@
         <!-- KPI Card 1 -->
         <div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm relative group hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
           <div class="flex items-center justify-between">
-            <span class="text-slate-450 font-semibold text-[10px]">Total Revenue</span>
+            <span class="text-slate-400 font-semibold text-[10px]">Total Revenue</span>
             <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
               <IndianRupee class="h-3.5 w-3.5" />
             </div>
@@ -312,7 +312,7 @@
         <!-- KPI Card 2 -->
         <div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm relative group hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
           <div class="flex items-center justify-between">
-            <span class="text-slate-450 font-semibold text-[10px]">Total Orders</span>
+            <span class="text-slate-400 font-semibold text-[10px]">Total Orders</span>
             <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
               <ClipboardList class="h-3.5 w-3.5" />
             </div>
@@ -330,7 +330,7 @@
         <!-- KPI Card 3 -->
         <div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm relative group hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
           <div class="flex items-center justify-between">
-            <span class="text-slate-450 font-semibold text-[10px]">Production Output</span>
+            <span class="text-slate-400 font-semibold text-[10px]">Production Output</span>
             <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-purple-50 text-purple-600">
               <Factory class="h-3.5 w-3.5" />
             </div>
@@ -348,7 +348,7 @@
         <!-- KPI Card 4 -->
         <div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm relative group hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
           <div class="flex items-center justify-between">
-            <span class="text-slate-450 font-semibold text-[10px]">Inventory Value</span>
+            <span class="text-slate-400 font-semibold text-[10px]">Inventory Value</span>
             <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600">
               <Warehouse class="h-3.5 w-3.5" />
             </div>
@@ -366,19 +366,19 @@
 
       <!-- Charts Row -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
-        
+
         <!-- Inventory Overview (Donut Chart) -->
         <div class="lg:col-span-5 bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-3.5">
             <span class="font-bold text-slate-800 text-[11px]">Inventory Overview</span>
-            <button class="text-blue-600 font-semibold hover:underline text-[9px]">View All</button>
+            <button type="button" class="text-blue-600 font-semibold hover:underline text-[9px]">View All</button>
           </div>
 
           <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-1.5">
             <!-- SVG Donut Chart -->
             <div class="relative h-28 w-28 flex items-center justify-center shrink-0">
               <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
-                {#each categories as cat, index}
+                {#each categories as cat, index (cat.label)}
                   <circle
                     cx="60"
                     cy="60"
@@ -388,7 +388,7 @@
                     stroke-width="12"
                     stroke-dasharray={cat.dashArray}
                     stroke-dashoffset={cat.dashOffset}
-                    class="transition-all duration-300 cursor-pointer origin-center hover:scale-103"
+                    class="transition-all duration-300 cursor-pointer origin-center hover:scale-105"
                     style="stroke-linecap: butt;"
                     onmouseenter={() => activeCategoryIndex = index}
                     onmouseleave={() => activeCategoryIndex = null}
@@ -414,8 +414,8 @@
 
             <!-- Categories Legend List -->
             <div class="flex-1 space-y-1.5">
-              {#each categories as cat, index}
-                <div 
+              {#each categories as cat, index (cat.label)}
+                <div
                   class="flex items-center justify-between text-[9px] p-1 px-1.5 rounded transition-colors group cursor-pointer"
                   class:bg-slate-50={activeCategoryIndex === index}
                   onmouseenter={() => activeCategoryIndex = index}
@@ -440,23 +440,23 @@
         <div class="lg:col-span-7 bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative group/chart overflow-hidden">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
             <span class="font-bold text-slate-800 text-[11px]">Production Overview (This Week)</span>
-            <button class="text-blue-600 font-semibold hover:underline text-[9px]">View Report</button>
+            <button type="button" class="text-blue-600 font-semibold hover:underline text-[9px]">View Report</button>
           </div>
 
           <!-- SVG Chart Area -->
           <!-- svelte-ignore a11y_no_static_element_interactions -->
-          <div 
-            class="relative flex-1 w-full min-h-[120px] max-h-[140px] pt-4"
+          <div
+            class="relative flex-1 w-full min-h-30 max-h-35 pt-4"
             onmousemove={handleChartMouseMove}
             onmouseleave={handleChartMouseLeave}
           >
             <!-- Vertical reference line -->
-            <div 
+            <div
               class="absolute top-0 bottom-6 border-l border-dashed border-slate-300 w-0 pointer-events-none transition-all duration-150"
               style="left: {(chartData[hoverPointIndex].x / 500) * 100}%; opacity: {isHoveringChart ? 1 : 0.6}"
             ></div>
 
-            <svg 
+            <svg
               class="w-full h-full overflow-visible"
               viewBox="0 0 500 200"
               preserveAspectRatio="none"
@@ -492,7 +492,7 @@
               />
 
               <!-- Data Dots -->
-              {#each chartData as pt, idx}
+              {#each chartData as pt, idx (pt.day)}
                 <!-- Outer pulse highlight for active point -->
                 {#if hoverPointIndex === idx}
                   <circle
@@ -518,7 +518,7 @@
             </svg>
 
             <!-- Line Chart X labels -->
-            <div class="absolute bottom-0 left-0 right-0 flex justify-between px-5 text-[8px] font-semibold text-slate-450 pointer-events-none">
+            <div class="absolute bottom-0 left-0 right-0 flex justify-between px-5 text-[8px] font-semibold text-slate-400 pointer-events-none">
               <span>Mon 20</span>
               <span>Tue 21</span>
               <span>Wed 22</span>
@@ -529,7 +529,7 @@
             </div>
 
             <!-- Dynamic Tooltip -->
-            <div 
+            <div
               class="absolute bg-slate-900 text-white rounded-lg p-2 shadow-xl border border-slate-700 pointer-events-none flex flex-col gap-0.5 transition-all duration-150 z-20"
               style="
                 left: calc({(chartData[hoverPointIndex].x / 500) * 100}% - 55px);
@@ -547,18 +547,18 @@
 
       <!-- Tables Row -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5">
-        
+
         <!-- Top Glass Products -->
         <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2.5 mb-2.5">
             <span class="font-bold text-slate-800 text-[11px] flex items-center gap-1">Top Glass Products <span class="text-slate-400 font-normal text-[9px]">(By Usage)</span></span>
-            <button class="text-blue-600 font-semibold hover:underline text-[9px]">View All</button>
+            <button type="button" class="text-blue-600 font-semibold hover:underline text-[9px]">View All</button>
           </div>
 
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
               <thead>
-                <tr class="border-b border-slate-100/80 text-slate-450 text-[9px] font-bold">
+                <tr class="border-b border-slate-100/80 text-slate-400 text-[9px] font-bold">
                   <th class="pb-1.5 font-semibold">Product</th>
                   <th class="pb-1.5 font-semibold">Category</th>
                   <th class="pb-1.5 font-semibold text-right">Used (m²)</th>
@@ -568,23 +568,23 @@
               <tbody class="divide-y divide-slate-100">
                 {#if filteredProducts.length === 0}
                   <tr>
-                    <td colspan="4" class="py-6 text-center text-slate-450">
+                    <td colspan="4" class="py-6 text-center text-slate-400">
                       <div class="flex flex-col items-center justify-center gap-1.5">
-                        <Inbox class="h-5 w-5 text-slate-350" />
+                        <Inbox class="h-5 w-5 text-slate-300" />
                         <span>No products found</span>
                       </div>
                     </td>
                   </tr>
                 {:else}
-                  {#each filteredProducts as prod}
+                  {#each filteredProducts as prod (prod.id)}
                     <tr class="hover:bg-slate-50/50 group/row transition-colors">
                       <td class="py-2.5 flex items-center gap-2">
-                        <div class="h-6 w-6 rounded-md bg-gradient-to-tr {prod.imageColor} border border-slate-100 shrink-0 shadow-sm transition-transform group-hover/row:scale-105"></div>
-                        <span class="font-bold text-slate-800 group-hover/row:text-blue-600 transition-colors truncate max-w-[120px]">{prod.name}</span>
+                        <div class="h-6 w-6 rounded-md bg-linear-to-tr {prod.imageColor} border border-slate-100 shrink-0 shadow-sm transition-transform group-hover/row:scale-105"></div>
+                        <span class="font-bold text-slate-800 group-hover/row:text-blue-600 transition-colors truncate max-w-30">{prod.name}</span>
                       </td>
-                      <td class="py-2.5 text-slate-550 font-medium">{prod.category}</td>
+                      <td class="py-2.5 text-slate-500 font-medium">{prod.category}</td>
                       <td class="py-2.5 text-right font-extrabold text-slate-800">{prod.used.toLocaleString('en-US')}</td>
-                      <td class="py-2.5 text-right font-semibold text-slate-450">{prod.stock.toLocaleString('en-US')}</td>
+                      <td class="py-2.5 text-right font-semibold text-slate-400">{prod.stock.toLocaleString('en-US')}</td>
                     </tr>
                   {/each}
                 {/if}
@@ -597,13 +597,13 @@
         <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2.5 mb-2.5">
             <span class="font-bold text-slate-800 text-[11px]">Recent Production Orders</span>
-            <button class="text-blue-600 font-semibold hover:underline text-[9px]">View All</button>
+            <button type="button" class="text-blue-600 font-semibold hover:underline text-[9px]">View All</button>
           </div>
 
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
               <thead>
-                <tr class="border-b border-slate-100/80 text-slate-450 text-[9px] font-bold">
+                <tr class="border-b border-slate-100/80 text-slate-400 text-[9px] font-bold">
                   <th class="pb-1.5 font-semibold">Order No</th>
                   <th class="pb-1.5 font-semibold">Product</th>
                   <th class="pb-1.5 font-semibold text-right">Quantity</th>
@@ -614,24 +614,24 @@
               <tbody class="divide-y divide-slate-100">
                 {#if filteredOrders.length === 0}
                   <tr>
-                    <td colspan="5" class="py-6 text-center text-slate-450">
+                    <td colspan="5" class="py-6 text-center text-slate-400">
                       <div class="flex flex-col items-center justify-center gap-1.5">
-                        <Inbox class="h-5 w-5 text-slate-355" />
+                        <Inbox class="h-5 w-5 text-slate-300" />
                         <span>No orders found</span>
                       </div>
                     </td>
                   </tr>
                 {:else}
-                  {#each filteredOrders as order}
+                  {#each filteredOrders as order (order.id)}
                     <tr class="hover:bg-slate-50/50 group/row transition-colors">
                       <td class="py-2.5 font-extrabold text-slate-800 font-mono tracking-tight">{order.id}</td>
-                      <td class="py-2.5 text-slate-655 font-bold group-hover/row:text-blue-600 transition-colors truncate max-w-[100px]">{order.product}</td>
+                      <td class="py-2.5 text-slate-600 font-bold group-hover/row:text-blue-600 transition-colors truncate max-w-25">{order.product}</td>
                       <td class="py-2.5 text-right font-extrabold text-slate-800">{order.qty.toLocaleString('en-US')} m²</td>
                       <td class="py-2.5 text-center">
                         <span class="inline-block px-1.5 py-0.5 rounded font-extrabold text-[8px] leading-tight text-center uppercase tracking-wide
-                          {order.status === 'In Progress' ? 'bg-blue-50 text-blue-650 border border-blue-100' : ''}
-                          {order.status === 'Completed' ? 'bg-emerald-50 text-emerald-650 border border-emerald-100' : ''}
-                          {order.status === 'Pending' ? 'bg-amber-50 text-amber-650 border border-amber-100' : ''}
+                          {order.status === 'In Progress' ? 'bg-blue-50 text-blue-600 border border-blue-100' : ''}
+                          {order.status === 'Completed' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : ''}
+                          {order.status === 'Pending' ? 'bg-amber-50 text-amber-600 border border-amber-100' : ''}
                         ">
                           {order.status}
                         </span>
@@ -650,37 +650,3 @@
     </div>
   </main>
 </div>
-
-<style>
-  /* Custom scrollbar utility */
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #e2e8f0;
-    border-radius: 9999px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #cbd5e1;
-  }
-
-  /* Fade-in animation helper */
-  .animate-fade-in {
-    animation: fadeIn 0.2s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateX(-5px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-</style>

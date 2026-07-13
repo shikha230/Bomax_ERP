@@ -10,14 +10,7 @@
 
 <section class="bg-white py-14 sm:py-20 lg:py-24">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6">
-
 		<div class="text-center">
-			<div
-				class="inline-flex rounded-full bg-blue-50 px-4 py-2 text-xs font-medium text-blue-600"
-			>
-				Industry Specific
-			</div>
-
 			<h2
 				class="mt-4 sm:mt-5 text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800"
 			>

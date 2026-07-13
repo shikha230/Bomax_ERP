@@ -85,13 +85,10 @@
 	];
 </script>
 
-<section class="bg-white py-14 sm:py-20 lg:py-24">
+<section class="bg-slate-100 py-14 sm:py-20 lg:py-24">
 	<div class="mx-auto max-w-4xl px-4 sm:px-6">
 
 		<div class="text-center">
-			<div class="inline-flex rounded-full bg-blue-50 px-4 py-2 text-xs font-medium text-blue-600">
-				FAQs
-			</div>
 
 			<h2 class="mt-4 sm:mt-5 text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800">
 				Frequently Asked Questions
@@ -104,7 +101,7 @@
 
 		<div class="mt-10 sm:mt-16 space-y-3 sm:space-y-4">
 			{#each faqs as faq, index (faq.q)}
-				<div class="rounded-xl border border-slate-200">
+				<div class="rounded-xl border border-slate-200/80 bg-white shadow-xs hover:shadow-sm transition-all duration-200">
 					<button
 						onclick={() => (open = open === index ? -1 : index)}
 						class="flex w-full items-center justify-between p-4 sm:p-6 text-left font-semibold text-sm sm:text-base text-slate-800 min-h-[3.5rem]"

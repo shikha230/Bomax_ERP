@@ -296,7 +296,7 @@
 
 {#snippet welcomePanel(card: WelcomeCard, index: number)}
 	<div
-		class="card-float relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#6D5DF6] to-[#4B3FE4] p-5 text-white shadow-[0_16px_36px_rgba(76,63,228,0.35)]"
+		class="card-float relative overflow-hidden rounded-3xl bg-linear-to-br from-[#6D5DF6] to-[#4B3FE4] p-5 text-white shadow-[0_16px_36px_rgba(76,63,228,0.35)]"
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<div class="relative z-10">
@@ -325,7 +325,7 @@
 
 {#snippet goalPanel(card: GoalCard, index: number)}
 	<div
-		class="card-float rounded-[24px] border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
+		class="card-float rounded-3xl border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<div class="mb-5 flex items-center gap-3">
@@ -347,7 +347,7 @@
 {#snippet incomePanel(card: IncomeCard, index: number)}
 	{@const path = buildLinePath(card.values)}
 	<div
-		class="card-float rounded-[24px] border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
+		class="card-float rounded-3xl border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<div class="mb-4 flex items-center gap-3">
@@ -370,8 +370,8 @@
 
 {#snippet statPairPanel(card: StatPairCard, index: number)}
 	<div class="card-float grid grid-cols-2 gap-4" style={`animation-delay:${floatDelay(index)}`}>
-		{#each card.tiles as tile}
-			<div class={`rounded-[24px] ${tile.bg} p-4 shadow-[0_10px_28px_rgba(17,24,39,0.06)]`}>
+		{#each card.tiles as tile (tile.label)}
+			<div class={`rounded-3xl ${tile.bg} p-4 shadow-[0_10px_28px_rgba(17,24,39,0.06)]`}>
 				<p class={`text-xs font-medium ${tile.text} opacity-80`}>{tile.label}</p>
 				<p class={`mt-2 font-mono text-xl font-bold ${tile.text}`}>{tile.value}</p>
 				<div class="mt-1">{@render changeText(tile.change, tile.changeType)}</div>
@@ -382,12 +382,12 @@
 
 {#snippet activityPanel(card: ActivityCard, index: number)}
 	<div
-		class="card-float rounded-[24px] border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
+		class="card-float rounded-3xl border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<h4 class="mb-4 text-sm font-semibold text-slate-800">{card.title}</h4>
 		<div class="space-y-3.5">
-			{#each card.items as item}
+			{#each card.items as item, i (i)}
 				<div class="flex items-start gap-3">
 					<span class="mt-1 text-[10px] text-slate-400">{item.time}</span>
 					<span class={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${item.dot}`}></span>
@@ -401,7 +401,7 @@
 {#snippet profitPanel(card: ProfitCard, index: number)}
 	{@const path = buildLinePath(card.values)}
 	<div
-		class="card-float rounded-[24px] border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
+		class="card-float rounded-3xl border border-black/5 bg-white p-5 shadow-[0_10px_28px_rgba(17,24,39,0.06)]"
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<h4 class="text-sm font-semibold text-slate-800">{card.title}</h4>
@@ -413,7 +413,7 @@
 			<path d={path.line} fill="none" stroke={card.lineColor} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
 		</svg>
 		<div class="mt-4 space-y-2.5 border-t border-slate-100 pt-3">
-			{#each card.rows as row}
+			{#each card.rows as row (row.label)}
 				<div class="flex items-center justify-between text-xs">
 					<span class="text-slate-500">{row.label}</span>
 					<span class="font-mono font-semibold text-slate-800">{row.value}</span>
@@ -440,23 +440,19 @@
 	{/if}
 {/snippet}
 
-<section class="relative overflow-hidden bg-[#F4F5FB] pt-0  ">
-	
-	
-
-	
-	<div class="relative mx-auto  grid max-w-4xl grid-cols-1 gap-6 px-6 md:grid-cols-2 lg:px-8">
-		<div class="column col-left relative h-140 overflow-hidden sm:h-[640px] lg:h-[760px] ">
+<section class="relative overflow-hidden bg-[#F4F5FB] pt-0">
+	<div class="relative mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 md:grid-cols-2 lg:px-8">
+		<div class="column col-left relative h-140 overflow-hidden sm:h-160 lg:h-190">
 			<div class="track flex flex-col gap-5">
-				{#each loopedLeft as card, i}
+				{#each loopedLeft as card, i (i)}
 					{@render dashboardCard(card, i)}
 				{/each}
 			</div>
 		</div>
 
-		<div class="column col-middle relative hidden h-[560px] overflow-hidden sm:h-[640px] md:block lg:h-[760px]">
+		<div class="column col-middle relative hidden h-140 overflow-hidden sm:h-160 md:block lg:h-190">
 			<div class="track flex flex-col gap-5">
-				{#each loopedMiddle as card, i}
+				{#each loopedMiddle as card, i (i)}
 					{@render dashboardCard(card, i)}
 				{/each}
 			</div>

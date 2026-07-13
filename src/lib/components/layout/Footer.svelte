@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Layers } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
 
 	const productLinks = [
 		'Features',
@@ -10,7 +11,6 @@
 	];
 
 	const companyLinks = [
-		'About Us',
 		'Careers',
 		'Blog',
 		'Press',
@@ -32,8 +32,8 @@
 </script>
 
 <footer class="bg-[#061330] text-white">
-	<div class="mx-auto max-w-7xl px-6 py-16">
-		<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+	<div class="mx-auto max-w-7xl px-6 py-6">
+		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
 			<!-- Logo Section -->
 
 			<div class="lg:col-span-1">
@@ -51,13 +51,13 @@
 				</div>
 
 				<p
-					class="mt-4 max-w-xs text-sm leading-7 text-slate-400"
+					class="mt-2.5 max-w-xs text-sm leading-6 text-slate-400"
 				>
 					The all-in-one ERP platform built exclusively for
 					glass businesses across India and beyond.
 				</p>
 
-				<div class="mt-6 flex gap-3">
+				<div class="mt-4 flex gap-3">
 					<div
 						class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-slate-400 transition hover:bg-slate-700"
 					>
@@ -88,12 +88,12 @@
 
 			<div>
 				<h4
-					class="mb-5 text-sm font-semibold uppercase tracking-wider"
+					class="mb-3 text-sm font-semibold uppercase tracking-wider"
 				>
 					Product
 				</h4>
 
-				<ul class="space-y-3">
+				<ul class="space-y-1.5">
 					{#each productLinks as item (item)}
 						<li
 							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
@@ -108,20 +108,18 @@
 
 			<div>
 				<h4
-					class="mb-5 text-sm font-semibold uppercase tracking-wider"
+					class="mb-3 text-sm font-semibold uppercase tracking-wider"
 				>
 					Company
 				</h4>
 
-				<ul class="space-y-3">
+				<ul class="space-y-1.5">
 					{#each companyLinks as item (item)}
 						<li
 							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
 						>
 							{#if item === 'Partners'}
-								<a href="/partners" class="block">{item}</a>
-							{:else if item === 'Blog'}
-								<a href="/blog" class="block">{item}</a>
+								<a href={resolve('/partners')} class="block">{item}</a>
 							{:else}
 								{item}
 							{/if}
@@ -134,12 +132,12 @@
 
 			<div>
 				<h4
-					class="mb-5 text-sm font-semibold uppercase tracking-wider"
+					class="mb-3 text-sm font-semibold uppercase tracking-wider"
 				>
 					Support
 				</h4>
 
-				<ul class="space-y-3">
+				<ul class="space-y-1.5">
 					{#each supportLinks as item (item)}
 						<li
 							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
@@ -154,12 +152,12 @@
 
 			<div>
 				<h4
-					class="mb-5 text-sm font-semibold uppercase tracking-wider"
+					class="mb-3 text-sm font-semibold uppercase tracking-wider"
 				>
 					Contact
 				</h4>
 
-				<ul class="space-y-3">
+				<ul class="space-y-1.5">
 					{#each contactLinks as item (item)}
 						<li
 							class="cursor-pointer text-sm text-slate-400 transition hover:text-white"
@@ -174,14 +172,14 @@
 		<!-- Bottom -->
 
 		<div
-			class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-sm text-slate-500 md:flex-row"
+			class="mt-6 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-4 text-sm text-slate-500 md:flex-row"
 		>
 			<p>
 				© 2026 GlassERP. All rights reserved.
 			</p>
 
 			<div class="flex flex-wrap gap-6">
-				<a href="/privacy" class="cursor-pointer hover:text-white">
+				<a href={resolve('/privacy')} class="cursor-pointer hover:text-white">
 					Privacy Policy
 				</a>
 

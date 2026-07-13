@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { X, PhoneCall, Mail, MessageSquare, Sparkles } from 'lucide-svelte';
+  import { X, PhoneCall, Sparkles } from 'lucide-svelte';
 
   // Props in Svelte 5
   let { isOpen = false, onClose = () => {} } = $props();
@@ -34,27 +34,40 @@
       isSuccess = false;
     }, 300);
   }
+
+  function handleBackdropKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      resetAndClose();
+    }
+  }
 </script>
 
 {#if isOpen}
   <!-- Backdrop -->
-  <!-- eslint-disable-next-line svelte/valid-compile -->
   <div
     class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4 backdrop-blur-sm transition-opacity duration-300"
-    role="presentation"
+    role="button"
+    tabindex="0"
+    aria-label="Close modal"
     onclick={resetAndClose}
+    onkeydown={handleBackdropKeydown}
   >
     <!-- Modal Card -->
-    <!-- eslint-disable-next-line svelte/valid-compile -->
     <div
       class="relative w-full max-w-lg rounded-3xl border border-slate-100 bg-white p-6 shadow-2xl transition-all duration-300 md:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-modal-title"
+      tabindex="-1"
       onclick={(e) => e.stopPropagation()}
+      onkeydown={(e) => e.stopPropagation()}
     >
       <!-- Close Button -->
       <button
         onclick={resetAndClose}
         class="absolute right-4 top-4 rounded-full p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors"
         aria-label="Close Modal"
+        type="button"
       >
         <X class="h-6 w-6" />
       </button>
@@ -66,29 +79,30 @@
           </div>
           <h3 class="text-xl font-extrabold text-slate-900 font-heading">Message Sent!</h3>
           <p class="mt-2 text-sm text-slate-500 max-w-sm">
-            Thank you, <strong class="text-slate-800">{name}</strong>. Our enterprise sales team will reach out to you at <strong class="text-slate-850">{email}</strong> within 12 hours.
+            Thank you, <strong class="text-slate-800">{name}</strong>. Our enterprise sales team will reach out to you at <strong class="text-slate-800">{email}</strong> within 12 hours.
           </p>
           <button
             onclick={resetAndClose}
-            class="mt-8 rounded-xl bg-blue-650 px-6 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+            class="mt-8 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+            type="button"
           >
             Done
           </button>
         </div>
       {:else}
-        <div class="mb-6 flex items-start gap-3.5">
-          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-650 shrink-0">
-            <PhoneCall class="h-5.5 w-5.5" />
+        <div class="mb-6 flex items-start gap-3">
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 shrink-0">
+            <PhoneCall class="h-5 w-5" />
           </div>
           <div>
-            <h3 class="text-lg font-extrabold text-slate-900 font-heading">Contact Our Sales Team</h3>
-            <p class="text-sm text-slate-450 mt-0.5">Let's discuss how we can tailor our solution to your manufacturing plants.</p>
+            <h3 id="contact-modal-title" class="text-lg font-extrabold text-slate-900 font-heading">Contact Our Sales Team</h3>
+            <p class="text-sm text-slate-500 mt-0.5">Let's discuss how we can tailor our solution to your manufacturing plants.</p>
           </div>
         </div>
 
         <form onsubmit={handleSubmit} class="space-y-4">
           <div>
-            <label for="contact-name" class="block text-xs font-bold text-slate-755 mb-1">Your Name *</label>
+            <label for="contact-name" class="block text-xs font-bold text-slate-700 mb-1">Your Name *</label>
             <input
               id="contact-name"
               type="text"
@@ -112,7 +126,7 @@
               />
             </div>
             <div>
-              <label for="contact-phone" class="block text-xs font-bold text-slate-705 mb-1">Phone Number</label>
+              <label for="contact-phone" class="block text-xs font-bold text-slate-700 mb-1">Phone Number</label>
               <input
                 id="contact-phone"
                 type="tel"

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { ArrowRight, FileText, Package, Factory, Diamond, Receipt, Landmark, Users, BarChart3, CheckCircle2, Sparkles, Search, ChevronRight, Plus, Calendar, Phone, Mail, Hash, CreditCard, IndianRupee, User, MapPin, Percent, FileDown } from 'lucide-svelte';
+  import { ArrowRight, FileText, Package, Factory, Diamond, Landmark, Users, BarChart3, CheckCircle2, Sparkles, Search, ChevronRight, Phone, Mail, User } from 'lucide-svelte';
+  import { resolve } from '$app/paths';
 
   let activeModule = $state(0);
 
@@ -126,8 +127,8 @@
 <section id="modules" class="relative w-full bg-slate-50/60 py-12 sm:py-16 lg:py-20 overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-25"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-b from-blue-100/30 to-transparent blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-25"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 h-150 w-200 rounded-full bg-linear-to-b from-blue-100/30 to-transparent blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,23 +153,24 @@
 
     <!-- Explorer Layout -->
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-0">
-      
+
       <!-- Left Sidebar Tabs -->
-      <div class="lg:w-[180px] flex-shrink-0">
-        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
-          {#each modules as mod, i}
+      <div class="lg:w-45 shrink-0">
+        <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-none]">
+          {#each modules as mod, i (mod.id)}
             {@const TabIcon = mod.icon}
             <button
               onclick={() => selectModule(i)}
+              type="button"
               class="flex items-center gap-2.5 px-4 py-3 rounded-xl text-left whitespace-nowrap transition-all duration-250 cursor-pointer min-w-max lg:min-w-0 lg:w-full
-                {activeModule === i 
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25' 
+                {activeModule === i
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
                   : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60 lg:border-0'
                 }"
             >
-              <TabIcon 
-                class="h-4 w-4 flex-shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}" 
-                strokeWidth={2} 
+              <TabIcon
+                class="h-4 w-4 shrink-0 {activeModule === i ? 'text-white' : 'text-slate-400'}"
+                strokeWidth={2}
               />
               <span class="text-[13px] font-semibold font-jakarta">{mod.label}</span>
             </button>
@@ -180,17 +182,17 @@
       <div class="flex-1 lg:ml-6">
         <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div class="flex flex-col xl:flex-row">
-            
+
             <!-- Module Detail (Left Content) -->
-            <div class="flex-1 p-8 sm:p-10 xl:max-w-[480px]">
+            <div class="flex-1 p-8 sm:p-10 xl:max-w-120">
               {#key activeModule}
                 {@const DetailIcon = modules[activeModule].icon}
-                <div class="module-content-enter">
+                <div>
                   <!-- Module Badge -->
                   <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-600 mb-6">
-                    <DetailIcon 
-                      class="h-3.5 w-3.5" 
-                      strokeWidth={2} 
+                    <DetailIcon
+                      class="h-3.5 w-3.5"
+                      strokeWidth={2}
                     />
                     <span class="text-xs font-semibold font-jakarta">{modules[activeModule].badge}</span>
                   </div>
@@ -207,10 +209,10 @@
 
                   <!-- Feature Checklist -->
                   <div class="space-y-3.5 mb-8">
-                    {#each modules[activeModule].features as feature}
+                    {#each modules[activeModule].features as feature (feature)}
                       <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0 mt-0.5">
-                          <CheckCircle2 class="h-[18px] w-[18px] text-emerald-500" strokeWidth={2.2} />
+                        <div class="shrink-0 mt-0.5">
+                          <CheckCircle2 class="h-4.5 w-4.5 text-emerald-500" strokeWidth={2.2} />
                         </div>
                         <span class="text-[13.5px] text-slate-700 font-medium leading-snug">{feature}</span>
                       </div>
@@ -219,7 +221,7 @@
 
                   <!-- Tip Bar -->
                   <div class="flex items-start gap-3 px-4 py-3.5 bg-blue-50/60 border-l-[3px] border-blue-500 rounded-r-lg mb-8">
-                    <Sparkles class="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <Sparkles class="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
                     <p class="text-[12.5px] text-blue-700 font-medium leading-relaxed">
                       {modules[activeModule].tip}
                     </p>
@@ -227,7 +229,7 @@
 
                   <!-- CTA Button -->
                   <a
-                    href={modules[activeModule].id === 'quotation' ? '/modules/quotation' : '#'}
+                    href={modules[activeModule].id === 'quotation' ? resolve('/modules/quotation') : '#'}
                     class="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 hover:bg-blue-700 hover:shadow-blue-500/30 transition-all duration-200 cursor-pointer active:scale-[0.98] group"
                   >
                     <span>{modules[activeModule].cta}</span>
@@ -238,9 +240,9 @@
             </div>
 
             <!-- Module Mockup (Right Side) -->
-            <div class="flex-1 xl:max-w-[520px] bg-slate-50/50 border-t xl:border-t-0 xl:border-l border-slate-200/60 p-4 sm:p-6 flex items-start justify-center overflow-hidden">
+            <div class="flex-1 xl:max-w-130 bg-slate-50/50 border-t xl:border-t-0 xl:border-l border-slate-200/60 p-4 sm:p-6 flex items-start justify-center overflow-hidden">
               {#key activeModule}
-                <div class="mockup-enter w-full">
+                <div class="w-full">
                   <!-- Quotation Mockup -->
                   {#if activeModule === 0}
                     <div class="w-full bg-white rounded-xl shadow-lg shadow-slate-200/60 border border-slate-200/60 overflow-hidden text-[11px] transform scale-[0.92] origin-top">
@@ -435,7 +437,7 @@
                       </div>
                       <div class="px-4 py-3 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-[9px] text-slate-400">Last synced: 2 min ago</span>
-                        <button class="px-3 py-1.5 bg-blue-600 text-white rounded-md text-[9px] font-semibold">+ Add Stock</button>
+                        <button type="button" class="px-3 py-1.5 bg-blue-600 text-white rounded-md text-[9px] font-semibold">+ Add Stock</button>
                       </div>
                     </div>
 
@@ -702,7 +704,7 @@
                       </div>
                       <div class="px-4 py-3 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-[9px] text-slate-400">Total Payroll: ₹12,45,000</span>
-                        <button class="px-3 py-1.5 bg-blue-600 text-white rounded-md text-[9px] font-semibold">Process All</button>
+                        <button type="button" class="px-3 py-1.5 bg-blue-600 text-white rounded-md text-[9px] font-semibold">Process All</button>
                       </div>
                     </div>
 
@@ -739,7 +741,7 @@
                         <!-- Chart Area -->
                         <div class="bg-slate-50 rounded-lg p-3 border border-slate-200/40">
                           <div class="text-[9px] font-bold text-slate-600 mb-3">Revenue Trend (6 Months)</div>
-                          <div class="flex items-end gap-2 h-[80px]">
+                          <div class="flex items-end gap-2 h-20">
                             <div class="flex-1 flex flex-col items-center gap-1">
                               <div class="w-full bg-blue-300 rounded-t" style="height: 40px"></div>
                               <span class="text-[7px] text-slate-400">Jan</span>
@@ -797,44 +799,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .module-content-enter {
-    animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .mockup-enter {
-    animation: mockupSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes mockupSlide {
-    from {
-      opacity: 0;
-      transform: translateX(16px) scale(0.97);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-  }
-
-  /* Hide scrollbar for horizontal tab scroll */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-</style>

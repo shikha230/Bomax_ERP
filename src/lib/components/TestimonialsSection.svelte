@@ -27,6 +27,8 @@
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&fit=crop&q=80',
     },
   ];
+
+  const ratingStars = [0, 1, 2, 3, 4];
 </script>
 
 <section
@@ -35,7 +37,7 @@
 >
   <!-- Background details -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-20"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +51,7 @@
 
       <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
         Trusted by Glass Businesses<br />
-        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Across India</span>
+        <span class="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Across India</span>
       </h2>
 
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
@@ -59,10 +61,9 @@
 
     <!-- Testimonials grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-      {#each testimonials as t, i}
+      {#each testimonials as t (t.author)}
         <div
-          class="group bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-350/80 hover:-translate-y-1 testimonial-card"
-          style="animation-delay: {i * 100}ms"
+          class="group bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1"
         >
           <div>
             <!-- Badge -->
@@ -72,13 +73,13 @@
 
             <!-- Rating Stars -->
             <div class="flex items-center gap-0.5 mb-5 text-amber-400">
-              {#each Array(5) as _}
+              {#each ratingStars as star (star)}
                 <Star class="h-4.5 w-4.5 fill-amber-400" />
               {/each}
             </div>
 
             <!-- Quote Text -->
-            <blockquote class="text-[13.5px] text-slate-655 font-medium leading-relaxed italic mb-8 font-sans">
+            <blockquote class="text-[13.5px] text-slate-600 font-medium leading-relaxed italic mb-8 font-sans">
               {t.text}
             </blockquote>
           </div>
@@ -93,7 +94,7 @@
             />
             <div class="min-w-0">
               <div class="text-[13.5px] font-bold text-slate-900 font-heading leading-tight truncate">{t.author}</div>
-              <div class="text-[11.5px] text-slate-450 font-medium truncate mt-0.5">{t.role}</div>
+              <div class="text-[11.5px] text-slate-400 font-medium truncate mt-0.5">{t.role}</div>
             </div>
           </div>
         </div>
@@ -101,22 +102,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .testimonial-card {
-    animation: fadeSlideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    animation-fill-mode: both;
-  }
-
-  @keyframes fadeSlideUp {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

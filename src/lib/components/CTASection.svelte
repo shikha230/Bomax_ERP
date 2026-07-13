@@ -7,11 +7,18 @@
   }
 
   const { onBookDemo, onContactSales }: Props = $props();
+
+  const trustItems: string[] = [
+    'Free 14-day trial',
+    'No credit card needed',
+    'Free onboarding',
+    'Cancel anytime'
+  ];
 </script>
 
 <section
   id="cta"
-  class="relative w-full py-20 sm:py-28 lg:py-32 overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+  class="relative w-full py-20 sm:py-28 lg:py-32 overflow-hidden bg-linear-to-r from-blue-600 to-indigo-700 text-white"
 >
   <!-- Background circular graphics -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -20,7 +27,7 @@
     <div class="absolute -bottom-16 -left-12 w-64 h-64 rounded-full bg-white/5"></div>
 
     <!-- Big circle top right -->
-    <div class="absolute -top-32 -right-10 w-[420px] h-[420px] rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-80"></div>
+    <div class="absolute -top-32 -right-10 w-105 h-105 rounded-full bg-linear-to-br from-white/10 to-transparent opacity-80"></div>
     <div class="absolute -top-16 right-10 w-64 h-64 rounded-full bg-white/5"></div>
   </div>
 
@@ -32,13 +39,13 @@
     </div>
 
     <!-- Heading -->
-    <h2 class="text-3xl sm:text-4.5xl lg:text-5xl font-black tracking-tight leading-tight font-heading mb-6">
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-heading mb-6">
       Ready to Experience<br />
       Bomax ERP?
     </h2>
 
     <!-- Subtitle -->
-    <p class="text-[14px] sm:text-base text-blue-100 max-w-xl leading-relaxed font-medium mb-10">
+    <p class="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed font-medium mb-10">
       Book a live product demonstration and see how Bomax ERP can transform your glass business — from quotations to delivery, all in one platform.
     </p>
 
@@ -47,33 +54,30 @@
       <!-- Book Demo Button -->
       <button
         onclick={onBookDemo}
-        class="flex items-center justify-center gap-2 rounded-2xl bg-white text-blue-600 hover:bg-blue-50 px-8 py-4.5 text-sm font-bold shadow-lg shadow-blue-900/20 active:scale-98 transition-all duration-200 w-full sm:w-auto cursor-pointer"
+        type="button"
+        class="flex items-center justify-center gap-2 rounded-2xl bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 text-sm font-bold shadow-lg shadow-blue-900/20 active:scale-95 transition-all duration-200 w-full sm:w-auto cursor-pointer"
       >
-        <Calendar class="h-4.5 w-4.5" />
+        <Calendar class="h-4 w-4" />
         <span>Book Demo</span>
       </button>
 
       <!-- Talk to Expert Button -->
       <button
         onclick={onContactSales}
-        class="flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/5 hover:bg-white/10 px-8 py-4.5 text-sm font-bold active:scale-98 transition-all duration-200 w-full sm:w-auto cursor-pointer"
+        type="button"
+        class="flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/5 hover:bg-white/10 px-8 py-4 text-sm font-bold active:scale-95 transition-all duration-200 w-full sm:w-auto cursor-pointer"
       >
-        <Headphones class="h-4.5 w-4.5" />
+        <Headphones class="h-4 w-4" />
         <span>Talk to Expert</span>
       </button>
     </div>
 
     <!-- Trust Badges -->
     <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 pt-4 border-t border-white/10 w-full text-blue-100">
-      {#each [
-        'Free 14-day trial',
-        'No credit card needed',
-        'Free onboarding',
-        'Cancel anytime'
-      ] as item}
+      {#each trustItems as item (item)}
         <div class="flex items-center gap-1.5 text-xs font-semibold tracking-wide font-jakarta">
           <div class="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
-            <Check class="h-3 w-3 stroke-[3]" />
+            <Check class="h-3 w-3 stroke-3" />
           </div>
           <span>{item}</span>
         </div>

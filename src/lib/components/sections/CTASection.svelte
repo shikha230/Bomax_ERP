@@ -3,11 +3,7 @@
 >
 	<div class="mx-auto max-w-5xl px-4 sm:px-6 text-center">
 
-		<div class="inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-medium text-white">
-			Get Started Today
-		</div>
-
-		<h2 class="mt-6 sm:mt-8 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
+		<h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
 			Ready to Transform Your
 			<br />
 			Glass Business?

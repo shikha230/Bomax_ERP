@@ -185,7 +185,7 @@
 									bind:value={timeId}
 									class="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 text-sm text-slate-700 bg-slate-50/50 hover:bg-slate-50 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 cursor-pointer appearance-none"
 								>
-									{#each times as t}
+									{#each times as t (t)}
 										<option value={t}>{t}</option>
 									{/each}
 								</select>
