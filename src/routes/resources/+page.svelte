@@ -6,7 +6,7 @@
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
-	import { BookOpen, PlayCircle, FileText, Code2, Sparkles, HelpCircle, ArrowUpRight } from 'lucide-svelte';
+	import { BookOpen, PlayCircle, FileText, Sparkles, ArrowUpRight } from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
@@ -66,7 +66,7 @@
 	<!-- Main Directory Sections -->
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 mb-8">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-			{#each resources as item}
+			{#each resources as item (item.title)}
 				{@const Icon = item.icon}
 				<div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
 					<div>

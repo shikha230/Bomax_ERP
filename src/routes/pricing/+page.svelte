@@ -7,12 +7,10 @@
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
-	import { Sparkles, Check, HelpCircle, Shield, CreditCard, RefreshCw } from 'lucide-svelte';
+	import { Sparkles, Shield, CreditCard, RefreshCw } from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
-
-	let billingCycle = $state<'monthly' | 'yearly'>('monthly');
 
 	const comparisonFeatures = [
 		{ category: 'Core Capabilities', items: [
@@ -57,7 +55,7 @@
 			<Sparkles class="h-3.5 w-3.5" />
 			<span class="text-xs font-bold tracking-wide">Flexible Plans</span>
 		</div>
-		
+
 		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight mb-5 max-w-3xl mx-auto">
 			Fair & Transparent Pricing
 		</h1>
@@ -126,13 +124,13 @@
 					</tr>
 				</thead>
 				<tbody class="divide-y divide-slate-100 text-sm">
-					{#each comparisonFeatures as section}
+					{#each comparisonFeatures as section (section.category)}
 						<tr class="bg-slate-50/40">
 							<td colspan="4" class="px-5 py-3 font-semibold text-xs text-slate-500 uppercase tracking-wider">
 								{section.category}
 							</td>
 						</tr>
-						{#each section.items as item}
+						{#each section.items as item (item.name)}
 							<tr class="hover:bg-slate-50/40 transition">
 								<td class="px-5 py-4 font-medium text-slate-800">{item.name}</td>
 								<td class="px-5 py-4 text-slate-500">{item.starter}</td>

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { 
 		Shield, Lock, Globe, Calendar, MapPin, Ban, Clock, 
-		FileText, Landmark, User, Briefcase, CreditCard, Activity, 
+		Landmark, User, Briefcase, CreditCard, Activity, 
 		CheckCircle2, Cloud, Bell, Server, HardDrive, Trash2, Mail, 
 		Database, Settings, Share2, EyeOff, Download, Cookie, RefreshCw,
 		XCircle
@@ -202,31 +202,6 @@
 					We are committed to protecting the privacy and security of the data you entrust to our Enterprise Resource/Resource Planning (ERP) software. This Privacy Policy outlines how we collect, use, protect, and handle your personal and business information.
 				</p>
 			</div>
-
-			<!-- Document & Jurisdiction Cards -->
-			<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 lg:justify-end">
-				<!-- Doc -->
-				<div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm flex items-center gap-3 shrink-0 flex-1 sm:max-w-xs lg:max-w-none">
-					<div class="bg-blue-50 text-blue-600 p-2 rounded-xl flex items-center justify-center shrink-0">
-						<FileText class="h-5 w-5" />
-					</div>
-					<div>
-						<div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Document</div>
-						<div class="text-sm font-bold text-slate-800 mt-0.5 whitespace-nowrap">v2.1 — June 2025</div>
-					</div>
-				</div>
-
-				<!-- Jurisdiction -->
-				<div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm flex items-center gap-3 shrink-0 flex-1 sm:max-w-xs lg:max-w-none">
-					<div class="bg-violet-50 text-violet-600 p-2 rounded-xl flex items-center justify-center shrink-0">
-						<Landmark class="h-5 w-5" />
-					</div>
-					<div>
-						<div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Jurisdiction</div>
-						<div class="text-sm font-bold text-slate-800 mt-0.5 whitespace-nowrap">New Delhi, India</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</section>
 
@@ -251,7 +226,7 @@
 
 					<!-- Navigation list -->
 					<nav class="p-4 space-y-1">
-						{#each sectionsList as sec}
+						{#each sectionsList as sec (sec.id)}
 							<button 
 								class="w-full text-left px-3.5 py-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-3 border-l-2 {activeSection === sec.id ? 'bg-blue-50/70 border-l-2 border-blue-600 text-blue-600' : 'border-transparent text-slate-500 hover:bg-slate-50/50 hover:text-slate-900'}"
 								onclick={() => scrollToSection(sec.id)}
@@ -266,13 +241,13 @@
 						<p class="text-[11px] text-slate-500 font-semibold leading-relaxed">
 							Have questions about our privacy practices? Our team is ready to help.
 						</p>
-						<a 
-							href="/contact" 
-							class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/10 cursor-pointer"
-						>
-							<Mail class="h-3.5 w-3.5" />
-							Contact Us
-						</a>
+						<button
+  type="button"
+  class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/10 cursor-pointer"
+>
+  <Mail class="h-3.5 w-3.5" />
+  Contact Us
+</button>
 					</div>
 				</div>
 			</div>

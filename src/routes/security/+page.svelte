@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { 
-		Shield, Lock, Globe, Calendar, MapPin, Server, HardDrive, EyeOff, CheckCircle2,
+	import {
+		Shield, Lock, Globe, Server, HardDrive, EyeOff,
 		Database, Users, Key, Mail
 	} from 'lucide-svelte';
 	import Header from '$lib/components/layout/Header.svelte';
@@ -62,7 +62,7 @@
 
 <main class="min-h-screen bg-slate-50/40 text-slate-650 selection:bg-blue-500 selection:text-white font-sans">
 	<!-- Hero Banner -->
-	<section class="hero-banner relative overflow-hidden text-center py-20 px-4 md:px-8">
+	<section class="relative overflow-hidden text-center py-20 px-4 md:px-8 bg-[radial-gradient(circle_at_center,#0B1936_0%,#050E24_60%,#020715_100%)]">
 		<!-- Background watermark glows -->
 		<div class="absolute inset-0 bg-radial-[circle_at_center,_var(--color-blue-950)_0%,_#050e24_60%,_#020612_100%] z-0"></div>
 		<div class="absolute top-1/4 left-10 md:left-20 w-72 h-72 rounded-full bg-cyan-500/10 blur-[80px] pointer-events-none"></div>
@@ -212,7 +212,7 @@
 
 					<!-- Navigation list -->
 					<nav class="p-4 space-y-1">
-						{#each sectionsList as sec}
+						{#each sectionsList as sec (sec.id)}
 							<button 
 								class="w-full text-left px-3.5 py-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-3 border-l-2 {activeSection === sec.id ? 'bg-blue-50/70 border-l-2 border-blue-600 text-blue-600' : 'border-transparent text-slate-500 hover:bg-slate-50/50 hover:text-slate-900'}"
 								onclick={() => scrollToSection(sec.id)}
@@ -227,13 +227,13 @@
 						<p class="text-[11px] text-slate-500 font-semibold leading-relaxed">
 							Want to learn more about our security model?
 						</p>
-						<a 
-							href="/contact" 
-							class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/10 cursor-pointer"
-						>
-							<Mail class="h-3.5 w-3.5" />
-							Contact Security Team
-						</a>
+						<button
+  type="button"
+  class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/10 cursor-pointer"
+>
+  <Mail class="h-3.5 w-3.5" />
+  Contact security team
+</button>
 					</div>
 				</div>
 			</div>
@@ -386,9 +386,3 @@
 </main>
 
 <Footer />
-
-<style>
-	.hero-banner {
-		background: radial-gradient(circle at center, #0B1936 0%, #050E24 60%, #020715 100%);
-	}
-</style>

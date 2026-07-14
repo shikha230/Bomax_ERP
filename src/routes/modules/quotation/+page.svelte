@@ -1,28 +1,24 @@
 <script lang="ts">
   import Header from '$lib/components/layout/Header.svelte';
   import Footer from '$lib/components/layout/Footer.svelte';
-  import { slide } from 'svelte/transition';
+  import { slide, scale } from 'svelte/transition';
+  import { resolve } from '$app/paths';
   import {
     Sparkles,
-    CheckCircle,
-    Scale,
-    Maximize2,
-    Layers,
-    Wrench,
-    Receipt,
     ArrowRight,
     ArrowLeft,
     RefreshCw,
     AlertTriangle,
-    IndianRupee,
     Printer,
     FileCheck,
     ChevronDown
   } from 'lucide-svelte';
 
+  type Unit = 'mm' | 'in' | 'm' | 'ft';
+
   // Calculator inputs
   let clientName = $state('Future Glass Works');
-  let selectedUnit = $state<'mm' | 'in' | 'm' | 'ft'>('mm');
+  let selectedUnit = $state<Unit>('mm');
   let width = $state<number>(1200);
   let height = $state<number>(1500);
   let thickness = $state<number>(6); // 4, 5, 6, 8, 10, 12 mm
@@ -31,6 +27,8 @@
   let taxInclusive = $state(false);
   let isConverted = $state(false);
   let openAccordion = $state<number | null>(null);
+
+  const units: Unit[] = ['mm', 'in', 'm', 'ft'];
 
   function toggleAccordion(index: number) {
     openAccordion = openAccordion === index ? null : index;
@@ -176,10 +174,10 @@
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
+
     <!-- Navigation back & Page Badge -->
     <div class="flex items-center justify-between mb-8">
-      <a href="/modules" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors">
+      <a href={resolve('/modules')} class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors">
         <ArrowLeft class="h-4 w-4" />
         Back to Modules
       </a>
@@ -222,7 +220,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-200/80">
-        
+
         <!-- Simulator Left Panel (Inputs) -->
         <div class="lg:col-span-7 p-6 sm:p-8 space-y-6">
           {#if !isConverted}
@@ -235,8 +233,8 @@
               <div>
                 <label for="unit" class="block text-xs font-bold text-slate-550 uppercase tracking-wider mb-1.5">Measurement Unit</label>
                 <div class="grid grid-cols-4 gap-1 p-1 bg-slate-100 rounded-xl" id="unit">
-                  {#each ['mm', 'in', 'm', 'ft'] as unit}
-                    <button onclick={() => (selectedUnit = unit as any)} class="py-1.5 font-bold text-xs rounded-lg transition-all {selectedUnit === unit ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-400 hover:text-slate-700'}">
+                  {#each units as unit (unit)}
+                    <button onclick={() => (selectedUnit = unit)} class="py-1.5 font-bold text-xs rounded-lg transition-all {selectedUnit === unit ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-400 hover:text-slate-700'}">
                       {unit.toUpperCase()}
                     </button>
                   {/each}
@@ -359,7 +357,7 @@
             </div>
           {:else}
             <!-- Invoice success layout -->
-            <div class="h-full flex flex-col justify-center items-center text-center p-6 space-y-6 animate-fade-in">
+            <div class="h-full flex flex-col justify-center items-center text-center p-6 space-y-6" in:scale={{ duration: 400, start: 0.97 }}>
               <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-md">
                 <FileCheck class="h-8 w-8" />
               </div>
@@ -370,7 +368,7 @@
                   Zero manual entry, zero errors.
                 </p>
               </div>
-              
+
               <div class="w-full bg-slate-50 border border-slate-200/60 rounded-xl p-4 text-left space-y-2 text-xs">
                 <div class="flex justify-between border-b border-slate-200/50 pb-2 mb-2 font-semibold">
                   <span class="text-slate-600">Invoice Registry</span>
@@ -525,182 +523,184 @@
                 {/if}
               </button>
             </div>
+
             <!-- Module Quotation Accordion Section -->
-    <div class="space-y-10 mt-16 max-w-4xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight font-heading leading-tight">
-          Smart Quotation Module: Built for the Complexities of Glass
-        </h2>
-        <p class="text-slate-500 text-sm leading-relaxed">
-          Stop losing money on miscalculated edge polishing, wrong chargeable areas, and forgotten transport fees. The Firstcut24 Quotation Module is an ultra-flexible, intelligent pricing engine designed specifically for the glass and hardware industry.<br />
-          Create 100% accurate, multi-item project quotes in seconds, and convert them to invoices with a single click.
-        </p>
-      </div>
+            <div class="space-y-10 mt-16 max-w-4xl mx-auto">
+              <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight font-heading leading-tight">
+                  Smart Quotation Module: Built for the Complexities of Glass
+                </h2>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                  Stop losing money on miscalculated edge polishing, wrong chargeable areas, and forgotten transport fees. The Firstcut24 Quotation Module is an ultra-flexible, intelligent pricing engine designed specifically for the glass and hardware industry.<br />
+                  Create 100% accurate, multi-item project quotes in seconds, and convert them to invoices with a single click.
+                </p>
+              </div>
 
-      <div class="space-y-4">
-        <!-- Item 1 -->
-        <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
-          <button 
-            type="button"
-            onclick={() => toggleAccordion(1)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
-          >
-            <span class="text-base sm:text-lg font-bold text-slate-800">1. Total Dimensional & Pricing Freedom</span>
-            <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 1 ? 'rotate-180 text-blue-600' : ''}" />
-          </button>
-          {#if openAccordion === 1}
-            <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
-              <p>Your clients speak different languages when it comes to measurements. Firstcut24 understands them all.</p>
-              <ul class="space-y-2 pl-1.5 font-medium">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Any Measurement Unit:</strong> Enter glass sizes seamlessly in Millimeters (mm), Inches, Meters, or Feet.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Dynamic Pricing Models:</strong> Price your items exactly how you sell them—per Sq.Ft, per Sq.Meter, per Piece, or even thickness-based pricing (Sq.Ft/mm or Sq.Meter/mm).</span>
-                </li>
-              </ul>
-            </div>
-          {/if}
-        </div>
+              <div class="space-y-4">
+                <!-- Item 1 -->
+                <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
+                  <button
+                    type="button"
+                    onclick={() => toggleAccordion(1)}
+                    class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
+                  >
+                    <span class="text-base sm:text-lg font-bold text-slate-800">1. Total Dimensional & Pricing Freedom</span>
+                    <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 1 ? 'rotate-180 text-blue-600' : ''}" />
+                  </button>
+                  {#if openAccordion === 1}
+                    <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
+                      <p>Your clients speak different languages when it comes to measurements. Firstcut24 understands them all.</p>
+                      <ul class="space-y-2 pl-1.5 font-medium">
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Any Measurement Unit:</strong> Enter glass sizes seamlessly in Millimeters (mm), Inches, Meters, or Feet.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Dynamic Pricing Models:</strong> Price your items exactly how you sell them—per Sq.Ft, per Sq.Meter, per Piece, or even thickness-based pricing (Sq.Ft/mm or Sq.Meter/mm).</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {/if}
+                </div>
 
-        <!-- Item 2 -->
-        <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
-          <button 
-            type="button"
-            onclick={() => toggleAccordion(2)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
-          >
-            <span class="text-base sm:text-lg font-bold text-slate-800">2. Error-Free Area & Polish Calculations</span>
-            <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 2 ? 'rotate-180 text-blue-600' : ''}" />
-          </button>
-          {#if openAccordion === 2}
-            <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
-              <p>Eliminate human error from your sales team's calculators.</p>
-              <ul class="space-y-2 pl-1.5 font-medium">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Smart Chargeable Area Logic:</strong> Automatically calculate billing areas based on your factory's specific rules (Exact mm, Standard Round-offs, or Even Inch calculations).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Automated Edge Polishing:</strong> Just select the finish (Clean Polish/CP, Bevel, Half-C, Rough Grind/RG, or Full-C) and Firstcut24 automatically calculates the linear running perimeter and applies the correct rates.</span>
-                </li>
-              </ul>
-            </div>
-          {/if}
-        </div>
+                <!-- Item 2 -->
+                <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
+                  <button
+                    type="button"
+                    onclick={() => toggleAccordion(2)}
+                    class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
+                  >
+                    <span class="text-base sm:text-lg font-bold text-slate-800">2. Error-Free Area & Polish Calculations</span>
+                    <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 2 ? 'rotate-180 text-blue-600' : ''}" />
+                  </button>
+                  {#if openAccordion === 2}
+                    <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
+                      <p>Eliminate human error from your sales team's calculators.</p>
+                      <ul class="space-y-2 pl-1.5 font-medium">
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Smart Chargeable Area Logic:</strong> Automatically calculate billing areas based on your factory's specific rules (Exact mm, Standard Round-offs, or Even Inch calculations).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Automated Edge Polishing:</strong> Just select the finish (Clean Polish/CP, Bevel, Half-C, Rough Grind/RG, or Full-C) and Firstcut24 automatically calculates the linear running perimeter and applies the correct rates.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {/if}
+                </div>
 
-        <!-- Item 3 -->
-        <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
-          <button 
-            type="button"
-            onclick={() => toggleAccordion(3)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
-          >
-            <span class="text-base sm:text-lg font-bold text-slate-800">3. Built-In Logistics & Jumbo Detection</span>
-            <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 3 ? 'rotate-180 text-blue-600' : ''}" />
-          </button>
-          {#if openAccordion === 3}
-            <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
-              <p>Never undercharge for heavy transport or oversized handling again.</p>
-              <ul class="space-y-2 pl-1.5 font-medium">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Instant Transport Weight:</strong> Once you enter the glass sizes and thickness, Firstcut24 instantly calculates the total combined weight of the entire order. No more guessing for transport capacity!</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Jumbo Glass Auto-Detection:</strong> The system automatically highlights rows if the entered glass dimensions qualify as "Jumbo" size, ensuring your team never forgets to apply oversized handling premiums.</span>
-                </li>
-              </ul>
-            </div>
-          {/if}
-        </div>
+                <!-- Item 3 -->
+                <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
+                  <button
+                    type="button"
+                    onclick={() => toggleAccordion(3)}
+                    class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
+                  >
+                    <span class="text-base sm:text-lg font-bold text-slate-800">3. Built-In Logistics & Jumbo Detection</span>
+                    <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 3 ? 'rotate-180 text-blue-600' : ''}" />
+                  </button>
+                  {#if openAccordion === 3}
+                    <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
+                      <p>Never undercharge for heavy transport or oversized handling again.</p>
+                      <ul class="space-y-2 pl-1.5 font-medium">
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Instant Transport Weight:</strong> Once you enter the glass sizes and thickness, Firstcut24 instantly calculates the total combined weight of the entire order. No more guessing for transport capacity!</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Jumbo Glass Auto-Detection:</strong> The system automatically highlights rows if the entered glass dimensions qualify as "Jumbo" size, ensuring your team never forgets to apply oversized handling premiums.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {/if}
+                </div>
 
-        <!-- Item 4 -->
-        <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
-          <button 
-            type="button"
-            onclick={() => toggleAccordion(4)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
-          >
-            <span class="text-base sm:text-lg font-bold text-slate-800">4. Unified Project Quoting (Beyond Just Glass)</span>
-            <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 4 ? 'rotate-180 text-blue-600' : ''}" />
-          </button>
-          {#if openAccordion === 4}
-            <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
-              <p>Don't send multiple quotes for one project. Build comprehensive, multipurpose estimates.</p>
-              <ul class="space-y-2 pl-1.5 font-medium">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Project-Based Quoting:</strong> Group items logically by project or room.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Hardware & Aluminum Ready:</strong> Add hardware fittings, aluminum profiles, and accessories into the exact same quote alongside your glass items.</span>
-                </li>
-              </ul>
-            </div>
-          {/if}
-        </div>
+                <!-- Item 4 -->
+                <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
+                  <button
+                    type="button"
+                    onclick={() => toggleAccordion(4)}
+                    class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
+                  >
+                    <span class="text-base sm:text-lg font-bold text-slate-800">4. Unified Project Quoting (Beyond Just Glass)</span>
+                    <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 4 ? 'rotate-180 text-blue-600' : ''}" />
+                  </button>
+                  {#if openAccordion === 4}
+                    <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
+                      <p>Don't send multiple quotes for one project. Build comprehensive, multipurpose estimates.</p>
+                      <ul class="space-y-2 pl-1.5 font-medium">
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Project-Based Quoting:</strong> Group items logically by project or room.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Hardware & Aluminum Ready:</strong> Add hardware fittings, aluminum profiles, and accessories into the exact same quote alongside your glass items.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {/if}
+                </div>
 
-        <!-- Item 5 -->
-        <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
-          <button 
-            type="button"
-            onclick={() => toggleAccordion(5)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
-          >
-            <span class="text-base sm:text-lg font-bold text-slate-800">5. Seamless Add-Ons & Service Charges</span>
-            <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 5 ? 'rotate-180 text-blue-600' : ''}" />
-          </button>
-          {#if openAccordion === 5}
-            <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
-              <p>Your quotes need to reflect the reality of your hard work.</p>
-              <ul class="space-y-2 pl-1.5 font-medium">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Instant Surcharges:</strong> Easily append extra line items for Fabrication, Designing, Handling, Transport, and Admin charges with just a few clicks. Firstcut24 tallies it all up perfectly.</span>
-                </li>
-              </ul>
-            </div>
-          {/if}
-        </div>
+                <!-- Item 5 -->
+                <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
+                  <button
+                    type="button"
+                    onclick={() => toggleAccordion(5)}
+                    class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
+                  >
+                    <span class="text-base sm:text-lg font-bold text-slate-800">5. Seamless Add-Ons & Service Charges</span>
+                    <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 5 ? 'rotate-180 text-blue-600' : ''}" />
+                  </button>
+                  {#if openAccordion === 5}
+                    <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
+                      <p>Your quotes need to reflect the reality of your hard work.</p>
+                      <ul class="space-y-2 pl-1.5 font-medium">
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Instant Surcharges:</strong> Easily append extra line items for Fabrication, Designing, Handling, Transport, and Admin charges with just a few clicks. Firstcut24 tallies it all up perfectly.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {/if}
+                </div>
 
-        <!-- Item 6 -->
-        <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
-          <button 
-            type="button"
-            onclick={() => toggleAccordion(6)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
-          >
-            <span class="text-base sm:text-lg font-bold text-slate-800">6. Smart Tax & 1-Click Invoicing</span>
-            <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 6 ? 'rotate-180 text-blue-600' : ''}" />
-          </button>
-          {#if openAccordion === 6}
-            <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
-              <p>Close the deal and bill the client without doing the math twice.</p>
-              <ul class="space-y-2 pl-1.5 font-medium">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Inclusive or Exclusive Tax:</strong> Toggle your entire quote to be Tax Inclusive or Tax Exclusive with a single button. Firstcut24 handles the reverse-math automatically.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">Auto-Tax Calculation:</strong> GST/Tax brackets are automatically applied based on the item categories (Glass vs. Hardware vs. Services).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-550 select-none mt-0.5">•</span>
-                  <span><strong class="text-slate-750">1-Click Quote-to-Invoice:</strong> Once a client confirms the project, convert the entire quotation into a final Tax Invoice with zero manual data entry. Hassle-free, error-free billing.</span>
-                </li>
-              </ul>
+                <!-- Item 6 -->
+                <div class="bg-white rounded-2xl border border-slate-205/80 shadow-xs overflow-hidden transition-all duration-200 hover:border-slate-350">
+                  <button
+                    type="button"
+                    onclick={() => toggleAccordion(6)}
+                    class="w-full px-6 py-5 flex items-center justify-between text-left font-sans cursor-pointer hover:bg-slate-50/50 transition-colors"
+                  >
+                    <span class="text-base sm:text-lg font-bold text-slate-800">6. Smart Tax & 1-Click Invoicing</span>
+                    <ChevronDown class="h-5 w-5 text-slate-400 transition-transform duration-250 {openAccordion === 6 ? 'rotate-180 text-blue-600' : ''}" />
+                  </button>
+                  {#if openAccordion === 6}
+                    <div transition:slide class="px-6 pb-6 pt-2 text-slate-500 text-sm leading-relaxed space-y-4 border-t border-slate-100/50">
+                      <p>Close the deal and bill the client without doing the math twice.</p>
+                      <ul class="space-y-2 pl-1.5 font-medium">
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Inclusive or Exclusive Tax:</strong> Toggle your entire quote to be Tax Inclusive or Tax Exclusive with a single button. Firstcut24 handles the reverse-math automatically.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">Auto-Tax Calculation:</strong> GST/Tax brackets are automatically applied based on the item categories (Glass vs. Hardware vs. Services).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-blue-550 select-none mt-0.5">•</span>
+                          <span><strong class="text-slate-750">1-Click Quote-to-Invoice:</strong> Once a client confirms the project, convert the entire quotation into a final Tax Invoice with zero manual data entry. Hassle-free, error-free billing.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {/if}
+                </div>
+              </div>
             </div>
-          {/if}
-        </div>
-      </div>
-    </div>       </div>
+          </div>
         </div>
 
       </div>
@@ -710,19 +710,3 @@
 </main>
 
 <Footer />
-
-<style>
-  .animate-fade-in {
-    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.97) translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-</style>

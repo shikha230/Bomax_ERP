@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { resolve } from '$app/paths';
 	import {
 		Shield, Lock, Globe, Calendar, MapPin, FileText, Landmark,
-		User, CheckCircle2, Mail, Clock, Pencil, Ban, Monitor,
-		AlertTriangle, Scale, Server, RefreshCw, Gavel, UserPlus, Sliders, Tag, Bell,
-		Users, CreditCard, Eye, BookOpen, Zap, Database, Hash, Wifi, Archive, ChevronRight,
+		CheckCircle2, Mail, Clock, Ban, Monitor,
+		AlertTriangle, Scale, Server, RefreshCw, UserPlus, Sliders, Tag, Bell,
+		Users, BookOpen, Database, Hash, Wifi, Archive, ChevronRight,
 		AlertCircle
 	} from 'lucide-svelte';
 	import Header from '$lib/components/layout/Header.svelte';
@@ -22,6 +23,15 @@
 		{ id: 'availability', num: 6, label: '6 \u00A0 Service & Backups', shortLabel: 'Availability' },
 		{ id: 'liability', num: 7, label: '7 \u00A0 Limitation of Liability', shortLabel: 'Liability' },
 		{ id: 'governing-law', num: 8, label: '8 \u00A0 Governing Law', shortLabel: 'Governing Law' }
+	];
+
+	const summaryTags = ['Service', 'Accounts', 'Pricing', 'Data', 'Usage', 'Backups', 'Liability', 'Law'];
+
+	const prohibitedActivities = [
+		'Upload or process illegal, fraudulent, or malicious data.',
+		'Attempt to hack, reverse-engineer, decompile, or disrupt the integrity of the Service, its servers, or its security protocols.',
+		'Use the system to transmit malware, viruses, or harmful code.',
+		'Exceed reasonable usage limits or launch denial-of-service attacks that could impact the performance of the system for other users.'
 	];
 
 	const activeIndex = $derived(sectionsList.findIndex(s => s.id === activeSection));
@@ -76,7 +86,7 @@
 		<div class="absolute inset-0 bg-[#061026]/90 z-0 bg-grid"></div>
 		<div class="absolute top-1/4 left-10 md:left-20 w-72 h-72 rounded-full bg-[#06b6d4]/10 blur-[90px] pointer-events-none"></div>
 		<div class="absolute bottom-1/4 right-10 md:right-28 w-80 h-80 rounded-full bg-[#3b82f6]/15 blur-[110px] pointer-events-none"></div>
-		
+
 		<div class="absolute left-6 lg:left-16 top-1/2 -translate-y-1/2 text-white/[0.015] pointer-events-none select-none hidden md:block">
 			<svg class="h-64 w-64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -122,9 +132,8 @@
 				</div>
 
 				<div class="lg:col-span-5 flex justify-center lg:justify-end pr-4">
-					<div 
-						class="w-full max-w-[380px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.02]"
-						style="transform: perspective(1200px) rotateX(4deg) rotateY(-12deg) rotateZ(-1deg); transform-style: preserve-3d; box-shadow: -25px 25px 50px rgba(0, 0, 0, 0.6), 0px 0px 25px rgba(59, 130, 246, 0.15);"
+					<div
+						class="w-full max-w-[380px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl transition-all duration-500"
 					>
 						<div class="bg-gradient-to-r from-blue-900/60 to-violet-900/60 backdrop-blur-md px-6 py-5 border-b border-white/[0.06] flex items-center gap-3.5">
 							<div class="bg-white/10 text-white p-2.5 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
@@ -190,7 +199,7 @@
 
 						<div class="px-6 pb-6">
 							<div class="grid grid-cols-4 gap-1.5">
-								{#each ['Service', 'Accounts', 'Pricing', 'Data', 'Usage', 'Backups', 'Liability', 'Law'] as tag}
+								{#each summaryTags as tag (tag)}
 									<div class="bg-white/[0.04] border border-white/[0.06] rounded-lg py-1.5 text-center text-[9px] text-slate-300 font-bold hover:bg-white/[0.08] transition-colors cursor-default">{tag}</div>
 								{/each}
 							</div>
@@ -205,7 +214,7 @@
 	<section class="border-b border-slate-200 bg-white sticky top-20 z-30 shadow-sm">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<nav class="flex items-center gap-0 overflow-x-auto scrollbar-hide -mb-px" id="terms-tabs">
-				{#each sectionsList as sec}
+				{#each sectionsList as sec (sec.id)}
 					<button
 						class="flex items-center gap-1.5 px-4 py-4 text-xs font-bold whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 {activeTab === sec.id ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-200'}"
 						onclick={() => scrollToSection(sec.id)}
@@ -235,28 +244,6 @@
 					the Service.
 				</p>
 			</div>
-
-			<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end w-full lg:w-auto mt-2">
-				<div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center gap-3.5 w-full sm:max-w-xs shadow-sm">
-					<div class="bg-blue-50 text-blue-650 p-2 rounded-xl flex items-center justify-center shrink-0 border border-blue-100">
-						<FileText class="h-4.5 w-4.5" />
-					</div>
-					<div>
-						<div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Document Version</div>
-						<div class="text-xs font-bold text-slate-800 mt-0.5">v1.4 — June 2025</div>
-					</div>
-				</div>
-
-				<div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center gap-3.5 w-full sm:max-w-xs shadow-sm">
-					<div class="bg-amber-50 text-amber-600 p-2 rounded-xl flex items-center justify-center shrink-0 border border-amber-100">
-						<Landmark class="h-4.5 w-4.5" />
-					</div>
-					<div>
-						<div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Jurisdiction</div>
-						<div class="text-xs font-bold text-slate-800 mt-0.5">New Delhi, India</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</section>
 
@@ -278,7 +265,7 @@
 					</div>
 
 					<nav class="p-3 space-y-0.5">
-						{#each sectionsList as sec}
+						{#each sectionsList as sec (sec.id)}
 							<button
 								class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-205 flex items-center justify-between {activeSection === sec.id ? 'bg-blue-50/70 text-blue-600 font-extrabold border-l-2 border-l-blue-600' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-850'}"
 								onclick={() => scrollToSection(sec.id)}
@@ -293,13 +280,13 @@
 						<p class="text-[11px] text-slate-550 font-semibold leading-relaxed">
 							Questions about these Terms? Our legal team is here to help.
 						</p>
-						<a
-							href="/contact"
-							class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/10 cursor-pointer"
+						<button
+							type="button"
+							class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2.5 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/10 cursor-pointer"
 						>
 							<Mail class="h-3.5 w-3.5" />
-							Contact Legal Team
-						</a>
+							Contact Us
+						</button>
 					</div>
 				</div>
 			</div>
@@ -516,14 +503,9 @@
 					</div>
 					<div class="p-6 space-y-4">
 						<p class="text-slate-600 text-xs font-bold">You agree not to use firstcut24.com to:</p>
-						
+
 						<div class="space-y-2">
-							{#each [
-								'Upload or process illegal, fraudulent, or malicious data.',
-								'Attempt to hack, reverse-engineer, decompile, or disrupt the integrity of the Service, its servers, or its security protocols.',
-								'Use the system to transmit malware, viruses, or harmful code.',
-								'Exceed reasonable usage limits or launch denial-of-service attacks that could impact the performance of the system for other users.'
-							] as illegal}
+							{#each prohibitedActivities as illegal (illegal)}
 								<div class="bg-rose-50/40 border border-rose-150 p-3.5 rounded-xl flex items-center gap-3 text-rose-950 font-semibold text-[11px] md:text-xs">
 									<Ban class="h-4 w-4 text-rose-600 shrink-0" />
 									{illegal}
@@ -650,7 +632,6 @@
 					</div>
 				</div>
 
-				<!-- Call to Action Banner (BLUE GRADIENT STAYS AS IS FOR PREMIUM LOOK) -->
 				<!-- Call to Action Banner (MATCHING SCREENSHOT) -->
 				<div class="relative overflow-hidden bg-gradient-to-r from-[#593cfb] via-[#6366f1] to-[#3b82f6] p-8 md:p-12 rounded-[2rem] shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
 					<!-- Glow circles -->
@@ -666,19 +647,13 @@
 							Our legal and compliance experts are available to clarify any clauses and help your team feel confident about using firstcut24.com.
 						</p>
 					</div>
-					
+
 					<div class="relative z-10 flex flex-wrap items-center gap-4 shrink-0 w-full lg:w-auto mt-4 lg:mt-0 justify-start lg:justify-end">
 						<a
-							href="/privacy"
+							href={resolve('/privacy')}
 							class="text-center rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-4 text-xs font-bold text-white transition-all backdrop-blur-sm w-full sm:w-auto"
 						>
 							Read Privacy Policy
-						</a>
-						<a
-							href="/contact"
-							class="text-center rounded-2xl bg-white hover:bg-slate-50 px-6 py-4 text-xs font-bold text-indigo-700 hover:text-indigo-800 shadow-lg transition-all w-full sm:w-auto cursor-pointer"
-						>
-							Contact Legal Team
 						</a>
 					</div>
 				</div>
@@ -696,7 +671,7 @@
 	}
 	.bg-grid {
 		background-size: 32px 32px;
-		background-image: 
+		background-image:
 			linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
 			linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
 	}

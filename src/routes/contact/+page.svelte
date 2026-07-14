@@ -5,7 +5,7 @@
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
-	import { Sparkles, Phone, Mail, MapPin, Clock, MessageSquare, Send, CheckCircle2 } from 'lucide-svelte';
+	import { Phone, Mail, MapPin, Clock, MessageSquare, Send, CheckCircle2 } from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);

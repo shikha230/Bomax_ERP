@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths';
   import { Layers, Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft } from 'lucide-svelte';
 
   let email = $state('');
@@ -24,89 +25,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="auth-page">
+<div class="relative min-h-screen flex items-center justify-center overflow-hidden font-['Inter',system-ui,-apple-system,sans-serif]">
   <!-- Animated Background -->
-  <div class="auth-bg">
-    <div class="auth-bg-gradient"></div>
-    <div class="auth-bg-pattern"></div>
-    <div class="floating-orb orb-1"></div>
-    <div class="floating-orb orb-2"></div>
-    <div class="floating-orb orb-3"></div>
+  <div class="fixed inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[length:32px_32px]"></div>
+    <div class="absolute -top-[10%] -left-[5%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,#3b82f6,transparent)] blur-[80px] opacity-40 animate-pulse"></div>
+    <div class="absolute -bottom-[10%] -right-[5%] w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,#06b6d4,transparent)] blur-[80px] opacity-40 animate-pulse [animation-delay:-3.5s]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,#8b5cf6,transparent)] blur-[80px] opacity-20 animate-pulse [animation-delay:-7s]"></div>
   </div>
 
-  <div class="auth-container">
+  <div class="relative z-10 flex w-full max-w-[1100px] min-h-[640px] m-6 rounded-3xl overflow-hidden ring-1 ring-white/[0.08] shadow-[0_25px_60px_-12px_rgba(0,0,0,0.5),0_0_40px_rgba(59,130,246,0.08)] max-[640px]:m-0 max-[640px]:rounded-none max-[640px]:min-h-screen">
     <!-- Left Branding Panel (desktop only) -->
-    <div class="auth-branding">
-      <div class="branding-content">
-        <a href="/" class="brand-logo">
-          <div class="logo-icon">
+    <div class="hidden lg:flex w-[45%] flex-col justify-between p-12 bg-gradient-to-br from-[#1e3a5f] via-[#1a2e4a] to-[#162340] relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(59,130,246,0.15)_0%,transparent_60%),radial-gradient(ellipse_at_80%_20%,rgba(6,182,212,0.1)_0%,transparent_50%)]"></div>
+
+      <div class="relative z-10">
+        <a href={resolve('/')} class="flex items-center gap-3 no-underline mb-12">
+          <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-[0_4px_16px_rgba(59,130,246,0.3)]">
             <Layers class="h-7 w-7 text-white" />
-            <div class="logo-pulse"></div>
+            <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-400 border-2 border-[#1a2e4a] animate-pulse"></div>
           </div>
-          <span class="logo-text">
-            Bomax <span class="logo-highlight">ERP</span>
+          <span class="text-[1.375rem] font-extrabold tracking-tight text-white">
+            Bomax <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">ERP</span>
           </span>
         </a>
 
-        <div class="branding-hero">
-          <h1 class="branding-title">
-            Streamline Your <span class="text-gradient">Business Operations</span>
+        <div>
+          <h1 class="text-[2rem] font-extrabold leading-tight text-white tracking-tight mb-4">
+            Streamline Your <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">Business Operations</span>
           </h1>
-          <p class="branding-subtitle">
+          <p class="text-[0.9375rem] leading-relaxed text-slate-400 mb-10">
             One platform to manage inventory, sales, accounting, and more. Join thousands of businesses already growing with Bomax ERP.
           </p>
         </div>
 
-        <div class="branding-features">
-          <div class="feature-item">
-            <div class="feature-dot"></div>
+        <div class="flex flex-col gap-3.5">
+          <div class="flex items-center gap-3 text-sm text-slate-300">
+            <div class="w-2 h-2 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 shrink-0"></div>
             <span>Real-time inventory tracking</span>
           </div>
-          <div class="feature-item">
-            <div class="feature-dot"></div>
+          <div class="flex items-center gap-3 text-sm text-slate-300">
+            <div class="w-2 h-2 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 shrink-0"></div>
             <span>Automated financial reporting</span>
           </div>
-          <div class="feature-item">
-            <div class="feature-dot"></div>
+          <div class="flex items-center gap-3 text-sm text-slate-300">
+            <div class="w-2 h-2 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 shrink-0"></div>
             <span>Multi-branch management</span>
           </div>
         </div>
       </div>
 
-      <div class="branding-footer">
-        <p>© 2026 Bomax ERP. All rights reserved.</p>
+      <div class="relative z-10">
+        <p class="text-[0.8125rem] text-slate-500">© 2026 Bomax ERP. All rights reserved.</p>
       </div>
     </div>
 
     <!-- Right Form Panel -->
-    <div class="auth-form-panel">
-      <div class="form-wrapper">
+    <div class="flex-1 flex items-center justify-center px-8 py-10 bg-slate-900/85 backdrop-blur-2xl max-[640px]:px-6 max-[640px]:py-8">
+      <div class="w-full max-w-[420px]">
         <!-- Back to Home -->
-        <a href="/" class="back-home-link">
-          <ArrowLeft class="h-4 w-4 back-arrow" />
+        <a href={resolve('/')} class="group inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-slate-500 hover:text-blue-400 no-underline transition-colors mb-6">
+          <ArrowLeft class="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           <span>Back to Home</span>
         </a>
         <!-- Mobile Logo -->
-        <a href="/" class="mobile-logo">
-          <div class="logo-icon-sm">
+        <a href={resolve('/')} class="flex lg:hidden items-center gap-2.5 no-underline mb-8 justify-center">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-[0_4px_12px_rgba(59,130,246,0.25)]">
             <Layers class="h-5 w-5 text-white" />
           </div>
-          <span class="logo-text-sm">
-            Bomax <span class="logo-highlight">ERP</span>
+          <span class="text-xl font-extrabold tracking-tight text-white">
+            Bomax <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">ERP</span>
           </span>
         </a>
 
-        <div class="form-header">
-          <h2 class="form-title">Welcome back</h2>
-          <p class="form-subtitle">Sign in to your account to continue</p>
+        <div class="text-center lg:text-left mb-8">
+          <h2 class="text-[1.75rem] font-extrabold text-slate-100 tracking-tight mb-2">Welcome back</h2>
+          <p class="text-[0.9375rem] text-slate-500">Sign in to your account to continue</p>
         </div>
 
-        <form class="auth-form" onsubmit={handleLogin}>
+        <form class="flex flex-col gap-5" onsubmit={handleLogin}>
           <!-- Email Field -->
-          <div class="form-group">
-            <label for="login-email" class="form-label">Email address</label>
-            <div class="input-wrapper">
-              <Mail class="input-icon" />
+          <div class="flex flex-col gap-2">
+            <label for="login-email" class="text-[0.8125rem] font-semibold text-slate-400 tracking-wide">Email address</label>
+            <div class="group relative flex items-center">
+              <Mail class="absolute left-4 w-[18px] h-[18px] text-slate-600 pointer-events-none transition-colors group-focus-within:text-blue-400" />
               <input
                 id="login-email"
                 type="email"
@@ -114,19 +117,19 @@
                 placeholder="you@company.com"
                 required
                 autocomplete="email"
-                class="form-input"
+                class="w-full py-3.5 pr-4 pl-11 text-[0.9375rem] text-slate-200 bg-slate-800/60 border border-slate-700/50 rounded-2xl outline-none transition-all placeholder:text-slate-600 hover:border-blue-500/30 hover:bg-slate-800/80 focus:border-blue-500 focus:bg-slate-800/90 focus:ring-4 focus:ring-blue-500/15"
               />
             </div>
           </div>
 
           <!-- Password Field -->
-          <div class="form-group">
-            <div class="label-row">
-              <label for="login-password" class="form-label">Password</label>
-              <a href="/login" class="forgot-link">Forgot password?</a>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <label for="login-password" class="text-[0.8125rem] font-semibold text-slate-400 tracking-wide">Password</label>
+              <a href={resolve('/login')} class="text-[0.8125rem] font-medium text-blue-400 hover:text-blue-300 no-underline transition-colors">Forgot password?</a>
             </div>
-            <div class="input-wrapper">
-              <Lock class="input-icon" />
+            <div class="group relative flex items-center">
+              <Lock class="absolute left-4 w-[18px] h-[18px] text-slate-600 pointer-events-none transition-colors group-focus-within:text-blue-400" />
               <input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
@@ -134,11 +137,11 @@
                 placeholder="Enter your password"
                 required
                 autocomplete="current-password"
-                class="form-input has-toggle"
+                class="w-full py-3.5 pr-12 pl-11 text-[0.9375rem] text-slate-200 bg-slate-800/60 border border-slate-700/50 rounded-2xl outline-none transition-all placeholder:text-slate-600 hover:border-blue-500/30 hover:bg-slate-800/80 focus:border-blue-500 focus:bg-slate-800/90 focus:ring-4 focus:ring-blue-500/15"
               />
               <button
                 type="button"
-                class="toggle-password"
+                class="absolute right-3.5 flex items-center justify-center p-1 text-slate-600 hover:text-slate-400 bg-transparent border-none cursor-pointer rounded-md transition-colors"
                 onclick={() => showPassword = !showPassword}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
@@ -154,31 +157,33 @@
           <!-- Submit Button -->
           <button
             type="submit"
-            class="submit-btn"
+            class="group relative flex items-center justify-center gap-2 w-full py-3.5 mt-2 text-[0.9375rem] font-semibold text-white bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl cursor-pointer overflow-hidden transition-all shadow-[0_4px_16px_rgba(59,130,246,0.25)] hover:from-blue-600 hover:to-blue-700 hover:shadow-[0_8px_24px_rgba(59,130,246,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[0_2px_8px_rgba(59,130,246,0.2)] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             disabled={isLoading}
           >
             {#if isLoading}
-              <div class="spinner"></div>
+              <div class="w-[18px] h-[18px] border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
               <span>Signing in...</span>
             {:else}
               <span>Sign In</span>
-              <ArrowRight class="h-4.5 w-4.5 btn-arrow" />
+              <ArrowRight class="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
             {/if}
           </button>
         </form>
 
         <!-- Divider -->
-        <div class="auth-divider">
-          <span>or</span>
+        <div class="flex items-center gap-4 my-7">
+          <div class="flex-1 h-px bg-gradient-to-r from-transparent via-slate-700/50 to-transparent"></div>
+          <span class="text-[0.8125rem] text-slate-600 font-medium">or</span>
+          <div class="flex-1 h-px bg-gradient-to-r from-transparent via-slate-700/50 to-transparent"></div>
         </div>
 
         <!-- Create Account Link -->
-        <div class="create-account">
-          <p>
+        <div class="text-center">
+          <p class="text-[0.9375rem] text-slate-500">
             Don't have an account?
-            <a href="/register" class="create-link">
+            <a href={resolve('/register')} class="group inline-flex items-center gap-1 font-semibold text-blue-400 hover:text-blue-300 no-underline transition-colors ml-1">
               Create Account
-              <ArrowRight class="h-4 w-4 inline-arrow" />
+              <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
           </p>
         </div>
@@ -186,582 +191,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  /* ========== GLOBAL AUTH STYLES ========== */
-  :global(body) {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-
-  .auth-page {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  /* ========== ANIMATED BACKGROUND ========== */
-  .auth-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .auth-bg-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
-  }
-
-  .auth-bg-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  .floating-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
-    animation: float 20s ease-in-out infinite;
-  }
-
-  .orb-1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #3b82f6, transparent);
-    top: -10%;
-    left: -5%;
-    animation-delay: 0s;
-  }
-
-  .orb-2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, #06b6d4, transparent);
-    bottom: -10%;
-    right: -5%;
-    animation-delay: -7s;
-  }
-
-  .orb-3 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, #8b5cf6, transparent);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-delay: -14s;
-    opacity: 0.2;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(30px, -40px) scale(1.05); }
-    50% { transform: translate(-20px, 20px) scale(0.95); }
-    75% { transform: translate(15px, 30px) scale(1.02); }
-  }
-
-  /* ========== CONTAINER ========== */
-  .auth-container {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    width: 100%;
-    max-width: 1100px;
-    min-height: 640px;
-    margin: 1.5rem;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.08),
-      0 25px 60px -12px rgba(0, 0, 0, 0.5),
-      0 0 40px rgba(59, 130, 246, 0.08);
-  }
-
-  /* ========== BRANDING PANEL ========== */
-  .auth-branding {
-    display: none;
-    width: 45%;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 3rem;
-    background: linear-gradient(160deg, #1e3a5f 0%, #1a2e4a 50%, #162340 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .auth-branding::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
-  }
-
-  .branding-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    margin-bottom: 3rem;
-  }
-
-  .logo-icon {
-    position: relative;
-    display: flex;
-    height: 2.75rem;
-    width: 2.75rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.875rem;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
-  }
-
-  .logo-pulse {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: #22d3ee;
-    border: 2px solid #1a2e4a;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.1); }
-  }
-
-  .logo-text {
-    font-size: 1.375rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: white;
-  }
-
-  .logo-highlight {
-    background: linear-gradient(135deg, #60a5fa, #22d3ee);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .branding-title {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    color: white;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-  }
-
-  .text-gradient {
-    background: linear-gradient(135deg, #60a5fa, #22d3ee);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .branding-subtitle {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: #94a3b8;
-    margin-bottom: 2.5rem;
-  }
-
-  .branding-features {
-    display: flex;
-    flex-direction: column;
-    gap: 0.875rem;
-  }
-
-  .feature-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    color: #cbd5e1;
-  }
-
-  .feature-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6, #22d3ee);
-    flex-shrink: 0;
-  }
-
-  .branding-footer {
-    position: relative;
-    z-index: 1;
-  }
-
-  .branding-footer p {
-    font-size: 0.8125rem;
-    color: #64748b;
-  }
-
-  /* ========== FORM PANEL ========== */
-  .auth-form-panel {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem 2rem;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-  }
-
-  .form-wrapper {
-    width: 100%;
-    max-width: 420px;
-  }
-
-  /* Mobile Logo */
-  .mobile-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    text-decoration: none;
-    margin-bottom: 2rem;
-    justify-content: center;
-  }
-
-  .logo-icon-sm {
-    display: flex;
-    height: 2.25rem;
-    width: 2.25rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-  }
-
-  .logo-text-sm {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: white;
-  }
-
-  /* Form Header */
-  .form-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .form-title {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: #f1f5f9;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-subtitle {
-    font-size: 0.9375rem;
-    color: #64748b;
-  }
-
-  /* Form */
-  .auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .form-label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: #94a3b8;
-    letter-spacing: 0.01em;
-  }
-
-  .label-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .forgot-link {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: #60a5fa;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .forgot-link:hover {
-    color: #93c5fd;
-  }
-
-  .input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .input-wrapper :global(.input-icon) {
-    position: absolute;
-    left: 1rem;
-    width: 18px;
-    height: 18px;
-    color: #475569;
-    pointer-events: none;
-    transition: color 0.2s;
-  }
-
-  .form-input {
-    width: 100%;
-    padding: 0.8125rem 1rem 0.8125rem 2.75rem;
-    font-size: 0.9375rem;
-    color: #e2e8f0;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(51, 65, 85, 0.5);
-    border-radius: 0.875rem;
-    outline: none;
-    transition: all 0.25s ease;
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-
-  .form-input::placeholder {
-    color: #475569;
-  }
-
-  .form-input:hover {
-    border-color: rgba(59, 130, 246, 0.3);
-    background: rgba(30, 41, 59, 0.8);
-  }
-
-  .form-input:focus {
-    border-color: #3b82f6;
-    background: rgba(30, 41, 59, 0.9);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.08);
-  }
-
-  .form-input:focus ~ :global(.input-icon),
-  .form-input:focus + :global(.input-icon) {
-    color: #60a5fa;
-  }
-
-  .input-wrapper:focus-within :global(.input-icon) {
-    color: #60a5fa;
-  }
-
-  .form-input.has-toggle {
-    padding-right: 3rem;
-  }
-
-  .toggle-password {
-    position: absolute;
-    right: 0.875rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    color: #475569;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s;
-    border-radius: 0.375rem;
-  }
-
-  .toggle-password:hover {
-    color: #94a3b8;
-  }
-
-  /* Submit Button */
-  .submit-btn {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.875rem;
-    margin-top: 0.5rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    border: none;
-    border-radius: 0.875rem;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    font-family: 'Inter', system-ui, sans-serif;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
-  }
-
-  .submit-btn:hover:not(:disabled) {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
-    transform: translateY(-1px);
-  }
-
-  .submit-btn:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  .submit-btn :global(.btn-arrow) {
-    transition: transform 0.3s ease;
-  }
-
-  .submit-btn:hover:not(:disabled) :global(.btn-arrow) {
-    transform: translateX(3px);
-  }
-
-  /* Spinner */
-  .spinner {
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* Divider */
-  .auth-divider {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 1.75rem 0;
-  }
-
-  .auth-divider::before,
-  .auth-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(51, 65, 85, 0.5), transparent);
-  }
-
-  .auth-divider span {
-    font-size: 0.8125rem;
-    color: #475569;
-    font-weight: 500;
-  }
-
-  /* Create Account */
-  .create-account {
-    text-align: center;
-  }
-
-  .create-account p {
-    font-size: 0.9375rem;
-    color: #64748b;
-  }
-
-  .create-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-weight: 600;
-    color: #60a5fa;
-    text-decoration: none;
-    transition: all 0.2s;
-    margin-left: 0.25rem;
-  }
-
-  .create-link:hover {
-    color: #93c5fd;
-  }
-
-  .create-link :global(.inline-arrow) {
-    transition: transform 0.2s;
-  }
-
-  .create-link:hover :global(.inline-arrow) {
-    transform: translateX(3px);
-  }
-
-  /* Back to Home */
-  .back-home-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: #64748b;
-    text-decoration: none;
-    transition: all 0.2s;
-    margin-bottom: 1.5rem;
-  }
-
-  .back-home-link:hover {
-    color: #60a5fa;
-  }
-
-  .back-home-link :global(.back-arrow) {
-    transition: transform 0.2s;
-  }
-
-  .back-home-link:hover :global(.back-arrow) {
-    transform: translateX(-3px);
-  }
-
-  /* ========== RESPONSIVE ========== */
-  @media (min-width: 1024px) {
-    .auth-branding {
-      display: flex;
-    }
-
-    .mobile-logo {
-      display: none;
-    }
-
-    .form-header {
-      text-align: left;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .auth-container {
-      margin: 0;
-      border-radius: 0;
-      min-height: 100vh;
-    }
-
-    .auth-form-panel {
-      padding: 2rem 1.5rem;
-    }
-
-    .form-title {
-      font-size: 1.5rem;
-    }
-  }
-</style>

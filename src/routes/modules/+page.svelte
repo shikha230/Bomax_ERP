@@ -3,11 +3,10 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import ModuleExplorer from '$lib/components/features/ModuleExplorer.svelte';
 	import ModulesTabs from '$lib/components/sections/ModulesTabs.svelte';
-	import CTASection from '$lib/components/features/CTASection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
-	import { Sparkles, ArrowRight, Grid, Shield, Zap, Layers } from 'lucide-svelte';
+	import { Grid, Shield, Zap } from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
@@ -30,17 +29,13 @@
 	</div>
 
 	<!-- Hero Banner -->
-	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-12 lg:pt-24 lg:pb-16 text-center">
-		<div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/50 text-blue-600 shadow-sm mb-6 animate-fade-in">
-			<Sparkles class="h-3.5 w-3.5" />
-			<span class="text-xs font-bold tracking-wide">Enterprise Suite</span>
-		</div>
-		
+	<div class="mx-auto max-w-7xl py-10 sm:py-8 lg:py-8 text-center">
+
 		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight mb-6 max-w-4xl mx-auto">
 			Integrated Modules Built for <br class="hidden sm:inline" />
 			<span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">Glass Fabrication ERP</span>
 		</h1>
-		
+
 		<p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
 			Connect every department of your glass enterprise. From quoting with templates and optimizing glass yield, to job card dispatching and payroll management.
 		</p>
@@ -67,11 +62,6 @@
 
 	<!-- Additional Overview Tabs -->
 	<ModulesTabs />
-
-	<CTASection
-		onBookDemo={() => (isDemoModalOpen = true)}
-		onContactSales={() => (isContactModalOpen = true)}
-	/>
 </main>
 
 <DemoModal
@@ -85,19 +75,3 @@
 />
 
 <Footer />
-
-<style>
-	.animate-fade-in {
-		animation: fadeIn 0.8s ease-out forwards;
-	}
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-</style>

@@ -270,7 +270,7 @@
 	<section class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
 		<div class="mx-auto max-w-4xl text-center">
 			<h2 class="text-4xl font-bold text-slate-900 md:text-5xl">
-				Here is How Our
+				Here Is How Our
 				<span class="bg-linear-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent">Journey Unfolded</span>
 			</h2>
 		</div>
@@ -379,17 +379,18 @@
 	</section>
 
 	<!-- Our Mission -->
+	<!-- Our Mission -->
 	<section class="py-14">
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="relative overflow-hidden rounded-3xl bg-linear-to-r from-cyan-500 to-blue-600 p-10 text-white md:p-16">
-				<div class="pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full bg-white/10 blur-3xl"></div>
-				<div class="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-white/10 blur-3xl"></div>
+		<div class="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center">
+			<div class="group relative overflow-hidden rounded-3xl bg-linear-to-r from-cyan-500 to-blue-600 p-10 text-white md:p-16 max-w-5xl text-center transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/30">
+				<div class="pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full bg-white/10 blur-3xl transition-transform duration-500 group-hover:scale-125"></div>
+				<div class="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-white/10 blur-3xl transition-transform duration-500 group-hover:scale-125"></div>
 
 				<h2 class="relative text-4xl font-bold">
 					Our Mission
 				</h2>
 
-				<p class="relative mt-5 max-w-3xl text-lg text-blue-50">
+				<p class="relative mt-5 text-lg text-blue-50 mx-auto">
 					At Bomax, our mission is simple: to bring order, speed, and absolute precision to the
 					unorganized glass sector. We are here to empower your business with technology that
 					works exactly the way you need it to—simplifying your workflow from the very first

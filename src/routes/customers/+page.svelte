@@ -2,13 +2,12 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Testimonials from '$lib/components/sections/Testimonials.svelte';
-	import TrustedCompanies from '$lib/components/sections/TrustedCompanies.svelte';
 	import StatsSection from '$lib/components/sections/StatsSection.svelte';
 	import CTASection from '$lib/components/features/CTASection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
-	import { Sparkles, Star, Quote, ArrowRight, TrendingUp, Cpu, Award } from 'lucide-svelte';
+	import { Star, Quote, TrendingUp, Award } from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
@@ -60,7 +59,7 @@
 			<Award class="h-3.5 w-3.5" />
 			<span class="text-xs font-bold tracking-wide">Client Success</span>
 		</div>
-		
+
 		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight mb-5 max-w-4xl mx-auto">
 			Trusted by Over 500+ <br class="hidden sm:inline" />
 			<span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Glass Industry Leaders</span>
@@ -83,7 +82,7 @@
 		</div>
 
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-			{#each featuredStories as story}
+			{#each featuredStories as story (story.company)}
 				<div class="bg-white rounded-3xl border border-slate-200 shadow-xs flex flex-col justify-between p-8 md:p-10 relative overflow-hidden transition-all duration-300 hover:shadow-md hover:border-slate-300 group">
 					<!-- Color Accent Top -->
 					<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500"></div>
@@ -104,10 +103,10 @@
 						</div>
 
 						<h3 class="text-2xl font-black text-slate-950 font-heading mb-1">{story.company}</h3>
-						
+
 						<!-- Star rating -->
 						<div class="flex items-center gap-1 mb-6">
-							{#each stars as star}
+							{#each stars as star (star)}
 								<Star class="h-4 w-4 fill-amber-400 text-amber-400" />
 							{/each}
 						</div>
