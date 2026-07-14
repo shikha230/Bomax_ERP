@@ -5,7 +5,7 @@
   const productLinks = [
     { name: 'Features', href: '/features' },
     { name: 'Modules', href: '/modules' },
-    { name: 'Pricing', href: '/pricing' },
+    { name: 'Pricing', href: '#' },
     { name: 'Changelog', href: '#' },
     { name: 'Roadmap', href: '#' }
   ];
@@ -29,10 +29,17 @@
     { name: 'WhatsApp Chat', href: 'https://wa.me/919876543210' },
     { name: 'Book a Demo', href: '/contact' }
   ];
+
+  const socialIcons = [
+    { id: 'twitter', label: 'T' },
+    { id: 'linkedin', label: 'L' },
+    { id: 'instagram', label: 'I' },
+    { id: 'facebook', label: 'F' }
+  ];
 </script>
 
 <footer class="bg-[#061330] text-white mt-1">
-  <div class="mx-auto max-w-7xl px-6 py-6 sm:py-12 lg:py-16">
+  <div class="mx-auto max-w-7xl px-4 py-4 sm:py-8 lg:py-10">
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
       <!-- Logo Section -->
       <div class="lg:col-span-1">
@@ -51,9 +58,9 @@
         </p>
 
         <div class="mt-5 flex gap-3">
-          {#each ['T', 'L', 'I', 'F'] as icon}
+          {#each socialIcons as social (social.id)}
             <div class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md bg-slate-800 text-sm font-semibold text-slate-400 transition hover:bg-slate-700 hover:text-white">
-              {icon}
+              {social.label}
             </div>
           {/each}
         </div>
@@ -72,6 +79,7 @@
                   {item.name}
                 </span>
               {:else}
+                <!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -- resolve() is overloaded per-route; dynamic href needs a type-erased cast -->
                 <a href={resolve(item.href as any)} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
                   {item.name}
                 </a>
@@ -94,6 +102,7 @@
                   {item.name}
                 </span>
               {:else}
+                <!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -- resolve() is overloaded per-route; dynamic href needs a type-erased cast -->
                 <a href={resolve(item.href as any)} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
                   {item.name}
                 </a>
@@ -116,6 +125,7 @@
                   {item.name}
                 </span>
               {:else}
+                <!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -- resolve() is overloaded per-route; dynamic href needs a type-erased cast -->
                 <a href={resolve(item.href as any)} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
                   {item.name}
                 </a>
@@ -133,6 +143,7 @@
         <ul class="space-y-2">
           {#each contactLinks as item (item.name)}
             <li>
+              <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external tel/mailto/https links, not app routes -->
               <a href={item.href} class="block text-[15px] sm:text-base text-slate-400 transition hover:text-white">
                 {item.name}
               </a>
@@ -143,7 +154,7 @@
     </div>
 
     <!-- Bottom Section -->
-    <div class="mt-12 sm:mt-16 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-8 text-[15px] text-white md:flex-row">
+    <div class="mt-6 sm:mt-8 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-4 text-[15px] text-white md:flex-row">
       <p>
         © 2026 BomaxERP. All rights reserved.
       </p>
@@ -155,9 +166,9 @@
         <a href={resolve('/terms')} class="cursor-pointer hover:text-white">
           Terms of Service
         </a>
-        <span class="cursor-pointer hover:text-white font-sans">
-          Cookie Policy
-        </span>
+        <a href={resolve('/security')} class="cursor-pointer hover:text-white font-sans">
+          Security
+        </a>
       </div>
     </div>
   </div>

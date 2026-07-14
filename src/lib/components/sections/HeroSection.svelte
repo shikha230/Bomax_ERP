@@ -16,7 +16,7 @@
 	}
 </script>
 
-<section class="bg-[#E8F4FF] m-0 p-0 pt-6 sm:pt-8 lg:pt-10 overflow-hidden">
+<section class="bg-[#E8F4FF] m-0 p-0 py-0 sm:py-0 lg:py-0 overflow-hidden">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-8 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:flex-row lg:items-start lg:gap-10 lg:pb-24"
 	>

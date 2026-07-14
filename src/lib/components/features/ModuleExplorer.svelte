@@ -789,10 +789,10 @@
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center mb-14 sm:mb-16 lg:mb-20">
+    <div class="text-center mb-14 sm:mb-16 lg:mb-20 space-y-2">
 
 
-      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading">
+      <h2 class="text-4xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading">
         Explore Each Module in Detail
       </h2>
 

@@ -82,10 +82,20 @@
 <div class="text-center mb-14 sm:mb-16 lg:mb-20 animate-section-header  rounded-xl px-8 py-8">
 
   <!-- Title -->
-  <h2 class="text-4xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
-    8 Powerful Modules
-    One Unified Platform
-  </h2>
+ <h2
+  class="text-4xl sm:text-5xl lg:text-[48px]
+  font-black
+  leading-[1.15]
+  tracking-[-0.01em]
+  text-slate-900
+  font-heading
+  text-center
+  mb-5"
+>
+  8 Powerful Modules
+  <br />
+  <span class="mt-2 block">One Unified Platform</span>
+</h2>
 
   <!-- Subtitle -->
   <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">

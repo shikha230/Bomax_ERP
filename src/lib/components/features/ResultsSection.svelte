@@ -95,8 +95,8 @@
     
 
       <!-- Title -->
-      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
-        Built to Deliver <span class="text-emerald-500">Real Results</span>
+      <h2 class="text-4xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
+        Built to Deliver Real Results 
       </h2>
 
       <!-- Subtitle -->

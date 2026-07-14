@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
+  import { onMount, onDestroy } from 'svelte';
 
   interface Screen {
     url: string;
@@ -32,6 +33,12 @@
       label: 'Reports Screen',
       caption: 'Analytics & business insights',
       accent: 'bg-amber-600',
+    },
+    {
+      url: 'app.bomaxerp.in/purchase',
+      label: 'Purchase Screen',
+      caption: 'Vendor orders & purchase tracking',
+      accent: 'bg-purple-600',
     },
   ];
 
@@ -80,6 +87,42 @@
     ['GlassCo ₹3.4L', 68, '#10b981'],
     ['BuildRight ₹2.6L', 52, '#f59e0b'],
   ];
+
+  const purchaseOrders: [string, string, string, string, string][] = [
+    ['PO-1032', 'Saint Gobain Ltd', '450 sqft Float', '₹38,250', 'Approved'],
+    ['PO-1033', 'Asahi Glass Co.', '120 sqft Tough', '₹26,400', 'Pending'],
+    ['PO-1034', 'Alu Hardware Inc.', '80 Channel Nos', '₹30,400', 'Approved'],
+    ['PO-1035', 'Seal Chem Pvt Ltd', '30 Sealant Nos', '₹3,600', 'Received'],
+  ];
+
+  // ── Auto-scroll animation (left → right, continuous, loops back) ──
+  // Design/markup is untouched — this just moves the existing scroll
+  // container's scrollLeft on every frame.
+  let trackEl: HTMLDivElement;
+  let rafId: number;
+  let paused = false;
+  const speed = 0.6; // px per frame — increase for faster, decrease for slower
+
+  function animate() {
+    if (trackEl && !paused) {
+      const maxScroll = trackEl.scrollWidth - trackEl.clientWidth;
+      if (maxScroll > 0) {
+        trackEl.scrollLeft += speed;
+        if (trackEl.scrollLeft >= maxScroll) {
+          trackEl.scrollLeft = 0;
+        }
+      }
+    }
+    rafId = requestAnimationFrame(animate);
+  }
+
+  onMount(() => {
+    rafId = requestAnimationFrame(animate);
+  });
+
+  onDestroy(() => {
+    if (rafId) cancelAnimationFrame(rafId);
+  });
 </script>
 
 <!-- Software Screens Section -->
@@ -96,10 +139,8 @@
 
     <!-- Section Header -->
     <div class="text-center mb-14 sm:mb-16 lg:mb-20">
-     
-
-      <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
-        See Bomax ERP in Action
+      <h2 class="text-4xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
+        SEE Bomax ERP In Action
       </h2>
 
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
@@ -107,16 +148,23 @@
       </p>
     </div>
 
-    <!-- Screens Row — scrollable on mobile, row on desktop -->
+    <!-- Screens Row — auto-animates left to right, pauses on hover/touch -->
     <div class="relative">
-      <!-- Fade-out right edge -->
-      <div class="absolute right-0 top-0 bottom-6 w-24 bg-linear-to-l from-white to-transparent z-10 pointer-events-none hidden sm:block"></div>
 
-      <div class="flex gap-5 sm:gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden">
+      <div
+        bind:this={trackEl}
+        class="flex gap-5 sm:gap-6 overflow-x-auto pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden"
+        role="region"
+        aria-label="Bomax ERP screens carousel"
+        onmouseenter={() => (paused = true)}
+        onmouseleave={() => (paused = false)}
+        ontouchstart={() => (paused = true)}
+        ontouchend={() => (paused = false)}
+      >
 
         <!-- ── Screen 1: Quotation ─────────────────── -->
         <div
-          class="snap-start shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 0 }}
         >
           <!-- Browser Chrome -->
@@ -233,7 +281,7 @@
 
         <!-- ── Screen 2: Inventory ─────────────────── -->
         <div
-          class="snap-start shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 100 }}
         >
           <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
@@ -352,7 +400,7 @@
 
         <!-- ── Screen 3: Production ────────────────── -->
         <div
-          class="snap-start shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 200 }}
         >
           <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
@@ -465,7 +513,7 @@
 
         <!-- ── Screen 4: Reports ───────────────────── -->
         <div
-          class="snap-start shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 300 }}
         >
           <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
@@ -567,11 +615,119 @@
           </div>
         </div>
 
+        <!-- ── Screen 5: Purchase ──────────────────── -->
+        <div
+          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          in:fly={{ y: 28, duration: 550, delay: 400 }}
+        >
+          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
+            <div class="bg-slate-900 px-3 py-2.5 flex items-center gap-2 shrink-0">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 block"></span>
+              </div>
+              <div class="flex-1 bg-slate-800 rounded-md px-3 py-1">
+                <span class="text-slate-400 text-[9px] font-mono">{screens[4].url}</span>
+              </div>
+            </div>
+            <!-- Screen Content: Purchase -->
+            <div class="bg-white flex overflow-hidden" style="height: 320px;">
+              <!-- Sidebar -->
+              <div class="bg-slate-900 w-12 shrink-0 flex flex-col items-center pt-3 gap-3">
+                <div class="w-6 h-6 rounded-md bg-purple-600 flex items-center justify-center">
+                  <span class="text-white text-[7px] font-black">B</span>
+                </div>
+                <div class="w-8 h-6 rounded-md flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-600 rounded"></div>
+                </div>
+                <div class="w-8 h-6 rounded-md flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-600 rounded"></div>
+                </div>
+                <div class="w-8 h-6 rounded-md flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-600 rounded"></div>
+                </div>
+                <div class="w-8 h-6 rounded-md bg-purple-600/20 flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-300 rounded"></div>
+                </div>
+                <div class="w-8 h-6 rounded-md flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-600 rounded"></div>
+                </div>
+                <div class="w-8 h-6 rounded-md flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-600 rounded"></div>
+                </div>
+                <div class="w-8 h-6 rounded-md flex items-center justify-center">
+                  <div class="w-3 h-0.5 bg-slate-600 rounded"></div>
+                </div>
+              </div>
+              <!-- Main Purchase Content -->
+              <div class="flex-1 flex flex-col overflow-hidden text-[8px] font-sans">
+                <!-- Top bar -->
+                <div class="bg-white border-b border-slate-200 px-3 py-1.5 flex items-center justify-between shrink-0">
+                  <span class="font-extrabold text-slate-800 text-[9px]">Purchase Orders</span>
+                  <div class="flex gap-1.5">
+                    <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-500">Filter</span>
+                    <span class="px-1.5 py-0.5 bg-purple-600 text-white rounded">+ New PO</span>
+                  </div>
+                </div>
+                <!-- KPI mini row -->
+                <div class="grid grid-cols-3 gap-1.5 px-3 py-2 shrink-0">
+                  <div class="bg-purple-50 rounded-lg p-2 border border-purple-100/60 text-center">
+                    <div class="text-[11px] font-black text-purple-700">18</div>
+                    <div class="text-[6.5px] text-slate-500">Open POs</div>
+                  </div>
+                  <div class="bg-emerald-50 rounded-lg p-2 border border-emerald-100/60 text-center">
+                    <div class="text-[11px] font-black text-emerald-700">₹9.8L</div>
+                    <div class="text-[6.5px] text-slate-500">This Month</div>
+                  </div>
+                  <div class="bg-amber-50 rounded-lg p-2 border border-amber-100/60 text-center">
+                    <div class="text-[11px] font-black text-amber-700">4</div>
+                    <div class="text-[6.5px] text-slate-500">Awaiting Approval</div>
+                  </div>
+                </div>
+                <!-- Table header -->
+                <div class="bg-slate-800 text-white px-3 py-1 grid font-semibold text-[7px] shrink-0" style="grid-template-columns: 1fr 1.6fr 1.4fr 1fr 1fr;">
+                  <span>PO No.</span>
+                  <span>Vendor</span>
+                  <span>Items</span>
+                  <span>Amount</span>
+                  <span>Status</span>
+                </div>
+                <!-- Table rows -->
+                <div class="divide-y divide-slate-100 overflow-hidden shrink-0">
+                  {#each purchaseOrders as [po, vendor, items, amt, status] (po)}
+                    <div class="px-3 py-1.5 grid gap-1 items-center text-[7.5px]" style="grid-template-columns: 1fr 1.6fr 1.4fr 1fr 1fr;">
+                      <span class="text-slate-700 font-semibold truncate">{po}</span>
+                      <span class="text-slate-600 truncate">{vendor}</span>
+                      <span class="text-slate-500 truncate">{items}</span>
+                      <span class="text-slate-800 font-bold">{amt}</span>
+                      <span
+                        class="px-1 py-0.5 rounded text-[6.5px] font-bold w-fit"
+                        class:bg-emerald-50={status === 'Approved' || status === 'Received'}
+                        class:text-emerald-700={status === 'Approved' || status === 'Received'}
+                        class:bg-amber-50={status === 'Pending'}
+                        class:text-amber-700={status === 'Pending'}
+                      >{status}</span>
+                    </div>
+                  {/each}
+                </div>
+                <!-- Bottom note -->
+                <div class="mt-auto border-t border-slate-200 px-3 py-2 flex items-center justify-between shrink-0">
+                  <span class="text-[7px] text-slate-400">Auto reorder alerts enabled</span>
+                  <span class="text-[7.5px] font-bold text-purple-600">View All →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Caption -->
+          <div class="mt-4 text-center">
+            <div class="text-[13.5px] font-bold text-slate-900 font-heading">{screens[4].label}</div>
+            <div class="text-[12px] text-slate-500 font-medium mt-0.5">{screens[4].caption}</div>
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <!-- Bottom divider bar -->
-    <div class="mt-8 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent"></div>
 
   </div>
 </section>

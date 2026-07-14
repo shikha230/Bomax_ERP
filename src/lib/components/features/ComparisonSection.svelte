@@ -326,7 +326,7 @@
             use:slideInRTL={{ delay: i * 100 }}
             class="group rounded-2xl border p-5 sm:p-6 bg-slate-50/60 border-slate-200 hover:bg-blue-600 hover:border-blue-600 transition-colors duration-300 cursor-pointer"
           >
-            <p class="text-[15px] font-black mb-2 text-slate-800 group-hover:text-white transition-colors duration-300">{v.name}</p>
+            <p class="text-[20px] font-black mb-2 text-slate-800 group-hover:text-white transition-colors duration-300">{v.name}</p>
             <p class="text-[12.5px] leading-relaxed font-medium text-slate-500 group-hover:text-blue-50 transition-colors duration-300">{v.text}</p>
           </div>
         {/each}

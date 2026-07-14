@@ -34,14 +34,14 @@
   <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
     
     <!-- Heading -->
-    <h2 class="text-3xl sm:text-4.5xl lg:text-5xl font-black tracking-tight leading-tight font-heading mb-5 ">
-      Ready to Experience
-      Bomax ERP?
+    <h2 class="text-4xl sm:text-4.5xl lg:text-5xl font-black tracking-tight leading-tight font-heading mb-5 ">
+      Ready To Experience
+      Bomax ERP ?
     </h2>
 
     <!-- Subtitle -->
-    <p class="text-[14px] sm:text-base text-blue-100 max-w-xl leading-relaxed font-medium mb-10">
-      Book a live product demonstration and see how Bomax ERP can transform your glass business — from quotations to delivery, all in one platform.
+    <p class="text-[14px] sm:text-base text-blue-100 max-w-xl leading-relaxed font-medium mb-10 text-center">
+      Book a live product demonstration and see how Bomax ERP can transform your glass business - from quotations to delivery, all in one platform.
     </p>
 
     <!-- Call to Actions -->
