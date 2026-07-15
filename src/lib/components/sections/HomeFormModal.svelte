@@ -23,7 +23,7 @@
       ? 'phone'
       : 'gmail'
   );
-  
+
   let phoneStep = $state<'credentials' | 'otp'>('credentials');
   let otpCode = $state(['', '', '', '', '', '']);
   let otpInputs: HTMLInputElement[] = [];
@@ -34,13 +34,13 @@
   function handleOtpInput(index: number, e: Event) {
     const input = e.target as HTMLInputElement;
     const value = input.value.replace(/[^0-9]/g, '');
-    
+
     if (value.length > 1) {
       otpCode[index] = value.slice(-1);
     } else {
       otpCode[index] = value;
     }
-    
+
     // Auto-focus next input
     if (otpCode[index] && index < 5) {
       otpInputs[index + 1]?.focus();
@@ -101,14 +101,14 @@
       pinCode = '';
       cityName = '';
       bestTime = '';
-      
+
       // Login variable reset
       loginIdentifier = '';
       password = '';
       showPassword = false;
       phoneStep = 'credentials';
       otpCode = ['', '', '', '', '', ''];
-      
+
       isSuccess = false;
       isSubmitting = false;
     }, 300);
@@ -159,7 +159,7 @@
           <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 shadow-md">
             <Sparkles class="h-7 w-7" />
           </div>
-          
+
           {#if mode === 'optimizer'}
             <h3 class="text-xl font-extrabold text-slate-900 font-heading">Login Successful!</h3>
             {#if loginMethod === 'gmail'}
@@ -177,7 +177,7 @@
               Thank you, <strong class="text-slate-800">{clientName}</strong>. We will reach out to you at <strong class="text-slate-800">{whatsappNumber}</strong> to schedule a live demo.
             </p>
           {/if}
-          
+
           <button
             onclick={resetAndClose}
             class="mt-8 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
@@ -205,7 +205,7 @@
                 <h3 class="text-lg font-extrabold text-slate-900 font-heading">Book a Demo</h3>
                 <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800 border border-amber-200/60 uppercase tracking-wider animate-pulse">Launching Soon</span>
               </div>
-              <p class="text-sm text-slate-520 mt-0.5">See how Firstcut24 boosts efficiency for your glass operations.</p>
+              <p class="text-sm text-slate-500 mt-0.5">See how Firstcut24 boosts efficiency for your glass operations.</p>
             </div>
           {/if}
         </div>
@@ -275,7 +275,7 @@
                 {#if isSubmitting}
                   {loginMethod === 'phone' ? 'Sending OTP...' : 'Logging in...'}
                 {:else}
-                  {loginMethod === 'phone' ? 'Send OTP Verification' : 'Logini'} <ArrowRight class="h-4 w-4" />
+                  {loginMethod === 'phone' ? 'Send OTP Verification' : 'Login'} <ArrowRight class="h-4 w-4" />
                 {/if}
               </button>
             {:else}
@@ -300,7 +300,7 @@
 
                 <!-- 6 digit cells -->
                 <div class="flex justify-center gap-2.5 py-1">
-                  {#each [0, 1, 2, 3, 4, 5] as index}
+                  {#each [0, 1, 2, 3, 4, 5] as index (index)}
                     <input
                       bind:this={otpInputs[index]}
                       type="text"
@@ -369,7 +369,7 @@
                   class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
                 />
               </div>
-              
+
               <div>
                 <label for="best-time" class="block text-xs font-bold text-slate-700 mb-1">Best Time to Contact *</label>
                 <select
@@ -432,7 +432,7 @@
                 />
               </div>
               <div>
-                <label for="pincode" class="block text-xs font-bold text-slate-755 mb-1">PIN Code *</label>
+                <label for="pincode" class="block text-xs font-bold text-slate-700 mb-1">PIN Code *</label>
                 <input
                   id="pincode"
                   type="text"

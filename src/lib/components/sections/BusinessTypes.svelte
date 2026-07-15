@@ -54,7 +54,7 @@
     </div>
 
     <div class="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-5">
-      {#each businesses as business}
+      {#each businesses as business (business.title)}
         {@const IconComponent = business.icon}
         <div class="group relative flex flex-col justify-between rounded-2xl border border-slate-200/60 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-slate-350 hover:shadow-lg">
           <div>

@@ -96,7 +96,7 @@
             <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-300 border-2 border-[#1e4a7a] animate-pulse"></div>
           </div>
           <span class="text-[1.375rem] font-extrabold tracking-tight text-white">
-            Bomax <span class="text-cyan-300">ERP</span>
+            Firstcut <span class="text-cyan-300">24</span>
           </span>
         </a>
 
@@ -123,10 +123,6 @@
             <span>24/7 dedicated support</span>
           </div>
         </div>
-      </div>
-
-      <div class="relative z-[1]">
-        <p class="text-[0.8125rem] text-blue-200/70">© 2026 Bomax ERP. All rights reserved.</p>
       </div>
     </div>
 

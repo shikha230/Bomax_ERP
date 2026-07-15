@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import { CheckCircle2 } from 'lucide-svelte';
 	import ModuleMockup from './ModuleMockup.svelte';
+	import { resolve } from '$app/paths';
 
 	let activeTab = $state('AI Optimizer');
 
@@ -137,7 +137,6 @@
 <section class="bg-slate-50 pt-10 pb-14 sm:pt-10 sm:pb-16 lg:pt-10 lg:pb-20">
 	<div class="mx-auto max-w-7xl px-6">
 
-		<!-- Heading -->
 		<h2 class="mt-6 text-center text-4xl font-bold tracking-tight text-slate-800">
 			Explore Every Module
 		</h2>
@@ -146,7 +145,6 @@
 			Deeply integrated modules that work together seamlessly—from quotation to dispatch and beyond.
 		</p>
 
-		<!-- Tabs Outer Scroller -->
 		<div class="mt-10 w-full overflow-x-auto pb-4 scrollbar-hidden">
 			<div class="flex flex-nowrap md:justify-center gap-3 min-w-max px-4">
 				{#each tabs as tab (tab)}
@@ -164,9 +162,7 @@
 			</div>
 		</div>
 
-		<!-- Content Section -->
 		<div class="mt-14 grid items-stretch gap-14 lg:grid-cols-2">
-			<!-- Left: Mockup UI -->
 			<div class="relative w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
 				{#key activeTab}
 					<div class="w-full animate-fadeIn">
@@ -175,7 +171,6 @@
 				{/key}
 			</div>
 
-			<!-- Right Content (dynamic) -->
 			<div>
 				{#key activeTab}
 					<div class="animate-fadeIn">
@@ -198,12 +193,15 @@
 							{/each}
 						</div>
 
-						<a
-							href={resolve(currentContent.ctaLink as Parameters<typeof resolve>[0])}
-							class="mt-10 inline-block rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition hover:bg-blue-700"
-						>
-							{currentContent.ctaText}
-						</a>
+						
+						{#if currentContent}
+    <a
+        href={resolve('/modules')}
+        class="mt-10 inline-block rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition hover:bg-blue-700"
+    >
+        {currentContent.ctaText}
+    </a>
+{/if}
 					</div>
 				{/key}
 			</div>
@@ -231,7 +229,7 @@
 		display: none;
 	}
 	.scrollbar-hidden {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 	}
 </style>

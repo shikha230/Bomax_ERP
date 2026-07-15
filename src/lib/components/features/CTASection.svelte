@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { Calendar, Check } from 'lucide-svelte';
+  import { Calendar, Check, MessageCircle } from 'lucide-svelte';
 
   interface Props {
     onBookDemo: () => void;
     onContactSales: () => void;
   }
 
- const { onBookDemo, onContactSales }: Props = $props();
+  const { onBookDemo, onContactSales }: Props = $props();
 
   const trustBadges: string[] = [
     'Free 14-day trial',
@@ -56,7 +56,13 @@
       </button>
 
       <!-- Talk to Expert Button -->
-      
+      <button
+        onclick={onContactSales}
+        class="flex items-center justify-center gap-2 rounded-2xl bg-transparent border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4.5 text-sm font-bold active:scale-98 transition-all duration-200 w-full sm:w-auto cursor-pointer"
+      >
+        <MessageCircle class="h-4.5 w-4.5" />
+        <span>Talk to an Expert</span>
+      </button>
     </div>
 
     <!-- Trust Badges -->
