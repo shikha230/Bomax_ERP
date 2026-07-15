@@ -18,8 +18,8 @@
 </script>
 
 <svelte:head>
-  <title>Sign In — Bomax ERP</title>
-  <meta name="description" content="Sign in to your Bomax ERP account to manage your business operations." />
+  <title>Sign In — Firstcut24</title>
+  <meta name="description" content="Sign in to your Firstcut24 account to manage your business operations." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -47,7 +47,7 @@
             <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-400 border-2 border-[#1a2e4a] animate-pulse"></div>
           </div>
           <span class="text-[1.375rem] font-extrabold tracking-tight text-white">
-            Bomax <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">ERP</span>
+            Firstcut24 <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">ERP</span>
           </span>
         </a>
 
@@ -56,7 +56,7 @@
             Streamline Your <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">Business Operations</span>
           </h1>
           <p class="text-[0.9375rem] leading-relaxed text-slate-400 mb-10">
-            One platform to manage inventory, sales, accounting, and more. Join thousands of businesses already growing with Bomax ERP.
+            One platform to manage inventory, sales, accounting, and more. Join thousands of businesses already growing with Firstcut24.
           </p>
         </div>
 
@@ -77,7 +77,7 @@
       </div>
 
       <div class="relative z-10">
-        <p class="text-[0.8125rem] text-slate-500">© 2026 Bomax ERP. All rights reserved.</p>
+        <p class="text-[0.8125rem] text-slate-500">© 2026 Firstcut24. All rights reserved.</p>
       </div>
     </div>
 
@@ -95,7 +95,7 @@
             <Layers class="h-5 w-5 text-white" />
           </div>
           <span class="text-xl font-extrabold tracking-tight text-white">
-            Bomax <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">ERP</span>
+            Firstcut24 <span class="bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">ERP</span>
           </span>
         </a>
 

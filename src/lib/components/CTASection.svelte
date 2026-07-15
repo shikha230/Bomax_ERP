@@ -41,12 +41,12 @@
     <!-- Heading -->
     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-heading mb-6">
       Ready to Experience<br />
-      Bomax ERP?
+      Firstcut24?
     </h2>
 
     <!-- Subtitle -->
     <p class="text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed font-medium mb-10">
-      Book a live product demonstration and see how Bomax ERP can transform your glass business — from quotations to delivery, all in one platform.
+      Book a live product demonstration and see how Firstcut24 can transform your glass business — from quotations to delivery, all in one platform.
     </p>
 
     <!-- Call to Actions -->

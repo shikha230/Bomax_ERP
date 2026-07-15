@@ -54,8 +54,8 @@
 </script>
 
 <svelte:head>
-	<title>Security Policy - Bomax ERP</title>
-	<meta name="description" content="Learn about Bomax ERP's bank-grade security model. Explore our data encryption, isolated servers, and access controls." />
+	<title>Security Policy - Firstcut24</title>
+	<meta name="description" content="Learn about Firstcut24's bank-grade security model. Explore our data encryption, isolated servers, and access controls." />
 </svelte:head>
 
 <Header />
@@ -106,7 +106,7 @@
 
 			<!-- Subtitle -->
 			<p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto mt-4 px-4 leading-relaxed font-medium">
-				At Bomax, we understand that an ERP is the central nervous system of your business.
+				At Firstcut24, we understand that an ERP is the central nervous system of your business.
 				Your trust is our greatest responsibility.
 			</p>
 

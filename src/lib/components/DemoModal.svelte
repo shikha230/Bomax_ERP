@@ -113,7 +113,7 @@
 							<span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800 border border-amber-200/60 uppercase tracking-wider animate-pulse">Launching Soon</span>
 						</div>
 						<p class="text-sm text-slate-480 mt-0.5">
-							Experience how Bomax ERP optimizes your glass business operations.
+							Experience how Firstcut24 optimizes your glass business operations.
 						</p>
 					</div>
 				</div>

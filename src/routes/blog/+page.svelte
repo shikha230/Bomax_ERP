@@ -59,7 +59,7 @@
 </script>
 
 <svelte:head>
-	<title>About Us — Bomax ERP</title>
+	<title>About Us — Firstcut24</title>
 	<meta
 		name="description"
 		content="An elite glass ERP built for real people. Zero experience needed, zero manual errors."

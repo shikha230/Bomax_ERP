@@ -74,8 +74,8 @@
 </script>
 
 <svelte:head>
-	<title>Terms of Service - Bomax ERP</title>
-	<meta name="description" content="Read the Terms of Service for Bomax ERP's firstcut24.com platform." />
+	<title>Terms of Service - Firstcut24</title>
+	<meta name="description" content="Read the Terms of Service for Firstcut24's firstcut24.com platform." />
 </svelte:head>
 
 <Header />
@@ -100,21 +100,21 @@
 						<Shield class="h-3.5 w-3.5 text-blue-400" />
 						Legal & Compliance Document
 					</div>
-					<p class="text-[11px] md:text-sm text-slate-400 font-bold uppercase tracking-[0.25em] mb-4">BOMAX · FIRSTCUT24.COM</p>
+					<p class="text-[11px] md:text-sm text-slate-400 font-bold uppercase tracking-[0.25em] mb-4">Firstcut24 · Firstcut24.COM</p>
 					<h1 class="text-5xl md:text-6xl lg:text-[72px] font-black text-white tracking-tight leading-[1.05] mb-6">
 						Terms of<br />
 						<span class="bg-gradient-to-r from-[#6366f1] via-[#a78bfa] to-[#38bdf8] bg-clip-text text-transparent">Service</span>
 					</h1>
 					<p class="text-slate-400 text-sm md:text-base max-w-lg mt-5 leading-relaxed font-semibold">
 						These Terms govern your access to and use of the firstcut24.com ERP
-						platform provided by Bomax. By registering or using the Service, you
+						platform provided by Firstcut24. By registering or using the Service, you
 						agree to be fully bound by these Terms.
 					</p>
 
 					<div class="flex flex-wrap items-center gap-2.5 mt-8">
 						<div class="flex items-center gap-1.5 px-3.5 py-2 border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm rounded-full text-[11px] font-semibold text-slate-300 shadow-sm">
 							<Landmark class="h-3.5 w-3.5 text-slate-400" />
-							<span class="text-slate-400">Company:</span> <span class="font-bold text-white">Bomax</span>
+							<span class="text-slate-400">Company:</span> <span class="font-bold text-white">Firstcut24</span>
 						</div>
 						<div class="flex items-center gap-1.5 px-3.5 py-2 border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm rounded-full text-[11px] font-semibold text-slate-300 shadow-sm">
 							<Globe class="h-3.5 w-3.5 text-slate-400" />
@@ -141,7 +141,7 @@
 							</div>
 							<div>
 								<h3 class="text-white font-bold text-sm tracking-wide">Terms of Service</h3>
-								<p class="text-slate-400 text-[10px] font-medium mt-0.5">firstcut24.com · Bomax ERP Platform</p>
+								<p class="text-slate-400 text-[10px] font-medium mt-0.5">firstcut24.com · Firstcut24 Platform</p>
 							</div>
 						</div>
 
@@ -234,12 +234,12 @@
 				<div class="relative">
 					<div class="h-1 w-12 bg-gradient-to-r from-blue-650 to-cyan-500 rounded-full mb-4"></div>
 					<h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
-						Welcome to firstcut24.com, operated by Bomax
+						Welcome to firstcut24.com, operated by Firstcut24
 					</h2>
 				</div>
 				<p class="text-slate-600 font-semibold text-sm md:text-[14.5px] mt-4 leading-relaxed max-w-3xl">
 					These Terms of Service ("Terms") govern your access to and use of the enterprise resource planning (ERP) software,
-					websites, and related services (collectively, the "Service") provided by Bomax ("we," "our," or "us"). By registering for an
+					websites, and related services (collectively, the "Service") provided by Firstcut24 ("we," "our," or "us"). By registering for an
 					account or using the Service, you agree to be bound by these Terms. If you do not agree to these Terms, you must not use
 					the Service.
 				</p>
@@ -316,7 +316,7 @@
 					</div>
 					<div class="p-6 space-y-5">
 						<p class="text-slate-600 text-xs font-semibold leading-relaxed">
-							firstcut24.com is a cloud-based ERP platform designed and operated by Bomax to help glass and enterprise businesses manage workflows.
+							firstcut24.com is a cloud-based ERP platform designed and operated by Firstcut24 to help glass and enterprise businesses manage workflows.
 						</p>
 						<div class="bg-slate-50 border border-slate-205 p-5 rounded-2xl flex items-start gap-4">
 							<div class="bg-blue-50 text-blue-600 border border-blue-100 p-2 rounded-xl shrink-0"><Globe class="h-5 w-5" /></div>
@@ -364,7 +364,7 @@
 							<div>
 								<h4 class="text-xs font-bold text-slate-800">Security</h4>
 								<p class="text-[11px] text-slate-550 leading-relaxed font-semibold mt-1">
-									You are entirely responsible for maintaining the confidentiality of your credentials and for all activities under your account. Notify Bomax instantly of unauthorized breaches.
+									You are entirely responsible for maintaining the confidentiality of your credentials and for all activities under your account. Notify Firstcut24 instantly of unauthorized breaches.
 								</p>
 							</div>
 						</div>
@@ -374,7 +374,7 @@
 							<div>
 								<h4 class="text-xs font-bold text-slate-800">Access Control</h4>
 								<p class="text-[11px] text-slate-550 leading-relaxed font-semibold mt-1">
-									The Service includes Role-Based Access Control (RBAC). You, as the owner, are solely responsible for assigning correct permissions. Bomax is not liable for data exposure due to team misconfiguration.
+									The Service includes Role-Based Access Control (RBAC). You, as the owner, are solely responsible for assigning correct permissions. Firstcut24 is not liable for data exposure due to team misconfiguration.
 								</p>
 							</div>
 						</div>
@@ -407,14 +407,14 @@
 								<div class="bg-violet-50 text-violet-650 p-2 rounded-lg w-fit"><Sliders class="h-4 w-4" /></div>
 								<h4 class="text-xs font-bold text-slate-850 mt-3.5">System Upgrades and Features</h4>
 								<p class="text-[11px] text-slate-550 font-semibold leading-relaxed mt-1.5">
-									Bomax reserves the right to modify, upgrade, update, or discontinue features of the firstcut24.com ERP system at any time without prior notice. We deploy updates regularly to improve security.
+									Firstcut24 reserves the right to modify, upgrade, update, or discontinue features of the firstcut24.com ERP system at any time without prior notice. We deploy updates regularly to improve security.
 								</p>
 							</div>
 							<div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
 								<div class="bg-blue-50 text-blue-650 p-2 rounded-lg w-fit"><Tag class="h-4 w-4" /></div>
 								<h4 class="text-xs font-bold text-slate-850 mt-3.5">Changes to Plans & Pricing</h4>
 								<p class="text-[11px] text-slate-550 font-semibold leading-relaxed mt-1.5">
-									Bomax reserves the right to adjust, upgrade, downgrade, or modify our subscription plans, pricing structures, and promotional offerings at our sole discretion.
+									Firstcut24 reserves the right to adjust, upgrade, downgrade, or modify our subscription plans, pricing structures, and promotional offerings at our sole discretion.
 								</p>
 							</div>
 						</div>
@@ -467,7 +467,7 @@
 								<div class="bg-emerald-50 text-emerald-650 p-2 rounded-lg w-fit"><FileText class="h-4 w-4" /></div>
 								<h4 class="text-xs font-bold text-slate-850 mt-3.5">Your Data</h4>
 								<p class="text-[11px] text-slate-550 font-semibold leading-relaxed mt-1.5">
-									You retain full ownership of all data, customer orders, design sketches, and financial documents you input into the Service. Bomax claims no ownership rights.
+									You retain full ownership of all data, customer orders, design sketches, and financial documents you input into the Service. Firstcut24 claims no ownership rights.
 								</p>
 							</div>
 							<div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
@@ -555,7 +555,7 @@
 								<div class="bg-amber-50 text-amber-600 p-2 rounded-lg w-fit"><Archive class="h-4 w-4" /></div>
 								<h4 class="text-xs font-bold text-slate-850 mt-3.5">Backups</h4>
 								<p class="text-[11px] text-slate-550 font-semibold leading-relaxed mt-1.5">
-									While Bomax performs regular, automated off-site backups of the database, you are strongly encouraged to periodically export and back up your critical financial ledgers independently.
+									While Firstcut24 performs regular, automated off-site backups of the database, you are strongly encouraged to periodically export and back up your critical financial ledgers independently.
 								</p>
 							</div>
 						</div>
@@ -587,7 +587,7 @@
 						<div class="bg-rose-50/40 border border-rose-200 p-5 rounded-2xl flex items-start gap-4">
 							<div class="bg-rose-50 text-rose-600 border border-rose-200/50 p-2.5 rounded-xl shrink-0"><AlertTriangle class="h-4.5 w-4.5" /></div>
 							<p class="text-[11px] md:text-xs text-slate-700 font-semibold leading-relaxed">
-								To the maximum extent permitted by applicable law, <span class="text-slate-900 font-extrabold">Bomax and its developers, partners, and employees shall not be liable</span> for any indirect, incidental, special, consequential, or punitive damages. This includes, without limitation, loss of profits, data loss, business interruption, or financial penalties incurred by your business arising out of your use or inability to use the Service.
+								To the maximum extent permitted by applicable law, <span class="text-slate-900 font-extrabold">Firstcut24 and its developers, partners, and employees shall not be liable</span> for any indirect, incidental, special, consequential, or punitive damages. This includes, without limitation, loss of profits, data loss, business interruption, or financial penalties incurred by your business arising out of your use or inability to use the Service.
 							</p>
 						</div>
 

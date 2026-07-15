@@ -109,7 +109,7 @@
       {#each modules as mod, i (mod.title)}
         {@const ModIcon = mod.icon}
         <div
-          class="group relative bg-white border border-slate-200/80 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/80 hover:-translate-y-1 feature-card"
+          class="group relative bg-white border border-slate-200/80 rounded-2xl p-6 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:shadow-2xl hover:shadow-slate-300/60 hover:border-slate-300/80 hover:-translate-y-1.5 feature-card"
           style="animation-delay: {i * 80}ms"
         >
           <!-- Icon + Title Row -->

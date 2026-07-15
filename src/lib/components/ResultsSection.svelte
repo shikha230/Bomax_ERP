@@ -85,7 +85,7 @@
           <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
           <polyline points="16 7 22 7 22 13"></polyline>
         </svg>
-        <span class="text-xs font-bold font-jakarta tracking-wide">Why Businesses Choose Bomax</span>
+        <span class="text-xs font-bold font-jakarta tracking-wide">Why Businesses Choose Firstcut24</span>
       </div>
 
       <!-- Title -->
@@ -95,7 +95,7 @@
 
       <!-- Subtitle -->
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-        Over 500 glass businesses across India trust Bomax ERP to run their operations more efficiently and profitably.
+        Over 500 glass businesses across India trust Firstcut24 to run their operations more efficiently and profitably.
       </p>
     </div>
 

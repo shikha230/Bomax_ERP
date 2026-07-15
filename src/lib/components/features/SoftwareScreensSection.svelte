@@ -164,11 +164,14 @@
 
         <!-- ── Screen 1: Quotation ─────────────────── -->
         <div
-          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="relative shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 0 }}
         >
+          <!-- Shadow blob behind the card -->
+          <div class="absolute inset-x-4 top-4 bottom-10 -z-10 rounded-2xl bg-black/10 blur-xl"></div>
+
           <!-- Browser Chrome -->
-          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
+          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] flex flex-col transition-shadow duration-300 hover:shadow-[0_30px_70px_-12px_rgba(15,23,42,0.45)]">
             <div class="bg-slate-900 px-3 py-2.5 flex items-center gap-2 shrink-0">
               <div class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500 block"></span>
@@ -281,10 +284,13 @@
 
         <!-- ── Screen 2: Inventory ─────────────────── -->
         <div
-          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="relative shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 100 }}
         >
-          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
+          <!-- Shadow blob behind the card -->
+          <div class="absolute inset-x-4 top-4 bottom-10 -z-10 rounded-2xl bg-black/10 blur-xl"></div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] flex flex-col transition-shadow duration-300 hover:shadow-[0_30px_70px_-12px_rgba(15,23,42,0.45)]">
             <div class="bg-slate-900 px-3 py-2.5 flex items-center gap-2 shrink-0">
               <div class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500 block"></span>
@@ -400,10 +406,13 @@
 
         <!-- ── Screen 3: Production ────────────────── -->
         <div
-          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="relative shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 200 }}
         >
-          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
+          <!-- Shadow blob behind the card -->
+          <div class="absolute inset-x-4 top-4 bottom-10 -z-10 rounded-2xl bg-black/10 blur-xl"></div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] flex flex-col transition-shadow duration-300 hover:shadow-[0_30px_70px_-12px_rgba(15,23,42,0.45)]">
             <div class="bg-slate-900 px-3 py-2.5 flex items-center gap-2 shrink-0">
               <div class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500 block"></span>
@@ -513,10 +522,13 @@
 
         <!-- ── Screen 4: Reports ───────────────────── -->
         <div
-          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="relative shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 300 }}
         >
-          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
+          <!-- Shadow blob behind the card -->
+          <div class="absolute inset-x-4 top-4 bottom-10 -z-10 rounded-2xl bg-black/10 blur-xl"></div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] flex flex-col transition-shadow duration-300 hover:shadow-[0_30px_70px_-12px_rgba(15,23,42,0.45)]">
             <div class="bg-slate-900 px-3 py-2.5 flex items-center gap-2 shrink-0">
               <div class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500 block"></span>
@@ -617,10 +629,13 @@
 
         <!-- ── Screen 5: Purchase ──────────────────── -->
         <div
-          class="shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
+          class="relative shrink-0 w-[82vw] sm:w-[60vw] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-18px)] flex flex-col"
           in:fly={{ y: 28, duration: 550, delay: 400 }}
         >
-          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/60 flex flex-col">
+          <!-- Shadow blob behind the card -->
+          <div class="absolute inset-x-4 top-4 bottom-10 -z-10 rounded-2xl bg-black/10 blur-xl"></div>
+
+          <div class="rounded-xl overflow-hidden border border-slate-200/80 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] flex flex-col transition-shadow duration-300 hover:shadow-[0_30px_70px_-12px_rgba(15,23,42,0.45)]">
             <div class="bg-slate-900 px-3 py-2.5 flex items-center gap-2 shrink-0">
               <div class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500 block"></span>

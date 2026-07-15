@@ -180,7 +180,7 @@
 		<div class="relative mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="text-center">
 				<h2 class="text-4xl font-bold text-slate-900 md:text-5xl">
-					Why Partner with <span class="text-cyan-600">Firstcut24?</span>
+					Why Channel Partner with <span class="text-cyan-600">Firstcut24?</span>
 				</h2>
 
 				<p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">

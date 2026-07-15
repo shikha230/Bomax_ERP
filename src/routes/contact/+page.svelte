@@ -32,9 +32,9 @@
 </script>
 
 <svelte:head>
-	<title>Contact Bomax ERP Support & Sales Teams</title>
-	<meta name="description" content="Get in touch with Bomax ERP corporate headquarters or support teams. Ask questions, request custom integrations, or book live product walkthroughs." />
-	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/contact" />
+	<title>Contact Firstcut24 Support & Sales Teams</title>
+	<meta name="description" content="Get in touch with Firstcut24 corporate headquarters or support teams. Ask questions, request custom integrations, or book live product walkthroughs." />
+	<link rel="canonical" href="https://firstcut24.com/contact" />
 </svelte:head>
 
 <Header />

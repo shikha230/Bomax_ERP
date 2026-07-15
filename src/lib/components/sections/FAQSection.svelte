@@ -8,7 +8,7 @@
 		},
 		{
 			q: 'How long does the implementation take?',
-			a: 'Unlike generic traditional ERPs that take 6 to 12 months of expensive custom coding to understand "glass dimensions," Firstcut24 is natively built for the glass industry. All the complex math (sqm conversions, edge polishing, jumbo surcharges) is pre-configured out-of-the-box. Most factories are fully implemented, trained, and live within 2 to 4 weeks.'
+			a: 'Unlike generic traditional ERPs that take 6 to 12 months of expensive custom coding to understand "glass dimensions," Firstcut24 is natively built for the glass industry. All the complex math (sqm conversions, edge polishing, jumbo surcharges) is pre-configured out-of-the-box. Most factories are fully implemented, trained, and live within hours.'
 		},
 		{
 			q: 'Does Firstcut24 support GST and e-Invoicing?',

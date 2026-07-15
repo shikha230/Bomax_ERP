@@ -54,7 +54,7 @@
 			year: '2023',
 			title: 'Prototyping and Live Testing',
 			description:
-				'Software is only as good as its real-world application. As and when the initial modules were being built, live testing immediately commenced with various retailers and processors to gather crucial feedback. Testing the system in these diverse, high-pressure conditions allowed for instant insights into how the software handled live custom dimensions, CNC workflows, tempering batches, and UV printing requirements. This ensured Bomax could meet the exact, uncompromising needs of different businesses across the industry.',
+				'Software is only as good as its real-world application. As and when the initial modules were being built, live testing immediately commenced with various retailers and processors to gather crucial feedback. Testing the system in these diverse, high-pressure conditions allowed for instant insights into how the software handled live custom dimensions, CNC workflows, tempering batches, and UV printing requirements. This ensured Firstcut24 could meet the exact, uncompromising needs of different businesses across the industry.',
 			icon: 'flask',
 			iconBg: 'bg-violet-500',
 			iconShadow: 'shadow-violet-500/40',
@@ -65,11 +65,11 @@
 			hex: '#8b5cf6'
 		},
 		{
-			id: 'birth-of-bomax',
+			id: 'birth-of-Firstcut24',
 			year: '2024',
-			title: 'The Birth of Bomax',
+			title: 'The Birth of Firstcut24',
 			description:
-				'After nearly four years of rigorous testing and continuous industry feedback, the scattered modules were finally unified into a single, cohesive system. Bomax officially took shape. It successfully bridged the gap between retail quoting and wholesale production, allowing users to generate complex custom quotes in minutes rather than hours, while seamlessly pushing that data directly to the production floor. Marking its readiness for commercial use, the Bomax trademark was officially registered, and the platform established its digital presence through the domains firstcut24.com and bomaxtech.com.',
+				'After nearly four years of rigorous testing and continuous industry feedback, the scattered modules were finally unified into a single, cohesive system. Firstcut24 officially took shape. It successfully bridged the gap between retail quoting and wholesale production, allowing users to generate complex custom quotes in minutes rather than hours, while seamlessly pushing that data directly to the production floor. Marking its readiness for commercial use, the Firstcut24 trademark was officially registered, and the platform established its digital presence through the domains firstcut24.com and Firstcut24tech.com.',
 			icon: 'rocket',
 			iconBg: 'bg-amber-500',
 			iconShadow: 'shadow-amber-500/40',
@@ -84,7 +84,7 @@
 			year: '2026',
 			title: 'Enterprise Infrastructure Scaling',
 			description:
-				'To prepare for commercial availability and handle heavy enterprise workloads without a hint of lag, Bomax was migrated to a robust Hostinger environment backed by Google Cloud infrastructure. This critical step secured the database, improved query speeds, and provided the solid foundation necessary for multi-tenant scaling.',
+				'To prepare for commercial availability and handle heavy enterprise workloads without a hint of lag, Firstcut24 was migrated to a robust Hostinger environment backed by Google Cloud infrastructure. This critical step secured the database, improved query speeds, and provided the solid foundation necessary for multi-tenant scaling.',
 			icon: 'server',
 			iconBg: 'bg-emerald-500',
 			iconShadow: 'shadow-emerald-500/40',
@@ -130,17 +130,17 @@
 </script>
 
 <svelte:head>
-	<title>About Us — Bomax ERP</title>
+	
 	<meta
 		name="description"
-		content="The story of Bomax — the software solution engineered for the unique demands of the glass industry."
+		content="The story of Firstcut24 — the software solution engineered for the unique demands of the glass industry."
 	/>
 </svelte:head>
 
 <Header />
 
 <div class="bg-white overflow-x-hidden">
-	<!-- About Us: The Story of Bomax -->
+	<!-- About Us: The Story of Firstcut24 -->
 	<section class="relative isolate overflow-hidden bg-linear-to-br from-blue-950 via-blue-900 to-indigo-950">
 		<!-- animated glow orbs -->
 		<div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-cyan-500/30 blur-3xl animate-pulse"></div>
@@ -170,16 +170,16 @@
 				<!-- left: copy -->
 				<div class="text-center md:text-left">
 					<h1 class="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl">
-						About Us:
+						About Us
 						<span class="block bg-linear-to-r from-cyan-300 via-sky-300 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(56,189,248,0.35)]">
-							The Story of Bomax
+							The Story of Firstcut24
 						</span>
 					</h1>
 
 					<p class="mx-auto mt-5 max-w-lg text-lg leading-8 text-blue-100/90 md:mx-0">
-						Welcome to Bomax, the definitive software solution engineered specifically for the
+						Welcome to Firstcut24, the definitive software solution engineered specifically for the
 						unique demands of the glass industry. Born from decades of hands-on experience and
-						frustration with the status quo, Bomax was built to transform how retailers,
+						frustration with the status quo, Firstcut24 was built to transform how retailers,
 						processors, and wholesalers operate.
 					</p>
 				</div>
@@ -211,7 +211,7 @@
 							style="top: {event.heroY}%; left: {event.heroX}%; transform: translate(-50%, -50%);"
 						>
 							<div
-								class="flex {event.id === 'birth-of-bomax' ? 'h-16 w-16' : 'h-12 w-12'} items-center justify-center rounded-full {event.iconBg} text-white shadow-lg {event.iconShadow} ring-4 ring-blue-950/50 transition-transform duration-300 hover:scale-110"
+								class="flex {event.id === 'birth-of-Firstcut24' ? 'h-16 w-16' : 'h-12 w-12'} items-center justify-center rounded-full {event.iconBg} text-white shadow-lg {event.iconShadow} ring-4 ring-blue-950/50 transition-transform duration-300 hover:scale-110"
 							>
 								{#if event.icon === 'lightbulb'}
 									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
@@ -267,17 +267,20 @@
 	</section>
 
 	<!-- Journey Intro -->
-	<section class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-		<div class="mx-auto max-w-4xl text-center">
-			<h2 class="text-4xl font-bold text-slate-900 md:text-5xl">
-				Here Is How Our
-				<span class="bg-linear-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent">Journey Unfolded</span>
-			</h2>
-		</div>
-	</section>
+	
 
 	<!-- Timeline -->
 	<section class="relative overflow-hidden bg-slate-50 py-16 md:py-20">
+	
+		<div class="mx-auto max-w-4xl text-center  pb-10">
+	<h2 class="text-4xl font-bold text-slate-900 md:text-5xl">
+		Here Is How Our
+		<span class="bg-linear-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent">
+			Journey Unfolded
+		</span>
+	</h2>
+</div>
+	
 		<div class="pointer-events-none absolute -top-20 right-0 h-64 w-64 rounded-full bg-blue-100 blur-3xl"></div>
 		<div class="pointer-events-none absolute bottom-0 -left-20 h-64 w-64 rounded-full bg-cyan-100 blur-3xl"></div>
 
@@ -391,7 +394,7 @@
 				</h2>
 
 				<p class="relative mt-5 text-lg text-blue-50 mx-auto">
-					At Bomax, our mission is simple: to bring order, speed, and absolute precision to the
+					At Firstcut24, our mission is simple: to bring order, speed, and absolute precision to the
 					unorganized glass sector. We are here to empower your business with technology that
 					works exactly the way you need it to—simplifying your workflow from the very first
 					cut to the final invoice.

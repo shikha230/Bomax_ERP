@@ -5,7 +5,7 @@
     {
       badge: 'Glass Optimizer Module',
       badgeColor: 'bg-blue-50 text-blue-700 border-blue-150',
-      text: '"The AI Glass Optimizer has been a game-changer. We reduced our glass wastage by 32% in the first month. The entire cutting floor team now relies on Bomax for every job. Worth every rupee."',
+      text: '"The AI Glass Optimizer has been a game-changer. We reduced our glass wastage by 32% in the first month. The entire cutting floor team now relies on Firstcut24 for every job. Worth every rupee."',
       author: 'Rajesh Sharma',
       role: 'Director, Sharma Glass Works · Mumbai',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&fit=crop&q=80',
@@ -13,7 +13,7 @@
     {
       badge: 'Quotation & Billing Module',
       badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-150',
-      text: '"Before Bomax, quotations took 30 minutes each. Now it\'s under 3 minutes — and they look extremely professional. Our clients are impressed and our closure rate has gone up by 40%."',
+      text: '"Before Firstcut24, quotations took 30 minutes each. Now it\'s under 3 minutes — and they look extremely professional. Our clients are impressed and our closure rate has gone up by 40%."',
       author: 'Anita Patel',
       role: 'Owner, Patel Glass Studio · Ahmedabad',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&fit=crop&q=80',
@@ -21,7 +21,7 @@
     {
       badge: 'Reports & Analytics Module',
       badgeColor: 'bg-amber-50 text-amber-700 border-amber-150',
-      text: '"Managing 4 branches was a nightmare until Bomax. Now I see consolidated reports for all locations in real-time, from my phone. The analytics are genuinely useful for business decisions."',
+      text: '"Managing 4 branches was a nightmare until Firstcut24. Now I see consolidated reports for all locations in real-time, from my phone. The analytics are genuinely useful for business decisions."',
       author: 'Ahmed Khan',
       role: 'MD, Khan Glass Industries · Hyderabad',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&fit=crop&q=80',
@@ -55,7 +55,7 @@
       </h2>
 
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-        Real stories from real businesses that transformed their operations with Bomax ERP.
+        Real stories from real businesses that transformed their operations with Firstcut24.
       </p>
     </div>
 

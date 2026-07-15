@@ -18,7 +18,7 @@
 
 <section class="bg-[#E8F4FF] m-0 p-0 py-0 sm:py-0 lg:py-0 overflow-hidden">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-8 sm:pt-10 lg:pt-14 pb-12 sm:pb-16 lg:flex-row lg:items-start lg:gap-10 lg:pb-24"
+		class="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 sm:px-6 pt-8 sm:pt-10 lg:pt-2 pb-0 lg:flex-row lg:items-start lg:gap-10 lg:pb-0"
 	>
 		<!-- Left Content -->
 		<div class="w-full lg:w-5/12 text-center lg:text-left">
@@ -64,7 +64,7 @@
 		</div>
 
 		<!-- Right Animated Dashboard Mockup -->
-		<div class="w-full lg:w-7/12 flex justify-center lg:justify-end mt-8 lg:mt-0">
+		<div class="w-full lg:w-7/12 flex justify-center lg:justify-end mt-4 lg:-mt-6">
 			<div class="mockup-scaling-wrapper relative">
 				<div class="mockup-scaled-container">
 					<DashboardMockup />
@@ -89,22 +89,21 @@
 	.mockup-scaled-container {
 		width: 100%;
 		position: relative;
-		border-radius: 24px;
+		border-radius: 0;
 		overflow: hidden;
-		border: 1px solid rgba(226, 232, 240, 0.8);
-		box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12),
-		            0 0 0 1px rgba(0, 0, 0, 0.04);
+		border: none;
+		box-shadow: none;
 	}
 
 	@media (min-width: 1024px) {
 		.mockup-scaling-wrapper {
 			width: 655px;
-			height: 484px;
+			height: 600px;
 		}
 
 		.mockup-scaled-container {
 			width: 840px;
-			height: 620px;
+			height: 770px;
 			transform: scale(0.78);
 			transform-origin: top left;
 		}

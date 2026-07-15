@@ -61,8 +61,8 @@
 </script>
 
 <svelte:head>
-	<title>Privacy Policy - Bomax ERP</title>
-	<meta name="description" content="Read the privacy policy of Bomax ERP. Learn how we collect, secure, and manage your data." />
+	<title>Privacy Policy - Firstcut24</title>
+	<meta name="description" content="Read the privacy policy of Firstcut24. Learn how we collect, secure, and manage your data." />
 </svelte:head>
 
 <Header />
@@ -121,7 +121,7 @@
 			<div class="flex flex-wrap justify-center items-center gap-3 lg:gap-4 mt-8 px-4 font-sans">
 				<div class="flex items-center gap-1.5 px-4 py-2 border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm rounded-full text-xs font-medium text-slate-200">
 					<Landmark class="h-3.5 w-3.5 text-slate-400" />
-					<span class="text-slate-400">Company:</span> &nbsp;<span class="font-semibold text-white">Bomax</span>
+					<span class="text-slate-400">Company:</span> &nbsp;<span class="font-semibold text-white">Firstcut24</span>
 				</div>
 				<div class="flex items-center gap-1.5 px-4 py-2 border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm rounded-full text-xs font-medium text-slate-200">
 					<Globe class="h-3.5 w-3.5 text-slate-400" />
@@ -195,7 +195,7 @@
 			<div class="lg:col-span-8">
 				<div class="border-l-4 border-blue-600 pl-4 py-1">
 					<h2 class="text-lg md:text-2xl font-extrabold text-slate-900 tracking-tight">
-						Welcome to firstcut24.com, operated by Bomax
+						Welcome to firstcut24.com, operated by Firstcut24
 					</h2>
 				</div>
 				<p class="text-slate-500 font-medium text-sm md:text-base mt-4 leading-relaxed max-w-3xl">
@@ -368,7 +368,7 @@
 					<div class="bg-blue-50/50 border-l-[3.5px] border-blue-600 p-4 rounded-r-2xl flex items-start gap-3 shadow-xs">
 						<Shield class="h-[21px] w-[21px] text-blue-600 mt-0.5 shrink-0" />
 						<p class="text-xs md:text-[13.5px] text-slate-650 leading-relaxed font-bold">
-							Your data belongs to you. <span class="text-slate-500 font-semibold font-sans">Bomax will never sell, rent, or trade your personal or business data to third-party advertisers or data brokers.</span>
+							Your data belongs to you. <span class="text-slate-500 font-semibold font-sans">Firstcut24 will never sell, rent, or trade your personal or business data to third-party advertisers or data brokers.</span>
 						</p>
 					</div>
 

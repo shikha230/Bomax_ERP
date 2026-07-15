@@ -442,7 +442,7 @@
 
 <section class="relative overflow-hidden bg-[#F4F5FB] pt-0">
 	<div class="relative mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 md:grid-cols-2 lg:px-8">
-		<div class="column col-left relative h-140 overflow-hidden sm:h-160 lg:h-190">
+		<div class="column col-left relative h-160 overflow-hidden sm:h-190 lg:h-240">
 			<div class="track flex flex-col gap-5">
 				{#each loopedLeft as card, i (i)}
 					{@render dashboardCard(card, i)}
@@ -450,7 +450,7 @@
 			</div>
 		</div>
 
-		<div class="column col-middle relative hidden h-140 overflow-hidden sm:h-160 md:block lg:h-190">
+		<div class="column col-middle relative hidden h-160 overflow-hidden sm:h-190 md:block lg:h-240">
 			<div class="track flex flex-col gap-5">
 				{#each loopedMiddle as card, i (i)}
 					{@render dashboardCard(card, i)}

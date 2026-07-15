@@ -45,10 +45,7 @@
 <section class="bg-gradient-to-b from-white to-slate-50/50 py-14 sm:py-20 lg:py-24 border-t border-slate-100">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-      <span class="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-inset ring-blue-700/10">
-        Tailored Solutions
-      </span>
-      <h2 class="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
         Built for Every Glass Business
       </h2>
       <p class="mt-4 text-slate-500 text-sm sm:text-base leading-relaxed text-pretty">

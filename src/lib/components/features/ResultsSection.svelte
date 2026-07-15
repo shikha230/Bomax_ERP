@@ -101,7 +101,7 @@
 
       <!-- Subtitle -->
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-        Over 500 glass businesses across India trust Bomax ERP to run their operations more efficiently and profitably.
+        Over 500 glass businesses across India trust Firstcut24 to run their operations more efficiently and profitably.
       </p>
     </div>
 

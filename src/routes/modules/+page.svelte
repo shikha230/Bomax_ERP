@@ -13,9 +13,9 @@
 </script>
 
 <svelte:head>
-	<title>ERP Modules for Glass Fabricators — Bomax ERP</title>
+	<title>ERP Modules for Glass Fabricators — Firstcut24</title>
 	<meta name="description" content="Discover Svelte-fast modules specifically built for glass fabricators. Manage operations, customer requests, job card dispatches, and glass optimization." />
-	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/modules" />
+	<link rel="canonical" href="https://firstcut24.com/modules" />
 </svelte:head>
 
 <Header />

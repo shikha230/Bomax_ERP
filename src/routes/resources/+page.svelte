@@ -59,7 +59,7 @@
 			Knowledge & Support Center
 		</h1>
 		<p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">
-			Everything you need to successfully configure, run, and scale operations using your Bomax ERP platform.
+			Everything you need to successfully configure, run, and scale operations using your Firstcut24 platform.
 		</p>
 	</div>
 

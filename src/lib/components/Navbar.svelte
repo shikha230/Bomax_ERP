@@ -21,7 +21,7 @@
         <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-400 animate-pulse border-2 border-white"></div>
       </div>
       <span class="text-xl font-extrabold tracking-tight text-slate-900 font-heading">
-        Bomax <span class="bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ERP</span>
+        Firstcut24 <span class="bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ERP</span>
       </span>
     </a>
 

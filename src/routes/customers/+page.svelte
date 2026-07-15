@@ -20,7 +20,7 @@
 			metricName: 'via Optimizer nesting',
 			leadName: 'Vikram Saluja',
 			role: 'Managing Director',
-			quote: 'Before Bomax, estimating toughened glass and nesting cuts was a manual bottleneck. Now we quote 4x faster and our scrap is at an all-time low. The return on investment was visible within the first month itself.',
+			quote: 'Before Firstcut24, estimating toughened glass and nesting cuts was a manual bottleneck. Now we quote 4x faster and our scrap is at an all-time low. The return on investment was visible within the first month itself.',
 			tag: 'Fabricator'
 		},
 		{
@@ -30,7 +30,7 @@
 			metricName: 'with digital job cards',
 			leadName: 'M. K. Swamy',
 			role: 'Operations Head',
-			quote: 'Tracking orders across our polishing, tempering, and double-glazing lines used to require constant phone calls. Bomax digital job cards keep everyone synced, drastically reducing shop floor delays.',
+			quote: 'Tracking orders across our polishing, tempering, and double-glazing lines used to require constant phone calls. Firstcut24 digital job cards keep everyone synced, drastically reducing shop floor delays.',
 			tag: 'Retailer & Supplier'
 		}
 	];
@@ -39,9 +39,9 @@
 </script>
 
 <svelte:head>
-	<title>Bomax ERP Customer Spotlight & Reviews</title>
-	<meta name="description" content="Read reviews and success stories from over 500+ glass industry leaders running on Bomax ERP. Learn how they optimized glass fabrication workflows." />
-	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/customers" />
+	<title>Firstcut24 Customer Spotlight & Reviews</title>
+	<meta name="description" content="Read reviews and success stories from over 500+ glass industry leaders running on Firstcut24. Learn how they optimized glass fabrication workflows." />
+	<link rel="canonical" href="https://firstcut24.com/customers" />
 </svelte:head>
 
 <Header />

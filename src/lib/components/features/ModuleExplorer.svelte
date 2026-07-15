@@ -6,6 +6,7 @@
   } from 'lucide-svelte';
   import { slide } from 'svelte/transition';
   import type { ComponentType } from 'svelte';
+  import { page } from '$app/stores';
 
   // ---------- Types ----------
   interface Bullet {
@@ -45,6 +46,27 @@
   // ---------- State ----------
   let activeModule = $state(0);
   let openPillar = $state<number | null>(0);
+  let lastTabParam = $state('');
+
+  $effect(() => {
+    const tabParam = $page.url.searchParams.get('tab');
+    if (tabParam && tabParam !== lastTabParam) {
+      lastTabParam = tabParam;
+      const idx = modules.findIndex(m => m.id === tabParam);
+      if (idx !== -1) {
+        activeModule = idx;
+        openPillar = 0;
+        
+        // Scroll to the modules section
+        setTimeout(() => {
+          const element = document.getElementById('modules');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    }
+  });
 
   function selectModule(index: number) {
     activeModule = index;

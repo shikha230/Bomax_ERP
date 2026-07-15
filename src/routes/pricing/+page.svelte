@@ -35,9 +35,9 @@
 </script>
 
 <svelte:head>
-	<title>Bomax ERP Pricing Plans & Compare Tiers</title>
-	<meta name="description" content="Choose from Starter, Professional, or Enterprise tiers of Bomax ERP. Flexible cloud pricing packages tailored for glass fabrication and tempering plants." />
-	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/pricing" />
+	<title>Firstcut24 Pricing Plans & Compare Tiers</title>
+	<meta name="description" content="Choose from Starter, Professional, or Enterprise tiers of Firstcut24. Flexible cloud pricing packages tailored for glass fabrication and tempering plants." />
+	<link rel="canonical" href="https://firstcut24.com/pricing" />
 </svelte:head>
 
 <Header />

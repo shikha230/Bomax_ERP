@@ -2,12 +2,10 @@
   import { Menu, X, Layers } from 'lucide-svelte';
   import { page } from '$app/stores';
   import { resolve } from '$app/paths';
+  import { goto } from '$app/navigation';
 
   let mobileMenuOpen = $state(false);
 
-  // Navigation links with proper routing
-  // 'Features' goes to /features page; the rest are top-level pages too.
-  // Href values are typed to the app's known routes so resolve() can validate them.
   type NavHref = '/' | '/features' | '/modules' | '/about';
 
   const links: { label: string; href: NavHref }[] = [
@@ -25,9 +23,13 @@
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
   }
+
+  function handleRegister() {
+    goto(resolve('/register'));
+  }
 </script>
 
-<header class="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
+<header class="sticky top-0 z-50 w-full border-b border-slate-100 bg-white backdrop-blur-md">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
     <a href={resolve('/')} class="flex items-center gap-2.5 group">
       <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20 transition-transform duration-350 group-hover:scale-105">
@@ -58,11 +60,11 @@
     <div class="hidden lg:flex items-center gap-4">
       <button
         type="button"
+        onclick={handleRegister}
         class="rounded-xl px-5 py-2.5 text-sm font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-slate-50 transition-all duration-200 whitespace-nowrap cursor-pointer"
       >
         Register
       </button>
-
     </div>
 
     <!-- Mobile Menu Button -->
@@ -89,7 +91,6 @@
     role="presentation"
   ></div>
 
-  <!-- Mobile Drawer Menu -->
   <div
     class="fixed top-20 bottom-0 right-0 z-50 w-full max-w-70 border-l border-slate-100 bg-white p-6 shadow-2xl lg:hidden overflow-y-auto"
   >
@@ -111,11 +112,11 @@
       <div class="flex flex-col gap-3">
         <button
           type="button"
+          onclick={handleRegister}
           class="flex w-full items-center justify-center rounded-xl border border-blue-200 bg-white py-2.5 text-sm font-semibold text-blue-600 hover:bg-slate-50 transition-all duration-200 cursor-pointer"
         >
           Register
         </button>
-
       </div>
     </div>
   </div>

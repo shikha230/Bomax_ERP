@@ -160,7 +160,7 @@
 <svelte:head>
   <title>Smart Glass & Hardware Quotation Engine — Firstcut24</title>
   <meta name="description" content="Generate 100% accurate, multi-item glass quotes. Eliminate edge polishing mistakes, wrong billing areas, and transport miscalculations with Firstcut24 pricing engine." />
-  <link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/modules/quotation" />
+  <link rel="canonical" href="https://firstcut24.com/modules/quotation" />
 </svelte:head>
 
 <Header />

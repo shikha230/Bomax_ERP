@@ -9,49 +9,49 @@
   interface Row {
     capability: string;
     traditional: TraditionalCell;
-    bomax: string;
+    Firstcut24: string;
   }
 
   const rows: Row[] = [
     {
       capability: 'Inventory Management',
       traditional: { text: 'Manual spreadsheets, no real-time sync', type: 'text' },
-      bomax: 'Real-time tracking + auto alerts',
+      Firstcut24: 'Real-time tracking + auto alerts',
     },
     {
       capability: 'Billing & Invoicing',
       traditional: { text: 'Manual invoices, prone to errors', type: 'text' },
-      bomax: 'Auto GST billing in seconds',
+      Firstcut24: 'Auto GST billing in seconds',
     },
     {
       capability: 'Production Planning',
       traditional: { text: '', type: 'cross' },
-      bomax: 'Full job card & floor tracking',
+      Firstcut24: 'Full job card & floor tracking',
     },
     {
       capability: 'Accounting',
       traditional: { text: 'Separate Tally, manual entry', type: 'text' },
-      bomax: 'Built-in, Tally-compatible',
+      Firstcut24: 'Built-in, Tally-compatible',
     },
     {
       capability: 'Reporting',
       traditional: { text: 'Monthly static reports', type: 'text' },
-      bomax: 'Real-time live dashboards',
+      Firstcut24: 'Real-time live dashboards',
     },
     {
       capability: 'Cloud Access',
       traditional: { text: '', type: 'cross' },
-      bomax: 'Web + Mobile, access anywhere',
+      Firstcut24: 'Web + Mobile, access anywhere',
     },
     {
       capability: 'Automation',
       traditional: { text: '', type: 'cross' },
-      bomax: 'AI-powered, fully automated',
+      Firstcut24: 'AI-powered, fully automated',
     },
     {
       capability: 'Analytics',
       traditional: { text: 'Basic / None', type: 'warning' },
-      bomax: 'Profit-per-job BI insights',
+      Firstcut24: 'Profit-per-job BI insights',
     },
   ];
 </script>
@@ -79,12 +79,12 @@
       <!-- Title -->
       <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
         Traditional Software vs.<br />
-        <span class="text-blue-600">Bomax ERP</span>
+        <span class="text-blue-600">Firstcut24</span>
       </h2>
 
       <!-- Subtitle -->
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-        See why hundreds of glass businesses switched from spreadsheets and legacy software to Bomax ERP.
+        See why hundreds of glass businesses switched from spreadsheets and legacy software to Firstcut24.
       </p>
     </div>
 
@@ -101,9 +101,9 @@
         <div class="bg-slate-100/80 px-6 py-4 border-b border-r border-slate-200/80 flex items-center justify-center">
           <span class="text-[13px] font-bold text-slate-600 font-heading">Traditional Software</span>
         </div>
-        <!-- Bomax ERP header -->
+        <!-- Firstcut24 header -->
         <div class="bg-blue-600 px-6 py-4 border-b border-slate-200/80 flex items-center justify-center">
-          <span class="text-[13px] font-bold text-white font-heading">Bomax ERP</span>
+          <span class="text-[13px] font-bold text-white font-heading">Firstcut24</span>
         </div>
       </div>
 
@@ -130,11 +130,11 @@
             {/if}
           </div>
 
-          <!-- Bomax ERP Cell -->
+          <!-- Firstcut24 Cell -->
           <div class="px-6 py-4 bg-blue-50/40 flex items-center justify-center {i < rows.length - 1 ? 'border-b border-slate-200/60' : ''}">
             <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[11.5px] font-semibold font-jakarta text-center leading-snug">
               <CheckCircle2 class="h-3.5 w-3.5 text-emerald-500 shrink-0" strokeWidth={2.5} />
-              {row.bomax}
+              {row.Firstcut24}
             </span>
           </div>
         </div>
@@ -144,7 +144,7 @@
 
     <!-- Bottom note -->
     <p class="text-center text-[12.5px] text-slate-400 font-medium mt-8">
-      * All features included in every Bomax ERP plan. No hidden add-ons or extra charges.
+      * All features included in every Firstcut24 plan. No hidden add-ons or extra charges.
     </p>
 
   </div>

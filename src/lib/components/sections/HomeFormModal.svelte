@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { X, Sparkles, Calculator, Calendar } from 'lucide-svelte';
+  import { X, Sparkles, Calculator, Calendar, Mail, Phone, Lock, Eye, EyeOff, ArrowRight, ShieldCheck } from 'lucide-svelte';
 
   // Props in Svelte 5
   let { isOpen = false, mode = 'optimizer', onClose = () => {} } = $props();
 
+  // Existing demo state variables
   let clientName = $state('');
   let companyName = $state('');
   let whatsappNumber = $state('');
@@ -13,23 +14,85 @@
   let cityName = $state('');
   let bestTime = $state('');
 
+  // Login (optimizer mode) state variables
+  let loginIdentifier = $state('');
+  let password = $state('');
+  let showPassword = $state(false);
+  let loginMethod = $derived(
+    loginIdentifier.trim() && /^[0-9+\s\-()]+$/.test(loginIdentifier.trim())
+      ? 'phone'
+      : 'gmail'
+  );
+  
+  let phoneStep = $state<'credentials' | 'otp'>('credentials');
+  let otpCode = $state(['', '', '', '', '', '']);
+  let otpInputs: HTMLInputElement[] = [];
+
   let isSubmitting = $state(false);
   let isSuccess = $state(false);
 
+  function handleOtpInput(index: number, e: Event) {
+    const input = e.target as HTMLInputElement;
+    const value = input.value.replace(/[^0-9]/g, '');
+    
+    if (value.length > 1) {
+      otpCode[index] = value.slice(-1);
+    } else {
+      otpCode[index] = value;
+    }
+    
+    // Auto-focus next input
+    if (otpCode[index] && index < 5) {
+      otpInputs[index + 1]?.focus();
+    }
+  }
+
+  function handleOtpKeyDown(index: number, e: KeyboardEvent) {
+    if (e.key === 'Backspace' && !otpCode[index] && index > 0) {
+      otpInputs[index - 1]?.focus();
+    }
+  }
+
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-    isSubmitting = true;
-    
-    // Simulate submission API call
-    setTimeout(() => {
-      isSubmitting = false;
-      isSuccess = true;
-    }, 1200);
+    if (mode === 'optimizer') {
+      if (loginMethod === 'gmail') {
+        isSubmitting = true;
+        setTimeout(() => {
+          isSubmitting = false;
+          isSuccess = true;
+        }, 1200);
+      } else {
+        // Phone login flow
+        if (phoneStep === 'credentials') {
+          isSubmitting = true;
+          setTimeout(() => {
+            isSubmitting = false;
+            phoneStep = 'otp';
+          }, 1000);
+        } else {
+          // Verify code
+          isSubmitting = true;
+          setTimeout(() => {
+            isSubmitting = false;
+            isSuccess = true;
+          }, 1200);
+        }
+      }
+    } else {
+      isSubmitting = true;
+      // Simulate booking API call
+      setTimeout(() => {
+        isSubmitting = false;
+        isSuccess = true;
+      }, 1200);
+    }
   }
 
   function resetAndClose() {
     onClose();
     setTimeout(() => {
+      // Demo variable reset
       clientName = '';
       companyName = '';
       whatsappNumber = '';
@@ -38,7 +101,16 @@
       pinCode = '';
       cityName = '';
       bestTime = '';
+      
+      // Login variable reset
+      loginIdentifier = '';
+      password = '';
+      showPassword = false;
+      phoneStep = 'credentials';
+      otpCode = ['', '', '', '', '', ''];
+      
       isSuccess = false;
+      isSubmitting = false;
     }, 300);
   }
 </script>
@@ -89,10 +161,16 @@
           </div>
           
           {#if mode === 'optimizer'}
-            <h3 class="text-xl font-extrabold text-slate-900 font-heading">Optimizer Request Received!</h3>
-            <p class="mt-2 text-sm text-slate-500 max-w-sm">
-              Thank you, <strong class="text-slate-800">{clientName}</strong>. Our optimization expert will contact you at <strong class="text-slate-800">{whatsappNumber}</strong> to set up your free optimizer.
-            </p>
+            <h3 class="text-xl font-extrabold text-slate-900 font-heading">Login Successful!</h3>
+            {#if loginMethod === 'gmail'}
+              <p class="mt-2 text-sm text-slate-500 max-w-sm">
+                Welcome back, <strong class="text-slate-800">{loginIdentifier}</strong>. You have successfully unlocked access to the AI Cutting Optimizer.
+              </p>
+            {:else}
+              <p class="mt-2 text-sm text-slate-500 max-w-sm">
+                Verification complete! Phone number <strong class="text-slate-800">{loginIdentifier}</strong> authenticated. Enjoy full optimizer access.
+              </p>
+            {/if}
           {:else}
             <h3 class="text-xl font-extrabold text-slate-900 font-heading">Demo Request Submitted!</h3>
             <p class="mt-2 text-sm text-slate-500 max-w-sm">
@@ -115,8 +193,8 @@
               <Calculator class="h-5.5 w-5.5" />
             </div>
             <div>
-              <h3 class="text-lg font-extrabold text-slate-900 font-heading">Try Free Optimizer</h3>
-              <p class="text-sm text-slate-520 mt-0.5">Optimize your cutting layouts, reduce wastage, and save costs.</p>
+              <h3 class="text-lg font-extrabold text-slate-900 font-heading">Sign In to Optimizer</h3>
+              <p class="text-sm text-slate-500 mt-0.5">Please log in to try our AI Glass Cutting Optimizer.</p>
             </div>
           {:else}
             <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 shrink-0">
@@ -127,40 +205,158 @@
                 <h3 class="text-lg font-extrabold text-slate-900 font-heading">Book a Demo</h3>
                 <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-800 border border-amber-200/60 uppercase tracking-wider animate-pulse">Launching Soon</span>
               </div>
-              <p class="text-sm text-slate-520 mt-0.5">See how Bomax ERP boosts efficiency for your glass operations.</p>
+              <p class="text-sm text-slate-520 mt-0.5">See how Firstcut24 boosts efficiency for your glass operations.</p>
             </div>
           {/if}
         </div>
 
         <form onsubmit={handleSubmit} class="space-y-4">
-          <!-- Company Name and Client Name fields -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="company-name" class="block text-xs font-bold text-slate-700 mb-1">Company Name *</label>
-              <input
-                id="company-name"
-                type="text"
-                bind:value={companyName}
-                required
-                placeholder="e.g., Apex Glass Solutions"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-            <div>
-              <label for="client-name" class="block text-xs font-bold text-slate-700 mb-1">Client Name *</label>
-              <input
-                id="client-name"
-                type="text"
-                bind:value={clientName}
-                required
-                placeholder="e.g., John Doe"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-          </div>
+          {#if mode === 'optimizer'}
+            {#if phoneStep === 'credentials'}
+              <!-- Single credentials view for both Gmail and Phone -->
+              <div class="space-y-3.5">
+                <div>
+                  <label for="identifier-input" class="block text-xs font-bold text-slate-700 mb-1.5">Gmail or Phone Number *</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 transition-colors duration-200">
+                      {#if loginMethod === 'phone'}
+                        <Phone class="h-4.5 w-4.5 text-slate-400" />
+                      {:else}
+                        <Mail class="h-4.5 w-4.5 text-slate-400" />
+                      {/if}
+                    </div>
+                    <input
+                      id="identifier-input"
+                      type="text"
+                      bind:value={loginIdentifier}
+                      required
+                      placeholder="e.g., alex@gmail.com or +91 98765 43210"
+                      class="w-full rounded-xl border border-slate-200 pl-11 pr-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                    />
+                  </div>
+                </div>
 
-          <!-- WhatsApp and Contact Time Fields -->
-          {#if mode === 'demo'}
+                <div>
+                  <label for="password-input" class="block text-xs font-bold text-slate-700 mb-1.5">Password *</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                      <Lock class="h-4.5 w-4.5" />
+                    </div>
+                    <input
+                      id="password-input"
+                      type={showPassword ? 'text' : 'password'}
+                      bind:value={password}
+                      required
+                      placeholder="••••••••"
+                      class="w-full rounded-xl border border-slate-200 pl-11 pr-11 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                    />
+                    <button
+                      type="button"
+                      class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
+                      onclick={() => showPassword = !showPassword}
+                      aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    >
+                      {#if showPassword}
+                        <EyeOff class="h-4.5 w-4.5" />
+                      {:else}
+                        <Eye class="h-4.5 w-4.5" />
+                      {/if}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                class="mt-6 flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400 gap-1.5"
+              >
+                {#if isSubmitting}
+                  {loginMethod === 'phone' ? 'Sending OTP...' : 'Logging in...'}
+                {:else}
+                  {loginMethod === 'phone' ? 'Send OTP Verification' : 'Logini'} <ArrowRight class="h-4 w-4" />
+                {/if}
+              </button>
+            {:else}
+              <!-- OTP input scene -->
+              <div class="animate-fade-in space-y-5 text-center">
+                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                  <ShieldCheck class="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-slate-800">Verify OTP Code</h4>
+                  <p class="text-xs text-slate-500 mt-1">
+                    Please enter the 6-digit confirmation code we sent to <span class="font-bold text-slate-700">{loginIdentifier}</span>.
+                  </p>
+                  <button
+                    type="button"
+                    class="text-xs text-blue-600 font-bold hover:underline mt-1.5"
+                    onclick={() => phoneStep = 'credentials'}
+                  >
+                    Wrong phone / password? Go back
+                  </button>
+                </div>
+
+                <!-- 6 digit cells -->
+                <div class="flex justify-center gap-2.5 py-1">
+                  {#each [0, 1, 2, 3, 4, 5] as index}
+                    <input
+                      bind:this={otpInputs[index]}
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      required
+                      class="w-10 h-10 text-center text-lg font-bold rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 outline-none transition-all shadow-sm"
+                      value={otpCode[index]}
+                      oninput={(e) => handleOtpInput(index, e)}
+                      onkeydown={(e) => handleOtpKeyDown(index, e)}
+                    />
+                  {/each}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  class="flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400 gap-1.5"
+                >
+                  {#if isSubmitting}
+                    Verifying...
+                  {:else}
+                    Verify OTP & Unlock Optimizer
+                  {/if}
+                </button>
+              </div>
+            {/if}
+          {:else}
+            <!-- Book a Demo mode fields -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="company-name" class="block text-xs font-bold text-slate-700 mb-1">Company Name *</label>
+                <input
+                  id="company-name"
+                  type="text"
+                  bind:value={companyName}
+                  required
+                  placeholder="e.g., Apex Glass Solutions"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
+              <div>
+                <label for="client-name" class="block text-xs font-bold text-slate-700 mb-1">Client Name *</label>
+                <input
+                  id="client-name"
+                  type="text"
+                  bind:value={clientName}
+                  required
+                  placeholder="e.g., John Doe"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
+            </div>
+
+            <!-- WhatsApp and Contact Time Fields -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="whatsapp-number" class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number *</label>
@@ -175,7 +371,7 @@
               </div>
               
               <div>
-                <label for="best-time" class="block text-xs font-bold text-slate-705 mb-1">Best Time to Contact *</label>
+                <label for="best-time" class="block text-xs font-bold text-slate-700 mb-1">Best Time to Contact *</label>
                 <select
                   id="best-time"
                   bind:value={bestTime}
@@ -195,84 +391,72 @@
                 </select>
               </div>
             </div>
-          {:else}
-            <div>
-              <label for="whatsapp-number" class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number *</label>
-              <input
-                id="whatsapp-number"
-                type="tel"
-                bind:value={whatsappNumber}
-                required
-                placeholder="e.g., +91 98765 43210"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
+
+            <!-- Country and State -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="country" class="block text-xs font-bold text-slate-700 mb-1">Country *</label>
+                <input
+                  id="country"
+                  type="text"
+                  bind:value={country}
+                  required
+                  placeholder="e.g., India"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
+              <div>
+                <label for="state" class="block text-xs font-bold text-slate-700 mb-1">State *</label>
+                <input
+                  id="state"
+                  type="text"
+                  bind:value={stateName}
+                  required
+                  placeholder="e.g., Maharashtra"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
             </div>
+
+            <!-- City and PIN Code -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="city" class="block text-xs font-bold text-slate-700 mb-1">City *</label>
+                <input
+                  id="city"
+                  type="text"
+                  bind:value={cityName}
+                  required
+                  placeholder="e.g., Mumbai"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
+              <div>
+                <label for="pincode" class="block text-xs font-bold text-slate-755 mb-1">PIN Code *</label>
+                <input
+                  id="pincode"
+                  type="text"
+                  bind:value={pinCode}
+                  required
+                  placeholder="e.g., 400001"
+                  class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                />
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              class="mt-6 flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400"
+            >
+              {#if isSubmitting}
+                Submitting...
+              {:else}
+                Book a Demo
+              {/if}
+            </button>
           {/if}
-
-          <!-- Country and State -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="country" class="block text-xs font-bold text-slate-700 mb-1">Country *</label>
-              <input
-                id="country"
-                type="text"
-                bind:value={country}
-                required
-                placeholder="e.g., India"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-            <div>
-              <label for="state" class="block text-xs font-bold text-slate-700 mb-1">State *</label>
-              <input
-                id="state"
-                type="text"
-                bind:value={stateName}
-                required
-                placeholder="e.g., Maharashtra"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-          </div>
-
-          <!-- City and PIN Code -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="city" class="block text-xs font-bold text-slate-700 mb-1">City *</label>
-              <input
-                id="city"
-                type="text"
-                bind:value={cityName}
-                required
-                placeholder="e.g., Mumbai"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-            <div>
-              <label for="pincode" class="block text-xs font-bold text-slate-755 mb-1">PIN Code *</label>
-              <input
-                id="pincode"
-                type="text"
-                bind:value={pinCode}
-                required
-                placeholder="e.g., 400001"
-                class="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-              />
-            </div>
-          </div>
-
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            class="mt-6 flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400"
-          >
-            {#if isSubmitting}
-              Submitting...
-            {:else}
-              {mode === 'optimizer' ? 'Try Free Optimizer' : 'Launching Soon'}
-            {/if}
-          </button>
         </form>
       {/if}
       </div>

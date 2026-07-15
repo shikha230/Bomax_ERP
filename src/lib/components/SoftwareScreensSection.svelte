@@ -11,25 +11,25 @@
 
   const screens: Screen[] = [
     {
-      url: 'app.bomaxerp.in/quotations',
+      url: 'app.Firstcut24.in/quotations',
       label: 'Quotation Screen',
       caption: 'Smart quoting with auto-calculation',
       accent: 'bg-blue-600',
     },
     {
-      url: 'app.bomaxerp.in/inventory',
+      url: 'app.Firstcut24.in/inventory',
       label: 'Inventory Screen',
       caption: 'Real-time stock tracking & alerts',
       accent: 'bg-emerald-600',
     },
     {
-      url: 'app.bomaxerp.in/production',
+      url: 'app.Firstcut24.in/production',
       label: 'Production Screen',
       caption: 'Job cards & production tracking',
       accent: 'bg-indigo-600',
     },
     {
-      url: 'app.bomaxerp.in/reports',
+      url: 'app.Firstcut24.in/reports',
       label: 'Reports Screen',
       caption: 'Analytics & business insights',
       accent: 'bg-amber-600',
@@ -104,11 +104,11 @@
       </div>
 
       <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-slate-900 leading-tight font-heading mb-5">
-        See Bomax ERP in Action
+        See Firstcut24 in Action
       </h2>
 
       <p class="text-sm sm:text-[15px] text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
-        Real dashboard screenshots from the Bomax ERP platform — built for the glass industry.
+        Real dashboard screenshots from the Firstcut24 platform — built for the glass industry.
       </p>
     </div>
 

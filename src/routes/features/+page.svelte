@@ -23,9 +23,9 @@
 </script>
 
 <svelte:head>
-	<title>Advanced Glass ERP Features — Bomax ERP</title>
+	<title>Advanced Glass ERP Features — Firstcut24</title>
 	<meta name="description" content="Explore advanced glass ERP features including cutting optimization, CRM, and inventory dispatching tailored specifically for glass fabricators." />
-	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/features" />
+	<link rel="canonical" href="https://firstcut24.com/features" />
 </svelte:head>
 
 <Header />
@@ -56,7 +56,7 @@
 			</h1>
 
 			<p class="text-sm sm:text-[15px] text-slate-500 max-w-md leading-relaxed">
-				Bomax ERP combines quotations, inventory, production,
+				Firstcut24 combines quotations, inventory, production,
 				accounting, HR, reporting and AI-powered glass optimization into
 				one intelligent cloud platform.
 			</p>
@@ -65,7 +65,7 @@
 				<button
 					type="button"
 					onclick={() => (isDemoModalOpen = true)}
-					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-3.5 sm:py-4 text-sm font-semibold text-white"
+					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-3.5 sm:py-4 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25 cursor-pointer"
 				>
 					<Calendar class="h-4 w-4" />
 					<span>Book Live Demo</span>

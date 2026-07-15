@@ -36,7 +36,7 @@
 				'Smart Cost-Based Material Routing'
 			],
 			ctaText: 'Explore AI Optimizer Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=optimizer'
 		},
 		'Financial & Accounting': {
 			title: 'Financial & Accounting Module',
@@ -49,7 +49,7 @@
 				'Live P&L and Balance Sheets'
 			],
 			ctaText: 'Explore Accounts Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=accounts'
 		},
 		'HR & Payroll': {
 			title: 'HR & Payroll Management Module',
@@ -62,7 +62,7 @@
 				'Smart Shift & Overtime Tracking'
 			],
 			ctaText: 'Explore HR Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=hr'
 		},
 		'OpEx Dashboard': {
 			title: 'Operational Expenditure (OpEx) Dashboard',
@@ -75,7 +75,7 @@
 				'Financial Impact of Breakage (Wastage Value)'
 			],
 			ctaText: 'Explore OpEx Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=opex'
 		},
 		'Production & Tracking': {
 			title: 'Production & Tracking Module',
@@ -88,7 +88,7 @@
 				'Integrated Quality Inspection Gates'
 			],
 			ctaText: 'Explore Production Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=production'
 		},
 		'Quotation': {
 			title: 'Smart Quotation Module: Built for the Complexities of Glass',
@@ -101,7 +101,7 @@
 				'Smart Tax & 1-Click Invoicing'
 			],
 			ctaText: 'Explore Quotation Module →',
-			ctaLink: '/modules/quotation'
+			ctaLink: '/modules?tab=quotation'
 		},
 		'Sales & Purchase': {
 			title: 'Sales & Purchase Management Module',
@@ -114,7 +114,7 @@
 				'Intelligent Vendor Management'
 			],
 			ctaText: 'Explore Sales & Purchase Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=sales'
 		},
 		'Inventory': {
 			title: 'Smart Inventory Module: Total Control Over Every Sheet, Fitting, and Profile',
@@ -127,7 +127,7 @@
 				'Smart Low-Stock Alerts & Automation'
 			],
 			ctaText: 'Explore Inventory Module →',
-			ctaLink: '/modules'
+			ctaLink: '/modules?tab=inventory'
 		}
 	};
 
