@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { X, Sparkles, Calculator, Calendar, Mail, Phone, Lock, Eye, EyeOff, ArrowRight, ShieldCheck } from 'lucide-svelte';
+  import { X, Sparkles, Calculator, Calendar, Mail, Phone, Key, ArrowRight, ShieldCheck } from 'lucide-svelte';
 
   // Props in Svelte 5
   let { isOpen = false, mode = 'optimizer', onClose = () => {} } = $props();
@@ -16,71 +16,38 @@
 
   // Login (optimizer mode) state variables
   let loginIdentifier = $state('');
-  let password = $state('');
-  let showPassword = $state(false);
+  let loginOtp = $state('');
+  let otpSent = $state(false);
   let loginMethod = $derived(
     loginIdentifier.trim() && /^[0-9+\s\-()]+$/.test(loginIdentifier.trim())
       ? 'phone'
       : 'gmail'
   );
 
-  let phoneStep = $state<'credentials' | 'otp'>('credentials');
-  let otpCode = $state(['', '', '', '', '', '']);
-  let otpInputs: HTMLInputElement[] = [];
-
   let isSubmitting = $state(false);
   let isSuccess = $state(false);
 
-  function handleOtpInput(index: number, e: Event) {
-    const input = e.target as HTMLInputElement;
-    const value = input.value.replace(/[^0-9]/g, '');
-
-    if (value.length > 1) {
-      otpCode[index] = value.slice(-1);
-    } else {
-      otpCode[index] = value;
+  function handleSendOtp() {
+    if (!loginIdentifier.trim()) {
+      alert('Please enter your Gmail or Phone Number first');
+      return;
     }
-
-    // Auto-focus next input
-    if (otpCode[index] && index < 5) {
-      otpInputs[index + 1]?.focus();
-    }
-  }
-
-  function handleOtpKeyDown(index: number, e: KeyboardEvent) {
-    if (e.key === 'Backspace' && !otpCode[index] && index > 0) {
-      otpInputs[index - 1]?.focus();
-    }
+    otpSent = true;
+    setTimeout(() => {
+      // Pre-fill a mock OTP for ease of testing
+      loginOtp = '482061';
+    }, 600);
   }
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
+    isSubmitting = true;
     if (mode === 'optimizer') {
-      if (loginMethod === 'gmail') {
-        isSubmitting = true;
-        setTimeout(() => {
-          isSubmitting = false;
-          isSuccess = true;
-        }, 1200);
-      } else {
-        // Phone login flow
-        if (phoneStep === 'credentials') {
-          isSubmitting = true;
-          setTimeout(() => {
-            isSubmitting = false;
-            phoneStep = 'otp';
-          }, 1000);
-        } else {
-          // Verify code
-          isSubmitting = true;
-          setTimeout(() => {
-            isSubmitting = false;
-            isSuccess = true;
-          }, 1200);
-        }
-      }
+      setTimeout(() => {
+        isSubmitting = false;
+        isSuccess = true;
+      }, 1200);
     } else {
-      isSubmitting = true;
       // Simulate booking API call
       setTimeout(() => {
         isSubmitting = false;
@@ -104,10 +71,8 @@
 
       // Login variable reset
       loginIdentifier = '';
-      password = '';
-      showPassword = false;
-      phoneStep = 'credentials';
-      otpCode = ['', '', '', '', '', ''];
+      loginOtp = '';
+      otpSent = false;
 
       isSuccess = false;
       isSubmitting = false;
@@ -212,123 +177,76 @@
 
         <form onsubmit={handleSubmit} class="space-y-4">
           {#if mode === 'optimizer'}
-            {#if phoneStep === 'credentials'}
-              <!-- Single credentials view for both Gmail and Phone -->
-              <div class="space-y-3.5">
-                <div>
-                  <label for="identifier-input" class="block text-xs font-bold text-slate-700 mb-1.5">Gmail or Phone Number *</label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 transition-colors duration-200">
-                      {#if loginMethod === 'phone'}
-                        <Phone class="h-4.5 w-4.5 text-slate-400" />
-                      {:else}
-                        <Mail class="h-4.5 w-4.5 text-slate-400" />
-                      {/if}
-                    </div>
-                    <input
-                      id="identifier-input"
-                      type="text"
-                      bind:value={loginIdentifier}
-                      required
-                      placeholder="e.g., alex@gmail.com or +91 98765 43210"
-                      class="w-full rounded-xl border border-slate-200 pl-11 pr-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-                    />
+            <div class="space-y-3.5">
+              <div>
+                <label for="identifier-input" class="block text-xs font-bold text-slate-700 mb-1.5">Gmail or Phone Number *</label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 transition-colors duration-200">
+                    {#if loginMethod === 'phone'}
+                      <Phone class="h-4.5 w-4.5 text-slate-400" />
+                    {:else}
+                      <Mail class="h-4.5 w-4.5 text-slate-400" />
+                    {/if}
                   </div>
-                </div>
-
-                <div>
-                  <label for="password-input" class="block text-xs font-bold text-slate-700 mb-1.5">Password *</label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <Lock class="h-4.5 w-4.5" />
-                    </div>
-                    <input
-                      id="password-input"
-                      type={showPassword ? 'text' : 'password'}
-                      bind:value={password}
-                      required
-                      placeholder="••••••••"
-                      class="w-full rounded-xl border border-slate-200 pl-11 pr-11 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
-                    />
-                    <button
-                      type="button"
-                      class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
-                      onclick={() => showPassword = !showPassword}
-                      aria-label={showPassword ? 'Hide password' : 'Show password'}
-                    >
-                      {#if showPassword}
-                        <EyeOff class="h-4.5 w-4.5" />
-                      {:else}
-                        <Eye class="h-4.5 w-4.5" />
-                      {/if}
-                    </button>
-                  </div>
+                  <input
+                    id="identifier-input"
+                    type="text"
+                    bind:value={loginIdentifier}
+                    required
+                    placeholder="e.g., alex@gmail.com or +91 98765 43210"
+                    class="w-full rounded-xl border border-slate-200 pl-11 pr-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                  />
                 </div>
               </div>
 
-              <!-- Submit Button -->
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                class="mt-6 flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400 gap-1.5"
-              >
-                {#if isSubmitting}
-                  {loginMethod === 'phone' ? 'Sending OTP...' : 'Logging in...'}
-                {:else}
-                  {loginMethod === 'phone' ? 'Send OTP Verification' : 'Login'} <ArrowRight class="h-4 w-4" />
-                {/if}
-              </button>
-            {:else}
-              <!-- OTP input scene -->
-              <div class="animate-fade-in space-y-5 text-center">
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                  <ShieldCheck class="h-6 w-6" />
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-slate-800">Verify OTP Code</h4>
-                  <p class="text-xs text-slate-500 mt-1">
-                    Please enter the 6-digit confirmation code we sent to <span class="font-bold text-slate-700">{loginIdentifier}</span>.
-                  </p>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label for="otp-input" class="block text-xs font-bold text-slate-700">OTP *</label>
                   <button
                     type="button"
-                    class="text-xs text-blue-600 font-bold hover:underline mt-1.5"
-                    onclick={() => phoneStep = 'credentials'}
+                    onclick={handleSendOtp}
+                    class="text-xs text-blue-600 font-bold hover:underline cursor-pointer"
                   >
-                    Wrong phone / password? Go back
+                    {otpSent ? 'Resend OTP' : 'Send OTP'}
                   </button>
                 </div>
-
-                <!-- 6 digit cells -->
-                <div class="flex justify-center gap-2.5 py-1">
-                  {#each [0, 1, 2, 3, 4, 5] as index (index)}
-                    <input
-                      bind:this={otpInputs[index]}
-                      type="text"
-                      inputmode="numeric"
-                      pattern="[0-9]*"
-                      maxlength="1"
-                      required
-                      class="w-10 h-10 text-center text-lg font-bold rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 outline-none transition-all shadow-sm"
-                      value={otpCode[index]}
-                      oninput={(e) => handleOtpInput(index, e)}
-                      onkeydown={(e) => handleOtpKeyDown(index, e)}
-                    />
-                  {/each}
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <Key class="h-4.5 w-4.5" />
+                  </div>
+                  <input
+                    id="otp-input"
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    maxlength="6"
+                    bind:value={loginOtp}
+                    required
+                    placeholder="Enter 6-digit OTP"
+                    class="w-full rounded-xl border border-slate-200 pl-11 pr-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-slate-50/50 hover:bg-slate-50 transition-colors outline-none"
+                  />
                 </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  class="flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400 gap-1.5"
-                >
-                  {#if isSubmitting}
-                    Verifying...
-                  {:else}
-                    Verify OTP & Unlock Optimizer
-                  {/if}
-                </button>
+                {#if otpSent}
+                  <p class="text-xs text-emerald-600 mt-1.5 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    OTP sent successfully! (Use mock code: 482061)
+                  </p>
+                {/if}
               </div>
-            {/if}
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              class="mt-6 flex w-full items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all disabled:bg-blue-400 gap-1.5 cursor-pointer"
+            >
+              {#if isSubmitting}
+                Verifying & Logging in...
+              {:else}
+                Login Now <ArrowRight class="h-4 w-4" />
+              {/if}
+            </button>
           {:else}
             <!-- Book a Demo mode fields -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

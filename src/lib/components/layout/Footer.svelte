@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Layers } from 'lucide-svelte';
   import { resolve } from '$app/paths';
 
   const productLinks = [
@@ -24,9 +23,9 @@
   ];
 
   const contactLinks = [
-    { name: '+91 98765 43210', href: 'tel:+919876543210' },
-    { name: 'hello@glasserp.in', href: 'mailto:hello@glasserp.in' },
-    { name: 'WhatsApp Chat', href: 'https://wa.me/919876543210' },
+    { name: '+91 93530 80886', href: 'tel:+919353080886' },
+    { name: 'hostbomax@gmail.com', href: 'mailto:hostbomax@gmail.com' },
+    { name: 'WhatsApp Chat', href: 'https://wa.me/919353080886' },
     { name: 'Book a Demo', href: '/contact' }
   ];
 
@@ -63,14 +62,8 @@
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
       <!-- Logo Section -->
       <div class="lg:col-span-1">
-        <a href={resolve('/')} class="flex items-center gap-2.5 group">
-          <div class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 shadow-md shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105">
-            <Layers class="h-5.5 w-5.5 text-white" />
-            <div class="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse border border-[#061330]"></div>
-          </div>
-          <span class="text-xl font-extrabold tracking-tight text-white font-heading">
-            Firstcut<span class="bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">24</span>
-          </span>
+        <a href={resolve('/')} class="flex items-center group transition-transform duration-300 group-hover:scale-105">
+          <img src="/logo.png" alt="Firstcut24" class="h-20 w-auto object-contain" style="filter: brightness(0) invert(1);" />
         </a>
 
         <p class="mt-3.5 max-w-xs text-[15px] leading-relaxed text-slate-350">

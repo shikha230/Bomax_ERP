@@ -47,13 +47,18 @@
     <!-- Call to Actions -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-10">
       <!-- Book Demo Button -->
-      <button
-        onclick={onBookDemo}
-        class="flex items-center justify-center gap-2 rounded-2xl bg-white text-blue-600 hover:bg-blue-50 px-8 py-4.5 text-sm font-bold shadow-lg shadow-blue-900/20 active:scale-98 transition-all duration-200 w-full sm:w-auto cursor-pointer"
-      >
-        <Calendar class="h-4.5 w-4.5" />
-        <span>Book Demo</span>
-      </button>
+      <div class="relative w-full sm:w-auto">
+        <button
+          onclick={onBookDemo}
+          class="flex w-full items-center justify-center gap-2 rounded-2xl bg-white text-blue-600 hover:bg-blue-50 px-8 py-4.5 text-sm font-bold shadow-lg shadow-blue-900/20 active:scale-98 transition-all duration-200 cursor-pointer"
+        >
+          <Calendar class="h-4.5 w-4.5" />
+          <span>Book Demo</span>
+        </button>
+        <span class="absolute -top-2.5 -right-2 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-[0_2px_8px_rgba(245,158,11,0.4)] whitespace-nowrap uppercase tracking-wider animate-pulse">
+          Launching Soon
+        </span>
+      </div>
 
       <!-- Talk to Expert Button -->
       <button

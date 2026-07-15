@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Layers, Mail, Lock, Eye, EyeOff, Phone, ArrowRight, ArrowLeft, CheckCircle, XCircle, User, MapPin, Building, Globe } from 'lucide-svelte';
+  import { Mail, Lock, Eye, EyeOff, Phone, ArrowRight, ArrowLeft, CheckCircle, XCircle, User, MapPin, Building, Globe } from 'lucide-svelte';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
 
@@ -90,14 +90,8 @@
     <!-- Left Branding Panel (desktop only) - Blue gradient -->
     <div class="hidden lg:flex w-[45%] flex-col justify-between p-12 relative overflow-hidden bg-[linear-gradient(160deg,#1e3a5f_0%,#1e4a7a_50%,#2563eb_100%)] before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_20%_50%,rgba(147,197,253,0.2)_0%,transparent_60%),radial-gradient(ellipse_at_80%_20%,rgba(37,99,235,0.1)_0%,transparent_50%)]">
       <div class="relative z-[1]">
-        <a href={resolve('/')} class="flex items-center gap-3 no-underline mb-12">
-          <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm shadow-[0_4px_16px_rgba(0,0,0,0.2)]">
-            <Layers class="h-7 w-7 text-white" />
-            <div class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-cyan-300 border-2 border-[#1e4a7a] animate-pulse"></div>
-          </div>
-          <span class="text-[1.375rem] font-extrabold tracking-tight text-white">
-            Firstcut <span class="text-cyan-300">24</span>
-          </span>
+        <a href={resolve('/')} class="flex items-center no-underline mb-12 transition-transform duration-300 hover:scale-105">
+          <img src="/logo.png" alt="Firstcut24" class="h-20 w-auto object-contain" style="filter: brightness(0) invert(1);" />
         </a>
 
         <div>
@@ -135,13 +129,8 @@
           <span>Back to Home</span>
         </a>
         <!-- Mobile Logo -->
-        <a href={resolve('/')} class="flex lg:hidden items-center gap-2.5 no-underline mb-8 justify-center">
-          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 shadow-[0_4px_12px_rgba(59,130,246,0.25)]">
-            <Layers class="h-5 w-5 text-white" />
-          </div>
-          <span class="text-xl font-extrabold tracking-tight text-slate-800">
-            Bomax <span class="text-blue-600">ERP</span>
-          </span>
+        <a href={resolve('/')} class="flex lg:hidden items-center no-underline mb-8 justify-center transition-transform duration-300 hover:scale-105">
+          <img src="/logo.png" alt="Firstcut24" class="h-16 w-auto object-contain" style="mix-blend-mode: multiply;" />
         </a>
 
         <div class="text-center lg:text-left mb-8">

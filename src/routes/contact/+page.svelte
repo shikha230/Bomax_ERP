@@ -1,11 +1,10 @@
 <script lang="ts">
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
-	import FAQSection from '$lib/components/sections/FAQSection.svelte';
 	import DemoModal from '$lib/components/features/DemoModal.svelte';
 	import ContactModal from '$lib/components/features/ContactModal.svelte';
 
-	import { Phone, Mail, MapPin, Clock, MessageSquare, Send, CheckCircle2 } from 'lucide-svelte';
+	import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, Building2 } from 'lucide-svelte';
 
 	let isDemoModalOpen = $state(false);
 	let isContactModalOpen = $state(false);
@@ -16,9 +15,35 @@
 		email: '',
 		phone: '',
 		company: '',
-		scale: 'small',
+		state: '',
+		city: '',
 		message: ''
 	});
+
+	// State -> City map for the dropdowns
+	const stateCityMap: Record<string, string[]> = {
+		'Karnataka': ['Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi'],
+		'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Nashik'],
+		'Delhi': ['New Delhi'],
+		'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
+		'Telangana': ['Hyderabad', 'Warangal'],
+		'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara'],
+		'Uttar Pradesh': ['Lucknow', 'Noida', 'Kanpur'],
+		'West Bengal': ['Kolkata', 'Howrah'],
+		'Rajasthan': ['Jaipur', 'Jodhpur'],
+		'Madhya Pradesh': ['Indore', 'Bhopal', 'Gwalior'],
+		'Haryana': ['Gurugram', 'Faridabad'],
+		'Punjab': ['Ludhiana', 'Amritsar'],
+		'Andhra Pradesh': ['Vijayawada', 'Visakhapatnam'],
+		'Kerala': ['Kochi', 'Thiruvananthapuram'],
+		'Other': ['Other']
+	};
+
+	let availableCities = $derived(formData.state ? (stateCityMap[formData.state] ?? []) : []);
+
+	function handleStateChange() {
+		formData.city = '';
+	}
 
 	function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
@@ -26,15 +51,15 @@
 		formSubmitted = true;
 		setTimeout(() => {
 			formSubmitted = false;
-			formData = { name: '', email: '', phone: '', company: '', scale: 'small', message: '' };
+			formData = { name: '', email: '', phone: '', company: '', state: '', city: '', message: '' };
 		}, 8000);
 	}
 </script>
 
 <svelte:head>
-	<title>Firstcut24</title>
-	<meta name="description" content="Get in touch with Firstcut24 corporate headquarters or support teams. Ask questions, request custom integrations, or book live product walkthroughs." />
-	<link rel="canonical" href="https://firstcut24.com/contact" />
+	<title>Contact Bomax ERP Support & Sales Teams</title>
+	<meta name="description" content="Get in touch with Bomax ERP corporate headquarters or support teams. Ask questions, request custom integrations, or book live product walkthroughs." />
+	<link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/contact" />
 </svelte:head>
 
 <Header />
@@ -42,16 +67,12 @@
 <main class="min-h-screen bg-slate-50/40 selection:bg-blue-500 selection:text-white relative overflow-hidden">
 	<!-- Background glow effects -->
 	<div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-		<div class="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-cyan-400/20 to-blue-300/10 blur-3xl opacity-60"></div>
-		<div class="absolute top-1/4 right-0 h-[700px]. w-[700px] rounded-full bg-gradient-to-br from-indigo-300/15 to-blue-400/25 blur-3xl opacity-50"></div>
+		<div class="absolute -top-40 -left-40 h-150 w-150 rounded-full bg-linear-to-tr from-cyan-400/20 to-blue-300/10 blur-3xl opacity-60"></div>
+		<div class="absolute top-1/4 right-0 h-175 w-175 rounded-full bg-linear-to-br from-indigo-300/15 to-blue-400/25 blur-3xl opacity-50"></div>
 	</div>
 
 	<!-- Contact Hero Header -->
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-6 text-center">
-		<div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/50 text-blue-600 shadow-sm mb-6">
-			<MessageSquare class="h-3.5 w-3.5" />
-			<span class="text-xs font-bold tracking-wide">Contact Us</span>
-		</div>
 		
 		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight mb-5 max-w-4xl mx-auto">
 			Start a Conversation with Us
@@ -76,29 +97,29 @@
 					<div class="space-y-5">
 						<!-- Phone -->
 						<div class="flex items-start gap-4">
-							<div class="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+							<div class="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
 								<Phone class="h-5 w-5" />
 							</div>
 							<div>
 								<div class="text-xs font-bold uppercase text-slate-400">Phone Support</div>
-								<a href="tel:+919876543210" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition">+91 98765 43210</a>
+								<a href="tel:+919353080886" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition">+91 93530 80886</a>
 							</div>
 						</div>
 
 						<!-- Email -->
 						<div class="flex items-start gap-4">
-							<div class="h-10 w-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
+							<div class="h-10 w-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
 								<Mail class="h-5 w-5" />
 							</div>
 							<div>
 								<div class="text-xs font-bold uppercase text-slate-400">Email Support</div>
-								<a href="mailto:hello@glasserp.in" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition">hello@glasserp.in</a>
+								<a href="mailto:hostbomax@gmail.com" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition">hostbomax@gmail.com</a>
 							</div>
 						</div>
 
 						<!-- Hours -->
 						<div class="flex items-start gap-4">
-							<div class="h-10 w-10 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 flex-shrink-0">
+							<div class="h-10 w-10 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 shrink-0">
 								<Clock class="h-5 w-5" />
 							</div>
 							<div>
@@ -107,31 +128,59 @@
 							</div>
 						</div>
 
-						<!-- Location -->
+						<!-- Head Office -->
 						<div class="flex items-start gap-4">
-							<div class="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+							<div class="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+								<Building2 class="h-5 w-5" />
+							</div>
+							<div>
+								<div class="text-xs font-bold uppercase text-slate-400 mb-1">Head Office</div>
+								<div class="text-sm text-slate-700 leading-relaxed space-y-0.5">
+									<p><span class="font-semibold text-slate-900">Floor No.:</span> 2nd Floor</p>
+									<p><span class="font-semibold text-slate-900">Building No./Flat No.:</span> G-81 & G-82, Old No- G-23-A PVT Office No- 201</p>
+									<p><span class="font-semibold text-slate-900">Road/Street:</span> Lakshmi Nagar Road</p>
+									<p><span class="font-semibold text-slate-900">Locality/Sub Locality:</span> Lakshmi Nagar</p>
+									<p><span class="font-semibold text-slate-900">City/Town/Village:</span> New Delhi</p>
+									<p><span class="font-semibold text-slate-900">District:</span> East Delhi</p>
+									<p><span class="font-semibold text-slate-900">State:</span> Delhi</p>
+									<p><span class="font-semibold text-slate-900">PIN Code:</span> 110092</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Branch Office -->
+						<div class="flex items-start gap-4">
+							<div class="h-10 w-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 shrink-0">
 								<MapPin class="h-5 w-5" />
 							</div>
 							<div>
-								<div class="text-xs font-bold uppercase text-slate-400">Corporate HQ</div>
-								<span class="text-sm font-medium text-slate-700">Level 8, Prestige Tech Hub, Outer Ring Rd, Bengaluru, KA - 560103</span>
+								<div class="text-xs font-bold uppercase text-slate-400 mb-1">Branch Office</div>
+								<div class="text-sm font-medium text-slate-700 leading-relaxed space-y-0.5">
+									<p>Prestige Arcade</p>
+									<p>No 610 Outer Ring Road, Thimmaya Layout, Bangalore – 68</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<!-- Secondary Details Box -->
-				<div class="bg-gradient-to-r from-blue-700 to-indigo-600 p-8 rounded-3xl text-white space-y-4">
+				<div class="bg-linear-to-r from-blue-700 to-indigo-600 p-8 rounded-3xl text-white space-y-4">
 					<h4 class="text-lg font-bold">Instantly Demo?</h4>
 					<p class="text-xs text-blue-100 leading-relaxed">
 						Skip the form and register to join a scheduled live walkthrough with one of our glass operations experts.
 					</p>
-					<button
-						onclick={() => isDemoModalOpen = true}
-						class="w-full bg-white hover:bg-slate-50 text-blue-600 font-bold py-3 px-6 rounded-xl transition text-xs"
-					>
-						Book Live Demo
-					</button>
+					<div class="relative">
+						<button
+							disabled
+							class="w-full bg-white/70 text-blue-400 font-bold py-3 px-6 rounded-xl transition text-xs cursor-not-allowed"
+						>
+							Book Live Demo
+						</button>
+						<span class="absolute -top-2 -right-2 bg-amber-400 text-slate-900 text-[10px] font-bold px-2 py-1 rounded-full shadow-md">
+							Launching Soon
+						</span>
+					</div>
 				</div>
 			</div>
 
@@ -203,17 +252,38 @@
 							</div>
 						</div>
 
-						<div class="space-y-2">
-							<label for="scale" class="text-xs font-bold text-slate-700">Monthly Glass Usage / Business Scale</label>
-							<select 
-								id="scale" 
-								bind:value={formData.scale}
-								class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-blue-500 focus:bg-white text-sm transition"
-							>
-								<option value="small">Small (Less than 10,000 sq.ft / mo)</option>
-								<option value="medium">Medium (10,000 to 50,000 sq.ft / mo)</option>
-								<option value="large">Large (More than 50,000 sq.ft / mo)</option>
-							</select>
+						<div class="grid grid-cols-2 gap-4">
+							<div class="space-y-2">
+								<label for="state" class="text-xs font-bold text-slate-700">State *</label>
+								<select 
+									id="state" 
+									bind:value={formData.state}
+									onchange={handleStateChange}
+									required
+									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-blue-500 focus:bg-white text-sm transition"
+								>
+									<option value="" disabled selected>Select State</option>
+									{#each Object.keys(stateCityMap) as stateName (stateName)}
+										<option value={stateName}>{stateName}</option>
+									{/each}
+								</select>
+							</div>
+
+							<div class="space-y-2">
+								<label for="city" class="text-xs font-bold text-slate-700">City *</label>
+								<select 
+									id="city" 
+									bind:value={formData.city}
+									required
+									disabled={!formData.state}
+									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-blue-500 focus:bg-white text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
+								>
+									<option value="" disabled selected>Select City</option>
+									{#each availableCities as cityName (cityName)}
+										<option value={cityName}>{cityName}</option>
+									{/each}
+								</select>
+							</div>
 						</div>
 
 						<div class="space-y-2">
@@ -241,9 +311,6 @@
 
 		</div>
 	</div>
-
-	<!-- FAQSection component helper -->
-	<FAQSection />
 </main>
 
 <DemoModal

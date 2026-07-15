@@ -48,17 +48,32 @@
 			<div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
 				<button
 					onclick={openOptimizer}
-					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-transparent bg-blue-600 px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-white shadow-lg transition hover:bg-blue-700"
+					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-transparent bg-blue-600 px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-white shadow-lg transition hover:bg-blue-700 cursor-pointer"
 				>
 					Try Free Optimizer
 				</button>
 
-				<button
-					onclick={openDemo}
-					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-slate-700 transition hover:bg-slate-50"
-				>
-					Book Demo
-				</button>
+				<div class="relative w-full sm:w-auto">
+					<button
+						onclick={openDemo}
+						class="w-full flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-7 py-3.5 sm:px-8 sm:py-4 font-semibold text-slate-700 transition hover:bg-slate-50 cursor-pointer"
+					>
+						Book Demo
+					</button>
+					<span class="absolute -top-2.5 -right-2 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-[0_2px_8px_rgba(245,158,11,0.4)] whitespace-nowrap uppercase tracking-wider animate-pulse">
+						Launching Soon
+					</span>
+				</div>
+			</div>
+
+			<!-- Early Bird Promo Text -->
+			<div class="mt-5 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+				<p class="text-sm text-slate-900 leading-snug">
+					<strong class="font-extrabold">Early Bird Special: Get 50% Off Your First Year.</strong>
+				</p>
+				<p class="mt-1 text-xs text-slate-500 leading-relaxed">
+					Register your interest today and secure a 50% discount on any annual subscription when we launch.
+				</p>
 			</div>
 
 		</div>
