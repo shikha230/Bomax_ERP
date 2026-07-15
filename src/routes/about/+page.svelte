@@ -130,7 +130,7 @@
 </script>
 
 <svelte:head>
-	
+	<title>Firstcut24</title>
 	<meta
 		name="description"
 		content="The story of Firstcut24 — the software solution engineered for the unique demands of the glass industry."

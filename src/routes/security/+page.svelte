@@ -54,7 +54,7 @@
 </script>
 
 <svelte:head>
-	<title>Security Policy - Firstcut24</title>
+	<title>Firstcut24</title>
 	<meta name="description" content="Learn about Firstcut24's bank-grade security model. Explore our data encryption, isolated servers, and access controls." />
 </svelte:head>
 

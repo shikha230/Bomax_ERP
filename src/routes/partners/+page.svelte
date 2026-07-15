@@ -94,7 +94,7 @@
 </script>
 
 <svelte:head>
-	<title>Firstcut24 Channel Partner Program</title>
+	<title>Firstcut24</title>
 	<meta
 		name="description"
 		content="Become an exclusive Firstcut24 State-Wise Channel Partner and earn recurring passive income."

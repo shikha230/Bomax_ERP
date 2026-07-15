@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-  <title>Sign In — Firstcut24</title>
+  <title>Firstcut24</title>
   <meta name="description" content="Sign in to your Firstcut24 account to manage your business operations." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />

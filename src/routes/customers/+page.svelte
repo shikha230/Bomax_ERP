@@ -39,7 +39,7 @@
 </script>
 
 <svelte:head>
-	<title>Firstcut24 Customer Spotlight & Reviews</title>
+	<title>Firstcut24</title>
 	<meta name="description" content="Read reviews and success stories from over 500+ glass industry leaders running on Firstcut24. Learn how they optimized glass fabrication workflows." />
 	<link rel="canonical" href="https://firstcut24.com/customers" />
 </svelte:head>

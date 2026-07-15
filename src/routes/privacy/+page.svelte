@@ -61,7 +61,7 @@
 </script>
 
 <svelte:head>
-	<title>Privacy Policy - Firstcut24</title>
+	<title>Firstcut24</title>
 	<meta name="description" content="Read the privacy policy of Firstcut24. Learn how we collect, secure, and manage your data." />
 </svelte:head>
 

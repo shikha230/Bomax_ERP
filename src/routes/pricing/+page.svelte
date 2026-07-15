@@ -35,7 +35,7 @@
 </script>
 
 <svelte:head>
-	<title>Firstcut24 Pricing Plans & Compare Tiers</title>
+	<title>Firstcut24</title>
 	<meta name="description" content="Choose from Starter, Professional, or Enterprise tiers of Firstcut24. Flexible cloud pricing packages tailored for glass fabrication and tempering plants." />
 	<link rel="canonical" href="https://firstcut24.com/pricing" />
 </svelte:head>

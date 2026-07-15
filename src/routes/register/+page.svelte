@@ -68,7 +68,7 @@
 </script>
 
 <svelte:head>
-  <title>Create Account — Bomax ERP</title>
+  <title>Firstcut24</title>
   <meta name="description" content="Create your Bomax ERP account and start managing your business operations efficiently." />
   <link rel="canonical" href="https://bomax-erp-vercel-app.vercel.app/register" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />

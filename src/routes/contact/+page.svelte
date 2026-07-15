@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Contact Firstcut24 Support & Sales Teams</title>
+	<title>Firstcut24</title>
 	<meta name="description" content="Get in touch with Firstcut24 corporate headquarters or support teams. Ask questions, request custom integrations, or book live product walkthroughs." />
 	<link rel="canonical" href="https://firstcut24.com/contact" />
 </svelte:head>
