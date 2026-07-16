@@ -58,15 +58,15 @@
 </script>
 
 <footer class="bg-[#061330] text-white mt-1">
-  <div class="mx-auto max-w-7xl px-4 py-4 sm:py-8 lg:py-10">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:py-12 lg:py-16">
+    <div class="grid gap-8 grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
       <!-- Logo Section -->
-      <div class="lg:col-span-1">
+      <div class="col-span-2 md:col-span-4 lg:col-span-1">
         <a href={resolve('/')} class="flex items-center group transition-transform duration-300 group-hover:scale-105">
           <img src="/logo.png" alt="Firstcut24" class="h-20 w-auto object-contain" style="filter: brightness(0) invert(1);" />
         </a>
 
-        <p class="mt-3.5 max-w-xs text-[15px] leading-relaxed text-slate-350">
+        <p class="mt-3.5 max-w-xs text-[15px] leading-relaxed text-slate-300">
           The all-in-one ERP platform built exclusively for glass businesses across India and beyond.
         </p>
 
@@ -176,19 +176,19 @@
     </div>
 
     <!-- Bottom Section -->
-    <div class="mt-6 sm:mt-8 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-4 text-[15px] text-white md:flex-row">
-      <p>
-        © 2026 Firstcut24.A Product of BOMAX Technologies.
+    <div class="mt-8 sm:mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-[15px] text-slate-400 md:flex-row">
+      <p class="text-center md:text-left text-sm leading-relaxed">
+        © 2026 Firstcut24. A Product of BOMAX Technologies.
       </p>
 
-      <div class="flex flex-wrap gap-6 text-[15px]">
-        <a href={resolve('/privacy')} class="cursor-pointer hover:text-white">
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-[15px] justify-center md:justify-end">
+        <a href={resolve('/privacy')} class="cursor-pointer hover:text-white transition-colors duration-200">
           Privacy Policy
         </a>
-        <a href={resolve('/terms')} class="cursor-pointer hover:text-white">
+        <a href={resolve('/terms')} class="cursor-pointer hover:text-white transition-colors duration-200">
           Terms of Service
         </a>
-        <a href={resolve('/security')} class="cursor-pointer hover:text-white font-sans">
+        <a href={resolve('/security')} class="cursor-pointer hover:text-white font-sans transition-colors duration-200">
           Security
         </a>
       </div>

@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import heroImage from '$lib/assets/Images/hero.png';
 	import FeaturesSection from '$lib/components/features/FeaturesSection.svelte';
-	import ModuleExplorer from '$lib/components/features/ModuleExplorer.svelte';
+	// import ModuleExplorer from '$lib/components/features/ModuleExplorer.svelte';
 	import SoftwareScreensSection from '$lib/components/features/SoftwareScreensSection.svelte';
 	import ResultsSection from '$lib/components/features/ResultsSection.svelte';
 	import ComparisonSection from '$lib/components/features/ComparisonSection.svelte';
@@ -62,15 +62,20 @@
 			</p>
 
 			<div class="flex flex-col sm:flex-row flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
-				<button
-					type="button"
-					onclick={() => (isDemoModalOpen = true)}
-					class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-3.5 sm:py-4 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25 cursor-pointer"
-				>
-					<Calendar class="h-4 w-4" />
-					<span>Book Live Demo</span>
-				</button>
-			</div>
+	<div class="relative w-full sm:w-auto">
+		<button
+			type="button"
+			onclick={() => (isDemoModalOpen = true)}
+			class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-3.5 sm:py-4 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25 cursor-pointer"
+		>
+			<Calendar class="h-4 w-4" />
+			<span>Book Live Demo</span>
+		</button>
+		<span class="absolute -top-2 -right-2 bg-amber-400 text-slate-900 text-[10px] font-bold px-2 py-1 rounded-full shadow-md">
+			Launching Soon
+		</span>
+	</div>
+</div>
 
 
 		</section>
@@ -91,7 +96,7 @@
 
 
 <FeaturesSection />
-<ModuleExplorer />
+<!-- <ModuleExplorer /> -->
 <SoftwareScreensSection />
 <ResultsSection />
 <ComparisonSection />

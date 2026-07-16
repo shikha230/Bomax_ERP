@@ -44,7 +44,7 @@
 		<div class="flex flex-wrap justify-center gap-6 text-sm text-slate-600 font-medium">
 			<div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-xs">
 				<Grid class="h-4.5 w-4.5 text-blue-500" />
-				<span>7 Core Modules</span>
+				<span>8 Core Modules</span>
 			</div>
 			<div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-xs">
 				<Shield class="h-4.5 w-4.5 text-indigo-500" />

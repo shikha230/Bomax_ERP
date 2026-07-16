@@ -20,23 +20,44 @@
 		message: ''
 	});
 
-	// State -> City map for the dropdowns
+	// State -> City map (suggestions only — city field allows free/manual entry too)
 	const stateCityMap: Record<string, string[]> = {
+		'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Tirupati'],
+		'Arunachal Pradesh': ['Itanagar', 'Naharlagun'],
+		'Assam': ['Guwahati', 'Dibrugarh', 'Silchar', 'Jorhat'],
+		'Bihar': ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur'],
+		'Chhattisgarh': ['Raipur', 'Bhilai', 'Bilaspur', 'Durg'],
+		'Goa': ['Panaji', 'Margao', 'Vasco da Gama'],
+		'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot'],
+		'Haryana': ['Gurugram', 'Faridabad', 'Panipat', 'Ambala'],
+		'Himachal Pradesh': ['Shimla', 'Manali', 'Dharamshala'],
+		'Jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro'],
 		'Karnataka': ['Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi'],
+		'Kerala': ['Kochi', 'Thiruvananthapuram', 'Kozhikode', 'Thrissur'],
+		'Madhya Pradesh': ['Indore', 'Bhopal', 'Gwalior', 'Jabalpur'],
 		'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Nashik'],
+		'Manipur': ['Imphal'],
+		'Meghalaya': ['Shillong'],
+		'Mizoram': ['Aizawl'],
+		'Nagaland': ['Kohima', 'Dimapur'],
+		'Odisha': ['Bhubaneswar', 'Cuttack', 'Rourkela'],
+		'Punjab': ['Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala'],
+		'Rajasthan': ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota'],
+		'Sikkim': ['Gangtok'],
+		'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli'],
+		'Telangana': ['Hyderabad', 'Warangal', 'Nizamabad'],
+		'Tripura': ['Agartala'],
+		'Uttar Pradesh': ['Lucknow', 'Noida', 'Kanpur', 'Ghaziabad', 'Varanasi'],
+		'Uttarakhand': ['Dehradun', 'Haridwar', 'Haldwani'],
+		'West Bengal': ['Kolkata', 'Howrah', 'Durgapur', 'Siliguri'],
+		'Andaman and Nicobar Islands': ['Port Blair'],
+		'Chandigarh': ['Chandigarh'],
+		'Dadra and Nagar Haveli and Daman and Diu': ['Daman', 'Silvassa'],
 		'Delhi': ['New Delhi'],
-		'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
-		'Telangana': ['Hyderabad', 'Warangal'],
-		'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara'],
-		'Uttar Pradesh': ['Lucknow', 'Noida', 'Kanpur'],
-		'West Bengal': ['Kolkata', 'Howrah'],
-		'Rajasthan': ['Jaipur', 'Jodhpur'],
-		'Madhya Pradesh': ['Indore', 'Bhopal', 'Gwalior'],
-		'Haryana': ['Gurugram', 'Faridabad'],
-		'Punjab': ['Ludhiana', 'Amritsar'],
-		'Andhra Pradesh': ['Vijayawada', 'Visakhapatnam'],
-		'Kerala': ['Kochi', 'Thiruvananthapuram'],
-		'Other': ['Other']
+		'Jammu and Kashmir': ['Srinagar', 'Jammu'],
+		'Ladakh': ['Leh', 'Kargil'],
+		'Lakshadweep': ['Kavaratti'],
+		'Puducherry': ['Puducherry']
 	};
 
 	let availableCities = $derived(formData.state ? (stateCityMap[formData.state] ?? []) : []);
@@ -270,19 +291,22 @@
 							</div>
 
 							<div class="space-y-2">
-								<label for="city" class="text-xs font-bold text-slate-700">City *</label>
-								<select 
-									id="city" 
+								<label for="city" class="text-xs font-bold text-slate-700">City * <span class="font-normal normal-case text-slate-400">(type to add your own)</span></label>
+								<input
+									type="text"
+									id="city"
+									list="city-options"
 									bind:value={formData.city}
 									required
-									disabled={!formData.state}
-									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-blue-500 focus:bg-white text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
-								>
-									<option value="" disabled selected>Select City</option>
+									autocomplete="off"
+									placeholder={formData.state ? 'Select or type your city' : 'Select a state first'}
+									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-blue-500 focus:bg-white text-sm transition"
+								/>
+								<datalist id="city-options">
 									{#each availableCities as cityName (cityName)}
-										<option value={cityName}>{cityName}</option>
+										<option value={cityName}></option>
 									{/each}
-								</select>
+								</datalist>
 							</div>
 						</div>
 

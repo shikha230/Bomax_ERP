@@ -39,10 +39,10 @@
   <meta name="description" content="Sign in to your Firstcut24 account using OTP code." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="relative min-h-screen flex items-center justify-center overflow-hidden [font-family:'Inter',system-ui,sans-serif]">
+<div class="relative min-h-screen flex items-center justify-center overflow-hidden [font-family:'Roboto',system-ui,sans-serif]">
   <!-- Light Background with subtle blue accents (matching the Register theme) -->
   <div class="fixed inset-0 z-0">
     <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-slate-100"></div>
