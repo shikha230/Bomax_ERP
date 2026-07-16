@@ -93,8 +93,10 @@
     <!-- Left Branding Panel (desktop only) - Blue gradient -->
     <div class="hidden lg:flex w-[45%] flex-col justify-between p-12 relative overflow-hidden bg-[linear-gradient(160deg,#1e3a5f_0%,#1e4a7a_50%,#2563eb_100%)] before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_20%_50%,rgba(147,197,253,0.2)_0%,transparent_60%),radial-gradient(ellipse_at_80%_20%,rgba(37,99,235,0.1)_0%,transparent_50%)]">
       <div class="relative z-[1]">
-        <a href={resolve('/')} class="flex items-center no-underline mb-12 transition-transform duration-300 hover:scale-105">
-          <img src="/logo.png" alt="Firstcut24" class="h-20 w-auto object-contain" style="filter: brightness(0) invert(1);" />
+        <a href={resolve('/')} class="flex items-center no-underline mb-12">
+          
+            <img src="/logo.png" alt="Firstcut24" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1)" />
+          
         </a>
 
         <div>
@@ -132,9 +134,12 @@
           <span>Back to Home</span>
         </a>
         <!-- Mobile Logo -->
-        <a href={resolve('/')} class="flex lg:hidden items-center no-underline mb-8 justify-center transition-transform duration-300 hover:scale-105">
-          <img src="/logo.png" alt="Firstcut24" class="h-16 w-auto object-contain" style="mix-blend-mode: multiply;" />
+        <a href={resolve('/')} class="flex items-center no-underline mb-12">
+          
+            <img src="/logo.png" alt="Firstcut24" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1)" />
+          
         </a>
+
 
         <div class="text-center lg:text-left mb-8">
           <h2 class="text-2xl sm:text-[1.75rem] font-extrabold text-slate-800 tracking-tight mb-2">Create your account</h2>

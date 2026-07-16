@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { X, Sparkles, Calculator, Calendar, Mail, Phone, Key, ArrowRight, ShieldCheck } from 'lucide-svelte';
+  import { X, Sparkles, Calculator, Calendar, Mail, Phone, Key, ArrowRight } from 'lucide-svelte';
 
   // Props in Svelte 5
   let { isOpen = false, mode = 'optimizer', onClose = () => {} } = $props();

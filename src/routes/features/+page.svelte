@@ -3,7 +3,6 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import heroImage from '$lib/assets/Images/hero.png';
 	import FeaturesSection from '$lib/components/features/FeaturesSection.svelte';
-	// import ModuleExplorer from '$lib/components/features/ModuleExplorer.svelte';
 	import SoftwareScreensSection from '$lib/components/features/SoftwareScreensSection.svelte';
 	import ResultsSection from '$lib/components/features/ResultsSection.svelte';
 	import ComparisonSection from '$lib/components/features/ComparisonSection.svelte';
@@ -96,7 +95,6 @@
 
 
 <FeaturesSection />
-<!-- <ModuleExplorer /> -->
 <SoftwareScreensSection />
 <ResultsSection />
 <ComparisonSection />
@@ -140,16 +138,3 @@
 </style>
 
 
-<!-- <div class="min-h-screen bg-slate-50/40 selection:bg-blue-500 selection:text-white flex flex-col relative overflow-hidden">
-	<div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-		<div class="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-400/20 to-cyan-300/10 blur-3xl opacity-60"></div>
-
-	</div>
-	<div class="absolute top-1/4 right-0 h-[700px] w-[700px] rounded-full bg-gradient-to-br from-indigo-300/10 to-blue-400/20 blur-3xl opacity-50"></div>
-
-	<div class="absolute bottom-0 left-10 h-[500px] w-[500px] rounded-full bg-gradient-to-r from-cyan-200/10 to-blue-300/15 blur-3xl opacity-40"></div>
-
-	<div
-		class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35"
-	></div>
-</div> -->

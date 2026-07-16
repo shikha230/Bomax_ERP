@@ -43,7 +43,7 @@
 			<img
 				src="/logo.png"
 				alt="Firstcut24"
-				class="h-15 w-auto object-contain"
+				class="h-10 w-auto object-contain"
 				style="mix-blend-mode: multiply;"
 			/>
 		</a>

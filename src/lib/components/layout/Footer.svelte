@@ -63,7 +63,7 @@
       <!-- Logo Section -->
       <div class="col-span-2 md:col-span-4 lg:col-span-1">
         <a href={resolve('/')} class="flex items-center group transition-transform duration-300 group-hover:scale-105">
-          <img src="/logo.png" alt="Firstcut24" class="h-20 w-auto object-contain" style="filter: brightness(0) invert(1);" />
+          <img src="/logo.png" alt="Firstcut24" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1);" />
         </a>
 
         <p class="mt-3.5 max-w-xs text-[15px] leading-relaxed text-slate-300">

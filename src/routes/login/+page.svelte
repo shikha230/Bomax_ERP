@@ -58,7 +58,7 @@
       <div class="relative z-[1]">
         <a href={resolve('/')} class="flex items-center no-underline mb-12">
           
-            <img src="/logo.png" alt="Firstcut24" class="h-25 w-auto object-contain" style="filter: brightness(0) invert(1)" />
+            <img src="/logo.png" alt="Firstcut24" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1)" />
           
         </a>
 
