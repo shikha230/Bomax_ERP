@@ -7,6 +7,7 @@
   let email = $state('');
   let password = $state('');
   let phone = $state('');
+  let companyName = $state('');
   let country = $state('');
   let stateProvince = $state('');
   let city = $state('');
@@ -33,6 +34,7 @@
           email,
           password,
           phone_number: phone,
+          company_name: companyName,
           country,
           state: stateProvince,
           city,
@@ -48,6 +50,7 @@
         email = '';
         password = '';
         phone = '';
+        companyName = '';
         country = '';
         stateProvince = '';
         city = '';
@@ -151,6 +154,23 @@
                 placeholder="John Doe"
                 required
                 autocomplete="name"
+                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              />
+            </div>
+          </div>
+
+          <!-- Company Name Field -->
+          <div class="flex flex-col gap-1.5">
+            <label for="register-company" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Company name</label>
+            <div class="group relative flex items-center">
+              <Building class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <input
+                id="register-company"
+                type="text"
+                bind:value={companyName}
+                placeholder="Acme Corporation"
+                required
+                autocomplete="organization"
                 class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
