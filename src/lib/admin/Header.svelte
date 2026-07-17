@@ -32,18 +32,18 @@
 </script>
 
 <header
-	class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-slate-200 bg-white px-6 shadow-sm"
+	class="sticky top-0 z-20 flex h-20 items-center justify-between border-b-2 border-blue-100 bg-white px-6 shadow-sm"
 >
 	<!-- Left -->
 
 	<div>
-		<h1 class="text-3xl font-bold text-slate-800">
+		<h1 class="text-3xl font-bold text-blue-900" style="font-family: 'Roboto', sans-serif;">
 			Dashboard
 		</h1>
 
-		<p class="mt-1 text-sm text-slate-500">
+		<p class="mt-1 text-sm text-gray-600" style="font-family: 'Roboto', sans-serif;">
 			Welcome back,
-			<span class="font-semibold text-cyan-600">
+			<span class="font-semibold text-blue-600">
 				{$admin?.name ?? 'Admin'}
 			</span>
 		</p>
@@ -59,14 +59,15 @@
 
 			<Search
 				size={18}
-				class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+				class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
 			/>
 
 			<input
 				bind:value={search}
 				type="text"
 				placeholder="Search..."
-				class="w-72 rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-cyan-500"
+				class="w-72 rounded-xl border-2 border-gray-200 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+				style="font-family: 'Roboto', sans-serif;"
 			/>
 
 		</div>
@@ -74,7 +75,7 @@
 		<!-- Notification -->
 
 		<button
-			class="relative rounded-xl bg-slate-100 p-3 transition hover:bg-slate-200"
+			class="relative rounded-xl bg-blue-50 p-3 text-blue-600 transition hover:bg-blue-100"
 		>
 			<Bell size={20} />
 
@@ -86,9 +87,9 @@
 
 		<!-- Date -->
 
-		<div class="hidden rounded-xl bg-slate-100 px-4 py-3 lg:block">
+		<div class="hidden rounded-xl bg-blue-50 px-4 py-3 lg:block">
 
-			<div class="flex items-center gap-2 text-sm text-slate-600">
+			<div class="flex items-center gap-2 text-sm text-blue-700" style="font-family: 'Roboto', sans-serif;">
 
 				<CalendarDays size={18} />
 
@@ -96,7 +97,7 @@
 
 			</div>
 
-			<p class="mt-1 text-right font-semibold text-slate-800">
+			<p class="mt-1 text-right font-semibold text-blue-900" style="font-family: 'Roboto', sans-serif;">
 				{timeFormatter.format(currentTime)}
 			</p>
 

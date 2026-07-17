@@ -3,6 +3,8 @@ import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
+const BACKEND_TARGET = 'https://elenora-uncombining-martha.ngrok-free.dev';
+
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
@@ -13,10 +15,19 @@ export default defineConfig({
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
 
-			// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+			// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapters to learn how to configure your app to run on the platform of your choosing.
 			// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 			adapter: adapter()
 		})
-	]
+	],
+	server: {
+		proxy: {
+			'/api': {
+				target: BACKEND_TARGET,
+				changeOrigin: true,
+				secure: false
+			}
+		}
+	}
 });

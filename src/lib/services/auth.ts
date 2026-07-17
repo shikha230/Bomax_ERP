@@ -1,13 +1,13 @@
 import type { LoginResponse } from '$lib/types/user';
 
-const BASE_URL = 'https://elenora-uncombining-martha.ngrok-free.dev';
+const BASE_URL = 'https://elenora-uncombining-martha.ngrok-free.dev/api';
 
 export async function login(email: string, password: string): Promise<LoginResponse> {
     if (!email || !password) {
         throw new Error('Please fill all fields');
     }
 
-    const response = await fetch(`${BASE_URL}/api/admin/login`, {
+    const response = await fetch(`${BASE_URL}/admin/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export async function registerAdmin(name: string, email: string, password: strin
         throw new Error('Please fill all fields');
     }
 
-    const response = await fetch(`${BASE_URL}/api/admin/register`, {
+    const response = await fetch(`${BASE_URL}/admin/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -65,4 +65,4 @@ export async function registerAdmin(name: string, email: string, password: strin
     }
 
     return data as AdminRegisterResponse;
-}
+}

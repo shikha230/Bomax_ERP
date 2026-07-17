@@ -30,15 +30,15 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name,
-          email,
-          password,
-          phone_number: phone,
-          company_name: companyName,
-          country,
-          state: stateProvince,
-          city,
-          pincode,
+          Fullname: name,
+          Email_address: email,
+          password_hash: password,
+          Phone_number: phone,
+          Company_name: companyName,
+          Country: country,
+          State: stateProvince,
+          City: city,
+          Pincode: pincode,
         }),
       });
 
@@ -58,6 +58,13 @@
         setTimeout(() => {
           goto(resolve('/login'));
         }, 2000);
+      } else if (Array.isArray(data.detail)) {
+        // FastAPI-style validation errors: surface which field failed and why
+        errorMessage = data.detail
+          .map((d: any) => `${d.loc?.[d.loc.length - 1] ?? 'field'}: ${d.msg}`)
+          .join('; ');
+      } else if (typeof data.detail === 'string') {
+        errorMessage = data.detail;
       } else {
         errorMessage = data.message || data.error || 'Registration failed. Please try again.';
       }
@@ -79,20 +86,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="relative min-h-screen flex items-center justify-center overflow-hidden [font-family:'Roboto',system-ui,sans-serif]">
+<div class="relative min-h-screen flex items-center justify-center overflow-hidden font-['Roboto',system-ui,sans-serif]">
   <!-- Light Background with subtle blue accents -->
   <div class="fixed inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-slate-100"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(rgba(59,130,246,0.06)_1px,transparent_1px)] bg-[length:32px_32px]"></div>
-    <div class="absolute -top-[10%] -left-[5%] w-[500px] h-[500px] rounded-full blur-[80px] opacity-30 bg-[radial-gradient(circle,#3b82f6,transparent)] animate-pulse"></div>
-    <div class="absolute -bottom-[10%] -right-[5%] w-[400px] h-[400px] rounded-full blur-[80px] opacity-30 bg-[radial-gradient(circle,#93c5fd,transparent)] animate-pulse [animation-delay:1.5s]"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[80px] opacity-20 bg-[radial-gradient(circle,#60a5fa,transparent)] animate-pulse [animation-delay:3s]"></div>
+    <div class="absolute inset-0 bg-linear-to-br from-blue-50 via-white to-slate-100"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(59,130,246,0.06)_1px,transparent_1px)] bg-size-[32px_32px]"></div>
+    <div class="absolute top-[-10%] left-[-5%] w-125 h-125 rounded-full blur-[80px] opacity-30 bg-[radial-gradient(circle,#3b82f6,transparent)] animate-pulse"></div>
+    <div class="absolute bottom-[-10%] right-[-5%] w-100 h-100 rounded-full blur-[80px] opacity-30 bg-[radial-gradient(circle,#93c5fd,transparent)] animate-pulse [animation-delay:1.5s]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 h-75 rounded-full blur-[80px] opacity-20 bg-[radial-gradient(circle,#60a5fa,transparent)] animate-pulse [animation-delay:3s]"></div>
   </div>
 
-  <div class="relative z-10 flex w-full max-w-[1100px] min-h-screen sm:min-h-[700px] m-0 sm:m-6 rounded-none sm:rounded-3xl overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_25px_60px_-12px_rgba(0,0,0,0.15)] bg-white">
+  <div class="relative z-10 flex w-full max-w-275 min-h-screen sm:min-h-175 m-0 sm:m-6 rounded-none sm:rounded-3xl overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_25px_60px_-12px_rgba(0,0,0,0.15)] bg-white">
     <!-- Left Branding Panel (desktop only) - Blue gradient -->
     <div class="hidden lg:flex w-[45%] flex-col justify-between p-12 relative overflow-hidden bg-[linear-gradient(160deg,#1e3a5f_0%,#1e4a7a_50%,#2563eb_100%)] before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_20%_50%,rgba(147,197,253,0.2)_0%,transparent_60%),radial-gradient(ellipse_at_80%_20%,rgba(37,99,235,0.1)_0%,transparent_50%)]">
-      <div class="relative z-[1]">
+      <div class="relative z-1">
         <a href={resolve('/')} class="flex items-center no-underline mb-12">
           
             <img src="/logo.png" alt="Firstcut24" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1)" />
@@ -127,7 +134,7 @@
 
     <!-- Right Form Panel - White background -->
     <div class="flex-1 flex items-center justify-center px-6 py-8 sm:px-8 sm:py-10 bg-white">
-      <div class="w-full max-w-[420px]">
+      <div class="w-full max-w-105">
         <!-- Back to Home -->
         <a href={resolve('/')} class="group inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-slate-500 no-underline transition-all mb-6 hover:text-blue-600">
           <ArrowLeft class="h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -151,7 +158,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-name" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Full name</label>
             <div class="group relative flex items-center">
-              <User class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <User class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-name"
                 type="text"
@@ -159,7 +166,7 @@
                 placeholder="John Doe"
                 required
                 autocomplete="name"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -168,7 +175,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-company" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Company name</label>
             <div class="group relative flex items-center">
-              <Building class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Building class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-company"
                 type="text"
@@ -176,7 +183,7 @@
                 placeholder="Acme Corporation"
                 required
                 autocomplete="organization"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -185,7 +192,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-email" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Email address</label>
             <div class="group relative flex items-center">
-              <Mail class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Mail class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-email"
                 type="email"
@@ -193,7 +200,7 @@
                 placeholder="you@company.com"
                 required
                 autocomplete="email"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -202,7 +209,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-password" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Password</label>
             <div class="group relative flex items-center">
-              <Lock class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Lock class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-password"
                 type={showPassword ? 'text' : 'password'}
@@ -211,7 +218,7 @@
                 required
                 autocomplete="new-password"
                 minlength="8"
-                class="w-full py-[0.8125rem] pl-11 pr-12 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-12 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
               <button
                 type="button"
@@ -220,22 +227,22 @@
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {#if showPassword}
-                  <EyeOff class="h-[18px] w-[18px]" />
+                  <EyeOff class="h-4.5 w-4.5" />
                 {:else}
-                  <Eye class="h-[18px] w-[18px]" />
+                  <Eye class="h-4.5 w-4.5" />
                 {/if}
               </button>
             </div>
             <!-- Password Strength Indicator -->
             <div class="flex items-center gap-3">
               <div class="flex gap-1 flex-1">
-                <div class="h-[3px] flex-1 rounded-sm transition-all
+                <div class="h-0.75 flex-1 rounded-sm transition-all
                   {password.length >= 8 ? 'bg-blue-500' : password.length >= 6 ? 'bg-yellow-500' : password.length >= 1 ? 'bg-red-400' : 'bg-slate-300'}"></div>
-                <div class="h-[3px] flex-1 rounded-sm transition-all
+                <div class="h-0.75 flex-1 rounded-sm transition-all
                   {password.length >= 10 ? 'bg-blue-500' : password.length >= 8 ? 'bg-yellow-500' : password.length >= 4 ? 'bg-red-400' : 'bg-slate-300'}"></div>
-                <div class="h-[3px] flex-1 rounded-sm transition-all
+                <div class="h-0.75 flex-1 rounded-sm transition-all
                   {password.length >= 12 ? 'bg-blue-500' : password.length >= 10 ? 'bg-yellow-500' : password.length >= 8 ? 'bg-red-400' : 'bg-slate-300'}"></div>
-                <div class="h-[3px] flex-1 rounded-sm transition-all
+                <div class="h-0.75 flex-1 rounded-sm transition-all
                   {password.length >= 12 ? 'bg-blue-500' : 'bg-slate-300'}"></div>
               </div>
               {#if password.length > 0}
@@ -251,7 +258,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-phone" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Phone number</label>
             <div class="group relative flex items-center">
-              <Phone class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Phone class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-phone"
                 type="tel"
@@ -259,7 +266,7 @@
                 placeholder="+91 98765 43210"
                 required
                 autocomplete="tel"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -268,7 +275,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-country" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Country</label>
             <div class="group relative flex items-center">
-              <Globe class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Globe class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-country"
                 type="text"
@@ -276,7 +283,7 @@
                 placeholder="India"
                 required
                 autocomplete="country"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -285,7 +292,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-state" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">State</label>
             <div class="group relative flex items-center">
-              <MapPin class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <MapPin class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-state"
                 type="text"
@@ -293,7 +300,7 @@
                 placeholder="Maharashtra"
                 required
                 autocomplete="address-level1"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -302,7 +309,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-city" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">City</label>
             <div class="group relative flex items-center">
-              <Building class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Building class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-city"
                 type="text"
@@ -310,7 +317,7 @@
                 placeholder="Mumbai"
                 required
                 autocomplete="address-level2"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -319,7 +326,7 @@
           <div class="flex flex-col gap-1.5">
             <label for="register-pincode" class="text-[0.8125rem] font-semibold text-slate-700 tracking-wide">Pincode</label>
             <div class="group relative flex items-center">
-              <Mail class="absolute left-4 w-[18px] h-[18px] text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
+              <Mail class="absolute left-4 w-4.5 h-4.5 text-slate-400 pointer-events-none transition-colors group-focus-within:text-blue-600" />
               <input
                 id="register-pincode"
                 type="text"
@@ -327,7 +334,7 @@
                 placeholder="400001"
                 required
                 autocomplete="postal-code"
-                class="w-full py-[0.8125rem] pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                class="w-full py-3.25 pl-11 pr-4 text-[0.9375rem] text-slate-800 bg-white border border-slate-300 rounded-2xl outline-none transition-all placeholder:text-slate-400 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
             </div>
           </div>
@@ -342,15 +349,15 @@
           <!-- Submit Button -->
           <button
             type="submit"
-            class="group relative flex items-center justify-center gap-2 w-full py-3.5 text-[0.9375rem] font-semibold text-white bg-gradient-to-br from-blue-600 to-blue-700 border-0 rounded-2xl cursor-pointer overflow-hidden transition-all shadow-[0_4px_16px_rgba(59,130,246,0.35)] hover:from-blue-700 hover:to-blue-800 hover:shadow-[0_8px_24px_rgba(59,130,246,0.45)] hover:-translate-y-px active:translate-y-0 active:shadow-[0_2px_8px_rgba(59,130,246,0.25)] disabled:opacity-70 disabled:cursor-not-allowed"
+            class="group relative flex items-center justify-center gap-2 w-full py-3.5 text-[0.9375rem] font-semibold text-white bg-linear-to-br from-blue-600 to-blue-700 border-0 rounded-2xl cursor-pointer overflow-hidden transition-all shadow-[0_4px_16px_rgba(59,130,246,0.35)] hover:from-blue-700 hover:to-blue-800 hover:shadow-[0_8px_24px_rgba(59,130,246,0.45)] hover:-translate-y-px active:translate-y-0 active:shadow-[0_2px_8px_rgba(59,130,246,0.25)] disabled:opacity-70 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
             {#if isLoading}
-              <div class="w-[18px] h-[18px] border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              <div class="w-4.5 h-4.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
               <span>Creating account...</span>
             {:else}
               <span>Create Account</span>
-              <ArrowRight class="h-[18px] w-[18px] transition-transform group-hover:translate-x-1" />
+              <ArrowRight class="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
             {/if}
           </button>
 
@@ -370,7 +377,7 @@
         </form>
 
         <!-- Divider -->
-        <div class="flex items-center gap-4 my-6 before:content-[''] before:flex-1 before:h-px before:bg-gradient-to-r before:from-transparent before:via-slate-300 before:to-transparent after:content-[''] after:flex-1 after:h-px after:bg-gradient-to-r after:from-transparent after:via-slate-300 after:to-transparent">
+        <div class="flex items-center gap-4 my-6 before:content-[''] before:flex-1 before:h-px before:bg-linear-to-r before:from-transparent before:via-slate-300 before:to-transparent after:content-[''] after:flex-1 after:h-px after:bg-linear-to-r after:from-transparent after:via-slate-300 after:to-transparent">
           <span class="text-[0.8125rem] text-slate-400 font-medium">or</span>
         </div>
 

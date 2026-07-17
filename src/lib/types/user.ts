@@ -4,6 +4,10 @@ export interface User {
     email: string;
     phone?: string;
     company?: string;
+    state?: string;
+    city?: string;
+    country?: string;
+    pincode?: string;
     role?: string;
     status?: string;
     createdAt: string;

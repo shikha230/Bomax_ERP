@@ -32,13 +32,18 @@
 
 	let users = $state<User[]>([]);
 	let loadingUsers = $state(false);
+	let usersError = $state('');
 	let searchQuery = $state('');
 
 	async function loadUsers() {
 		loadingUsers = true;
+		usersError = '';
+		users = [];
 		try {
 			users = await getUsers();
 		} catch (err: unknown) {
+			users = [];
+			usersError = err instanceof Error ? err.message : 'Unable to load users from the backend.';
 			console.error('Failed to load users:', err);
 		} finally {
 			loadingUsers = false;
@@ -260,6 +265,12 @@
 								/>
 							</div>
 						</div>
+
+						{#if usersError}
+							<div class="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+								{usersError}
+							</div>
+						{/if}
 
 						{#if loadingUsers}
 							<div class="flex justify-center items-center py-10 text-sm text-slate-500 gap-2">

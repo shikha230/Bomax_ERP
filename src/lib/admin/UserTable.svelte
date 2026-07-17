@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { Pencil, Trash2, Search, Users } from 'lucide-svelte';
+	import { Search, Users } from 'lucide-svelte';
 
 	import type { User } from '$lib/types/user';
 
 	const { users = [], loading = false } = $props();
-	const dispatch = createEventDispatcher<{ delete: string; edit: User }>();
 	let search = $state('');
 
 	function filteredUsers() {
@@ -16,29 +15,19 @@
 			user.email.toLowerCase().includes(query)
 		);
 	}
-
-	function deleteUser(id: string) {
-		if (confirm('Delete this user?')) {
-			dispatch('delete', id);
-		}
-	}
-
-	function editUser(user: User) {
-		dispatch('edit', user);
-	}
 </script>
 
 <div class="rounded-2xl bg-white shadow">
 
-	<div class="flex flex-col gap-4 border-b p-6 md:flex-row md:items-center md:justify-between">
+	<div class="flex flex-col gap-4 border-b-2 border-blue-100 p-6 md:flex-row md:items-center md:justify-between">
 
 		<div>
 
-			<h2 class="text-2xl font-bold text-slate-800">
+			<h2 class="text-2xl font-bold text-blue-900" style="font-family: 'Roboto', sans-serif;">
 				Registered Users
 			</h2>
 
-			<p class="mt-1 text-sm text-slate-500">
+			<p class="mt-1 text-sm text-gray-600" style="font-family: 'Roboto', sans-serif;">
 				All users registered on your website
 			</p>
 
@@ -48,14 +37,15 @@
 
 			<Search
 				size={18}
-				class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+				class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
 			/>
 
 			<input
 				bind:value={search}
 				type="text"
 				placeholder="Search user..."
-				class="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none focus:border-cyan-500 md:w-72"
+				class="w-full rounded-xl border-2 border-gray-200 py-3 pl-11 pr-4 outline-none focus:border-blue-500 md:w-72"
+				style="font-family: 'Roboto', sans-serif;"
 			/>
 
 		</div>
@@ -102,7 +92,7 @@
 
 			<table class="min-w-full">
 
-				<thead class="bg-slate-100">
+				<thead class="bg-blue-50 border-b-2 border-blue-200">
 
 					<tr>
 
@@ -123,20 +113,32 @@
 						</th>
 
 						<th class="px-6 py-4 text-left text-sm font-semibold">
-							Status
-						</th>
+						City
+					</th>
 
-						<th class="px-6 py-4 text-left text-sm font-semibold">
-							Date
-						</th>
+					<th class="px-6 py-4 text-left text-sm font-semibold">
+						State
+					</th>
 
-						<th class="px-6 py-4 text-center text-sm font-semibold">
-							Actions
-						</th>
+					<th class="px-6 py-4 text-left text-sm font-semibold">
+						Country
+					</th>
 
-					</tr>
+					<th class="px-6 py-4 text-left text-sm font-semibold">
+						Pincode
+					</th>
 
-				</thead>
+					<th class="px-6 py-4 text-left text-sm font-semibold">
+						Status
+					</th>
+
+					<th class="px-6 py-4 text-left text-sm font-semibold">
+						Date
+					</th>
+
+				</tr>
+
+			</thead>
 
 				<tbody>
 
@@ -161,46 +163,35 @@
 							</td>
 
 							<td class="px-6 py-4">
+							{user.city || '-'}
+						</td>
 
-								<span
-									class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700"
-								>
-									{user.status || 'Active'}
-								</span>
+						<td class="px-6 py-4">
+							{user.state || '-'}
+						</td>
 
-							</td>
+						<td class="px-6 py-4">
+							{user.country || '-'}
+						</td>
+						<td class="px-6 py-4">
+							{user.pincode || '-'}
+						</td>
 
-							<td class="px-6 py-4">
-								{new Date(user.createdAt).toLocaleDateString()}
-							</td>
+						<td class="px-6 py-4">
 
-							<td class="px-6 py-4">
+							<span
+								class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700"
+							>
+								{user.status || 'Active'}
+							</span>
 
-								<div class="flex justify-center gap-3">
+						</td>
 
-									<button
-										onclick={() => editUser(user)}
-										class="rounded-lg bg-blue-500 p-2 text-white transition hover:bg-blue-600"
-									>
+						<td class="px-6 py-4">
+							{new Date(user.createdAt).toLocaleDateString()}
+						</td>
 
-										<Pencil size={18} />
-
-									</button>
-
-									<button
-										onclick={() => deleteUser(user._id)}
-										class="rounded-lg bg-red-500 p-2 text-white transition hover:bg-red-600"
-									>
-
-										<Trash2 size={18} />
-
-									</button>
-
-								</div>
-
-							</td>
-
-						</tr>
+					</tr>
 
 					{/each}
 

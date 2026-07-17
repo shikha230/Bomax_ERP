@@ -32,7 +32,7 @@
 
 <!-- Mobile Toggle -->
 <button
-	class="fixed left-4 top-4 z-50 rounded-lg bg-slate-900 p-2 text-white lg:hidden"
+	class="fixed left-4 top-4 z-50 rounded-lg bg-blue-700 p-2 text-white lg:hidden"
 	onclick={() => (mobileOpen = !mobileOpen)}
 	type="button"
 	aria-label="Toggle sidebar"
@@ -57,22 +57,21 @@
 <!-- Sidebar -->
 
 <aside
-	class={`fixed left-0 top-0 z-40 flex h-screen w-72 flex-col bg-slate-900 text-white transition-transform duration-300
+	class={`fixed left-0 top-0 z-40 flex h-screen w-72 flex-col bg-gradient-to-b from-blue-900 to-blue-800 text-white transition-transform duration-300
 	${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
 	lg:translate-x-0`}
 >
 
 	<!-- Logo -->
 
-	<div class="border-b border-slate-700 p-6">
+	<div class="border-b border-blue-700 p-6">
 
-		<h1 class="text-3xl font-bold tracking-wide">
+		<div class="flex items-center gap-3 mb-2">
+			<img src="/logo.png" alt="Firstcut24" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1)" />
 
-			FirstCut ERP
+		</div>
 
-		</h1>
-
-		<p class="mt-1 text-sm text-slate-400">
+		<p class="mt-1 text-xs text-blue-200" style="font-family: 'Roboto', sans-serif;">
 
 			Admin Panel
 
@@ -82,25 +81,26 @@
 
 	<!-- Admin Info -->
 
-	<div class="border-b border-slate-700 p-6">
+	<div class="border-b border-blue-700 p-6">
 
 		<div class="flex items-center gap-4">
 
 			<div
-				class="flex h-14 w-14 items-center justify-center rounded-full bg-cyan-500 text-xl font-bold"
+				class="flex h-14 w-14 items-center justify-center rounded-full bg-blue-400 text-xl font-bold text-white"
+				style="font-family: 'Roboto', sans-serif;"
 			>
 				{$admin?.name?.charAt(0).toUpperCase() ?? 'A'}
 			</div>
 
 			<div>
 
-				<h2 class="font-semibold">
+				<h2 class="font-semibold" style="font-family: 'Roboto', sans-serif;">
 
 					{$admin?.name}
 
 				</h2>
 
-				<p class="text-sm text-slate-400">
+				<p class="text-sm text-blue-200" style="font-family: 'Roboto', sans-serif;">
 
 					{$admin?.email}
 
@@ -119,7 +119,8 @@
 		<button
 			onclick={openDashboard}
 			type="button"
-			class="mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-slate-800"
+			class="mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-blue-700"
+			style="font-family: 'Roboto', sans-serif;"
 		>
 			<LayoutDashboard size={22} />
 			<span class="font-medium">Dashboard</span>
@@ -127,8 +128,9 @@
 
 		<button
 			onclick={openDashboard}
-			class="mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-slate-800"
+			class="mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-blue-700"
 			type="button"
+			style="font-family: 'Roboto', sans-serif;"
 		>
 			<Users size={22} />
 			<span class="font-medium">Registered Users</span>
@@ -136,8 +138,9 @@
 
 		<button
 			onclick={openRegister}
-			class="mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-slate-800"
+			class="mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition hover:bg-blue-700"
 			type="button"
+			style="font-family: 'Roboto', sans-serif;"
 		>
 			<UserPlus size={22} />
 			<span class="font-medium">Register Admin</span>
@@ -147,16 +150,18 @@
 
 	<!-- Footer -->
 
-	<div class="border-t border-slate-700 p-5">
+	<div class="border-t border-blue-700 p-5">
 
 		<button
 		onclick={logoutAdmin}
 		type="button"
+		class="flex items-center gap-2 text-sm font-medium hover:text-blue-200 transition"
+		style="font-family: 'Roboto', sans-serif;"
 		>
 
 			<LogOut size={20} />
 
-			Logout
+			<span>Logout</span>
 
 		</button>
 
