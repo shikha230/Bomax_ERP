@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	type IconType =
 		| 'sparkle'
 		| 'customers'
@@ -90,7 +92,9 @@
 			y: pad + (height - pad * 2) * (1 - (v - min) / range)
 		}));
 
-		const line = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+		const line = points
+			.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`)
+			.join(' ');
 
 		return { line, points, width, height };
 	}
@@ -130,15 +134,33 @@
 		{
 			kind: 'statPair',
 			tiles: [
-				{ label: 'Customers', value: '36,358', change: '-12%', changeType: 'down', bg: 'bg-emerald-200/70', text: 'text-emerald-900' },
-				{ label: 'Projects', value: '78,298', change: '+31.6%', changeType: 'up', bg: 'bg-pink-200/70', text: 'text-pink-900' }
+				{
+					label: 'Customers',
+					value: '36,358',
+					change: '-12%',
+					changeType: 'down',
+					bg: 'bg-emerald-200/70',
+					text: 'text-emerald-900'
+				},
+				{
+					label: 'Projects',
+					value: '78,298',
+					change: '+31.6%',
+					changeType: 'up',
+					bg: 'bg-pink-200/70',
+					text: 'text-pink-900'
+				}
 			]
 		},
 		{
 			kind: 'activity',
 			title: 'Recent Activity',
 			items: [
-				{ time: '09:46', text: 'Payment was made of ₹364.85 to Michael Anderson', dot: 'bg-indigo-400' },
+				{
+					time: '09:46',
+					text: 'Payment was made of ₹364.85 to Michael Anderson',
+					dot: 'bg-indigo-400'
+				},
 				{ time: '09:46', text: 'New sale recorded #ML-3457', dot: 'bg-emerald-400' },
 				{ time: '09:46', text: 'Project meeting scheduled', dot: 'bg-pink-400' },
 				{ time: '09:46', text: 'Payment received from John Doe of ₹585.90', dot: 'bg-indigo-400' }
@@ -194,8 +216,22 @@
 		{
 			kind: 'statPair',
 			tiles: [
-				{ label: 'Orders', value: '12,845', change: '+9.4%', changeType: 'up', bg: 'bg-indigo-200/70', text: 'text-indigo-900' },
-				{ label: 'Refunds', value: '318', change: '-2.8%', changeType: 'down', bg: 'bg-pink-200/70', text: 'text-pink-900' }
+				{
+					label: 'Orders',
+					value: '12,845',
+					change: '+9.4%',
+					changeType: 'up',
+					bg: 'bg-indigo-200/70',
+					text: 'text-indigo-900'
+				},
+				{
+					label: 'Refunds',
+					value: '318',
+					change: '-2.8%',
+					changeType: 'down',
+					bg: 'bg-pink-200/70',
+					text: 'text-pink-900'
+				}
 			]
 		},
 		{
@@ -205,7 +241,11 @@
 				{ time: '11:02', text: 'Design review completed for Nova v2', dot: 'bg-emerald-400' },
 				{ time: '10:40', text: 'New invoice sent to Priya Nair', dot: 'bg-indigo-400' },
 				{ time: '10:15', text: 'Support ticket #4821 resolved', dot: 'bg-pink-400' },
-				{ time: '09:52', text: 'Payment received from Ava Whitfield of ₹482.00', dot: 'bg-indigo-400' }
+				{
+					time: '09:52',
+					text: 'Payment received from Ava Whitfield of ₹482.00',
+					dot: 'bg-indigo-400'
+				}
 			]
 		},
 		{
@@ -223,27 +263,80 @@
 		}
 	];
 
-	// Duplicated so the track's translateY(-50%) loop point lines up exactly
-	// with the start of the second copy — no visible seam.
+	// Duplicate the entire sequence for seamless looping
 	const loopedLeft = [...leftCards, ...leftCards];
 	const loopedMiddle = [...middleCards, ...middleCards];
 
 	function floatDelay(index: number) {
 		return `${(index % 6) * 0.35}s`;
 	}
+
+	let leftColEl: HTMLElement | null = null;
+	let middleColEl: HTMLElement | null = null;
+	let leftTrackEl: HTMLElement | null = null;
+	let middleTrackEl: HTMLElement | null = null;
+
+	onMount(() => {
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (reducedMotion) {
+			if (leftTrackEl) leftTrackEl.style.animationPlayState = 'paused';
+			if (middleTrackEl) middleTrackEl.style.animationPlayState = 'paused';
+			return;
+		}
+
+		// Hover pause for the scroll animation
+		const onLeftEnter = () => {
+			if (leftTrackEl) leftTrackEl.style.animationPlayState = 'paused';
+		};
+		const onLeftLeave = () => {
+			if (leftTrackEl) leftTrackEl.style.animationPlayState = 'running';
+		};
+		const onMidEnter = () => {
+			if (middleTrackEl) middleTrackEl.style.animationPlayState = 'paused';
+		};
+		const onMidLeave = () => {
+			if (middleTrackEl) middleTrackEl.style.animationPlayState = 'running';
+		};
+
+		leftColEl?.addEventListener('mouseenter', onLeftEnter);
+		leftColEl?.addEventListener('mouseleave', onLeftLeave);
+		middleColEl?.addEventListener('mouseenter', onMidEnter);
+		middleColEl?.addEventListener('mouseleave', onMidLeave);
+
+		return () => {
+			leftColEl?.removeEventListener('mouseenter', onLeftEnter);
+			leftColEl?.removeEventListener('mouseleave', onLeftLeave);
+			middleColEl?.removeEventListener('mouseenter', onMidEnter);
+			middleColEl?.removeEventListener('mouseleave', onMidLeave);
+		};
+	});
 </script>
 
+<!-- ============ ICON SNIPPETS ============ -->
 {#snippet cardIcon(type: IconType)}
 	{#if type === 'sparkle'}
 		<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
-			<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill="currentColor" />
+			<path
+				d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"
+				fill="currentColor"
+			/>
 		</svg>
 	{:else if type === 'customers'}
 		<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
 			<circle cx="9" cy="8.5" r="3" stroke="currentColor" stroke-width="1.6" />
-			<path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+			<path
+				d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"
+				stroke="currentColor"
+				stroke-width="1.6"
+				stroke-linecap="round"
+			/>
 			<circle cx="17" cy="9" r="2.2" stroke="currentColor" stroke-width="1.4" />
-			<path d="M15.5 19c.2-2.2 1.8-3.8 3.8-3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+			<path
+				d="M15.5 19c.2-2.2 1.8-3.8 3.8-3.8"
+				stroke="currentColor"
+				stroke-width="1.4"
+				stroke-linecap="round"
+			/>
 		</svg>
 	{:else if type === 'income'}
 		<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
@@ -252,7 +345,13 @@
 		</svg>
 	{:else if type === 'cart'}
 		<svg viewBox="0 0 24 24" class="h-4 w-4" fill="none">
-			<path d="M4 6h2l1.6 9.2a1.5 1.5 0 001.5 1.3h7.3a1.5 1.5 0 001.5-1.2L19.5 9H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+			<path
+				d="M4 6h2l1.6 9.2a1.5 1.5 0 001.5 1.3h7.3a1.5 1.5 0 001.5-1.2L19.5 9H7"
+				stroke="currentColor"
+				stroke-width="1.6"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
 			<circle cx="10" cy="19.5" r="1.2" fill="currentColor" />
 			<circle cx="16.5" cy="19.5" r="1.2" fill="currentColor" />
 		</svg>
@@ -263,37 +362,62 @@
 		</svg>
 	{:else if type === 'payment'}
 		<svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none">
-			<path d="M12 2v20M17 6.5c0-1.7-2-3-5-3s-5 1.3-5 3 2.2 2.7 5 3 5 1.4 5 3-2 3-5 3-5-1.3-5-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+			<path
+				d="M12 2v20M17 6.5c0-1.7-2-3-5-3s-5 1.3-5 3 2.2 2.7 5 3 5 1.4 5 3-2 3-5 3-5-1.3-5-3"
+				stroke="currentColor"
+				stroke-width="1.7"
+				stroke-linecap="round"
+			/>
 		</svg>
 	{:else if type === 'sale'}
 		<svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none">
-			<path d="M20 12l-8 8-9-9V4h7l10 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+			<path
+				d="M20 12l-8 8-9-9V4h7l10 8z"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linejoin="round"
+			/>
 			<circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" />
 		</svg>
 	{:else if type === 'meeting'}
 		<svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none">
 			<rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.5" />
-			<path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+			<path
+				d="M3.5 9.5h17M8 3v3.5M16 3v3.5"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linecap="round"
+			/>
 		</svg>
 	{:else}
 		<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
-			<path d="M4 8l4-3h8l4 3v11a1 1 0 01-1 1H5a1 1 0 01-1-1V8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+			<path
+				d="M4 8l4-3h8l4 3v11a1 1 0 01-1 1H5a1 1 0 01-1-1V8z"
+				stroke="currentColor"
+				stroke-width="1.6"
+				stroke-linejoin="round"
+			/>
 			<path d="M4 8h16" stroke="currentColor" stroke-width="1.6" />
 		</svg>
 	{/if}
 {/snippet}
 
 {#snippet changeText(change: string, changeType: 'up' | 'down')}
-	<span class={`inline-flex items-center gap-0.5 text-[11px] font-semibold ${changeType === 'up' ? 'text-emerald-600' : 'text-rose-500'}`}>
+	<span
+		class={`inline-flex items-center gap-0.5 text-[11px] font-semibold ${changeType === 'up' ? 'text-emerald-600' : 'text-rose-500'}`}
+	>
 		{#if changeType === 'up'}
-			<svg viewBox="0 0 10 10" class="h-2.5 w-2.5"><path d="M5 1l4 6H1z" fill="currentColor" /></svg>
+			<svg viewBox="0 0 10 10" class="h-2.5 w-2.5"><path d="M5 1l4 6H1z" fill="currentColor" /></svg
+			>
 		{:else}
-			<svg viewBox="0 0 10 10" class="h-2.5 w-2.5"><path d="M5 9L1 3h8z" fill="currentColor" /></svg>
+			<svg viewBox="0 0 10 10" class="h-2.5 w-2.5"><path d="M5 9L1 3h8z" fill="currentColor" /></svg
+			>
 		{/if}
 		{change}
 	</span>
 {/snippet}
 
+<!-- ============ CARD PANELS ============ -->
 {#snippet welcomePanel(card: WelcomeCard, index: number)}
 	<div
 		class="card-float relative overflow-hidden rounded-3xl bg-linear-to-br from-[#6D5DF6] to-[#4B3FE4] p-5 text-white shadow-[0_16px_36px_rgba(76,63,228,0.35)]"
@@ -315,7 +439,10 @@
 				</div>
 			</div>
 		</div>
-		<svg viewBox="0 0 100 100" class="pointer-events-none absolute -right-4 -bottom-6 h-28 w-28 opacity-30">
+		<svg
+			viewBox="0 0 100 100"
+			class="pointer-events-none absolute -right-4 -bottom-6 h-28 w-28 opacity-30"
+		>
 			<circle cx="50" cy="50" r="46" stroke="white" stroke-width="6" fill="none" />
 			<circle cx="50" cy="50" r="30" stroke="white" stroke-width="6" fill="none" />
 			<circle cx="50" cy="50" r="14" fill="white" />
@@ -329,7 +456,9 @@
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<div class="mb-5 flex items-center gap-3">
-			<div class={`flex h-9 w-9 items-center justify-center rounded-xl ${card.iconBg} ${card.iconColor}`}>
+			<div
+				class={`flex h-9 w-9 items-center justify-center rounded-xl ${card.iconBg} ${card.iconColor}`}
+			>
 				{@render cardIcon(card.icon)}
 			</div>
 			<h4 class="text-sm font-semibold text-slate-800">{card.title}</h4>
@@ -351,7 +480,9 @@
 		style={`animation-delay:${floatDelay(index)}`}
 	>
 		<div class="mb-4 flex items-center gap-3">
-			<div class={`flex h-9 w-9 items-center justify-center rounded-xl ${card.iconBg} ${card.iconColor}`}>
+			<div
+				class={`flex h-9 w-9 items-center justify-center rounded-xl ${card.iconBg} ${card.iconColor}`}
+			>
 				{@render cardIcon(card.icon)}
 			</div>
 			<h4 class="text-sm font-semibold text-slate-800">{card.title}</h4>
@@ -362,7 +493,14 @@
 				<div class="mt-1">{@render changeText(card.change, card.changeType)}</div>
 			</div>
 			<svg viewBox={`0 0 ${path.width} ${path.height}`} class="h-12 w-28">
-				<path d={path.line} fill="none" stroke={card.lineColor} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+				<path
+					d={path.line}
+					fill="none"
+					stroke={card.lineColor}
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
 			</svg>
 		</div>
 	</div>
@@ -410,7 +548,14 @@
 			<p class="font-mono text-lg font-bold text-slate-900">{card.value}</p>
 		</div>
 		<svg viewBox={`0 0 ${path.width} ${path.height}`} class="mt-2 h-14 w-full">
-			<path d={path.line} fill="none" stroke={card.lineColor} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+			<path
+				d={path.line}
+				fill="none"
+				stroke={card.lineColor}
+				stroke-width="2.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
 		</svg>
 		<div class="mt-4 space-y-2.5 border-t border-slate-100 pt-3">
 			{#each card.rows as row (row.label)}
@@ -440,20 +585,29 @@
 	{/if}
 {/snippet}
 
+<!-- ============ LAYOUT ============ -->
 <section class="relative overflow-hidden bg-[#F4F5FB] pt-0">
 	<div class="relative mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 md:grid-cols-2 lg:px-8">
-		<div class="column col-left relative h-160 overflow-hidden sm:h-190 lg:h-240">
-			<div class="track flex flex-col gap-5">
+		<!-- Left column – scrolls UP -->
+		<div
+			class="column col-left relative h-160 overflow-hidden sm:h-190 lg:h-240"
+			bind:this={leftColEl}
+		>
+			<div class="track-scroll-up flex flex-col" bind:this={leftTrackEl}>
 				{#each loopedLeft as card, i (i)}
-					{@render dashboardCard(card, i)}
+					<div class="card-wrapper">{@render dashboardCard(card, i)}</div>
 				{/each}
 			</div>
 		</div>
 
-		<div class="column col-middle relative hidden h-160 overflow-hidden sm:h-190 md:block lg:h-240">
-			<div class="track flex flex-col gap-5">
+		<!-- Middle column – scrolls DOWN -->
+		<div
+			class="column col-middle relative hidden h-160 overflow-hidden sm:h-190 md:block lg:h-240"
+			bind:this={middleColEl}
+		>
+			<div class="track-scroll-down flex flex-col" bind:this={middleTrackEl}>
 				{#each loopedMiddle as card, i (i)}
-					{@render dashboardCard(card, i)}
+					<div class="card-wrapper">{@render dashboardCard(card, i)}</div>
 				{/each}
 			</div>
 		</div>
@@ -461,48 +615,115 @@
 </section>
 
 <style>
-	@keyframes scroll-loop {
-		0% {
-			transform: translateY(0);
-		}
-		100% {
-			transform: translateY(-50%);
-		}
-	}
-
+	/* ---- FLOATING ANIMATION (independent from scroll) ---- */
 	@keyframes card-float {
 		0%,
 		100% {
-			transform: translateY(0);
+			transform: scale(1);
+			box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
 		}
 		50% {
-			transform: translateY(-5px);
+			transform: scale(1.01);
+			box-shadow: 0 18px 40px rgba(17, 24, 39, 0.12);
 		}
-	}
-
-	.col-left .track {
-		animation: scroll-loop 24s linear infinite;
-	}
-
-	.col-middle .track {
-		animation: scroll-loop 30s linear infinite reverse;
-	}
-
-	.column:hover .track {
-		animation-play-state: paused;
 	}
 
 	.card-float {
 		animation: card-float 5s ease-in-out infinite;
+		will-change: transform, box-shadow;
+		backface-visibility: hidden;
+		transform-style: preserve-3d;
+	}
+
+	.card-wrapper:nth-child(6n + 1) .card-float {
+		animation-delay: 0s;
+	}
+	.card-wrapper:nth-child(6n + 2) .card-float {
+		animation-delay: 0.35s;
+	}
+	.card-wrapper:nth-child(6n + 3) .card-float {
+		animation-delay: 0.7s;
+	}
+	.card-wrapper:nth-child(6n + 4) .card-float {
+		animation-delay: 1.05s;
+	}
+	.card-wrapper:nth-child(6n + 5) .card-float {
+		animation-delay: 1.4s;
+	}
+	.card-wrapper:nth-child(6n + 6) .card-float {
+		animation-delay: 1.75s;
+	}
+
+	/* ---- SCROLLING TRACKS (continuous, no reset) ---- */
+	.track-scroll-up,
+	.track-scroll-down {
+		will-change: transform;
+		backface-visibility: hidden;
+		transform-style: preserve-3d;
+	}
+
+	/* Left: scroll upward — from 0 → -50% */
+	.track-scroll-up {
+		animation: scroll-up 24s linear infinite;
+	}
+
+	/* Right: scroll downward — from -50% → 0 */
+	.track-scroll-down {
+		animation: scroll-down 30s linear infinite;
+	}
+
+	@keyframes scroll-up {
+		0% {
+			transform: translate3d(0, 0, 0);
+		}
+		100% {
+			transform: translate3d(0, -50%, 0);
+		}
+	}
+
+	@keyframes scroll-down {
+		0% {
+			transform: translate3d(0, -50%, 0);
+		}
+		100% {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	/* ---- PAUSE ON HOVER ---- */
+	.column:hover .track-scroll-up,
+	.column:hover .track-scroll-down {
+		animation-play-state: paused;
 	}
 
 	.column:hover .card-float {
 		animation-play-state: paused;
 	}
 
+	/* ---- RESPONSIVE HEIGHTS ---- */
+	.h-160 {
+		height: 40rem; /* 640px */
+	}
+	.sm\:h-190 {
+		height: 47.5rem; /* 760px */
+	}
+	.lg\:h-240 {
+		height: 60rem; /* 960px */
+	}
+
+	/* ---- CARD WRAPPER – UNIFORM MARGIN for consistent gaps ---- */
+	.card-wrapper {
+		margin-bottom: 1.25rem; /* same as gap-5 */
+	}
+
+	/* ---- No last-child override – every card has the same margin ---- */
+
+	/* ---- REDUCED MOTION ---- */
 	@media (prefers-reduced-motion: reduce) {
-		.track {
+		.track-scroll-up,
+		.track-scroll-down {
 			animation: none;
+			transform: none !important;
 		}
 		.card-float {
 			animation: none;
